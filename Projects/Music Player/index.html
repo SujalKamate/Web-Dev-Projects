@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="phone">
+    <div class="phone__status"><span>9:41</span><span class="dot"></span></div>
+
+    <section class="player">
+      <div id="art" class="art" aria-hidden="true"></div>
+      <h1 id="title" class="title">—</h1>
+      <p id="artist" class="artist">—</p>
+
+      <div class="scrub">
+        <span id="cur" class="t">0:00</span>
+        <input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek" />
+        <span id="dur" class="t">0:00</span>
+      </div>
+
+      <div class="controls">
+        <button id="prev" class="ctl" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6 6h2v12H6zM20 6 10 12l10 6z"/></svg>
+        </button>
+        <button id="play" class="ctl ctl--main" aria-label="Play">
+          <svg id="ipic" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button id="next" class="ctl" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M16 6h2v12h-2zM4 6l10 6L4 18z"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="queue" aria-label="Up next">
+      <h2>Up next</h2>
+      <ul id="queue" class="queue__list"></ul>
+    </section>
+
+    <audio id="audio" preload="metadata"></audio>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

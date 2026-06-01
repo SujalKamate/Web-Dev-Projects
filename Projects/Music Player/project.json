@@ -1,0 +1,8 @@
+{
+  "title": "Music Player",
+  "description": "An iPhone-style audio player with album art cards, scrubber, and a queue you can swipe through.",
+  "author": { "name": "Web Dev Projects", "github": "cu-sanjay" },
+  "tags": ["audio", "ui", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
