@@ -1,0 +1,8 @@
+{
+  "title": "Daily Wheels",
+  "description": "A weighted decision wheel for picking what to eat, watch or do today, with custom SVG graphics and category presets.",
+  "author": { "name": "Web Dev Projects", "github": "cu-sanjay" },
+  "tags": ["decision", "svg", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

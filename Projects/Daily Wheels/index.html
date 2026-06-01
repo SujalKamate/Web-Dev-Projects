@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Daily Wheels</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="head">
+      <h1>Daily Wheels</h1>
+      <p>Spin to decide what to eat, watch or do today.</p>
+    </header>
+
+    <div class="presets" id="presets" role="group" aria-label="Presets"></div>
+
+    <section class="stage">
+      <div class="wheel">
+        <svg id="wheel" viewBox="-110 -110 220 220" role="img" aria-label="Decision wheel"></svg>
+        <div class="pointer" aria-hidden="true"></div>
+        <button id="spin" class="hub" aria-label="Spin the wheel">Spin</button>
+      </div>
+      <div id="result" class="result" hidden>
+        <span class="result__label">Pick of the moment</span>
+        <strong id="result-text">—</strong>
+      </div>
+    </section>
+
+    <section class="editor">
+      <h2>Options</h2>
+      <ul id="opts" class="opts"></ul>
+      <form id="add" class="add">
+        <input id="add-input" type="text" placeholder="Add an option" maxlength="40" />
+        <button class="btn" type="submit">Add</button>
+      </form>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
