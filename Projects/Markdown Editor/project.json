@@ -1,0 +1,8 @@
+{
+  "title": "Markdown Editor",
+  "description": "Real-time Markdown editor with glass UI, export to HTML, and localStorage persistence.",
+  "author": { "name": "Sam", "github": "sam" },
+  "tags": ["markdown", "editor", "vanilla-js", "glass-ui", "real-time"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

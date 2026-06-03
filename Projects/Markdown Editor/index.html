@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Markdown Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background"></div>
+  
+  <main class="container">
+    <header class="header glass">
+      <div class="header-content">
+        <h1 class="title">✨ Markdown Editor</h1>
+        <p class="subtitle">Real-time preview with glass UI</p>
+      </div>
+      <div class="toolbar">
+        <button id="exportBtn" class="btn btn-icon" title="Export to HTML">
+          <span>💾</span> Export
+        </button>
+        <button id="copyBtn" class="btn btn-icon" title="Copy HTML">
+          <span>📋</span> Copy
+        </button>
+        <button id="clearBtn" class="btn btn-icon" title="Clear all">
+          <span>🗑️</span> Clear
+        </button>
+      </div>
+    </header>
+
+    <div class="editor-container">
+      <!-- Editor Panel -->
+      <div class="panel glass">
+        <div class="panel-header">
+          <h2 class="panel-title">📝 Input</h2>
+          <span class="char-count" id="charCount">0 chars</span>
+        </div>
+        <textarea 
+          id="markdown" 
+          class="editor" 
+          placeholder="# Start typing Markdown...&#10;&#10;- Use **bold** and *italic*&#10;- Add `code` blocks&#10;- Create [links](url)&#10;- Write > quotes&#10;&#10;It will preview on the right →"
+          spellcheck="false"
+        ></textarea>
+      </div>
+
+      <!-- Preview Panel -->
+      <div class="panel glass">
+        <div class="panel-header">
+          <h2 class="panel-title">👁️ Preview</h2>
+          <span class="word-count" id="wordCount">0 words</span>
+        </div>
+        <div id="preview" class="preview"></div>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <footer class="footer glass">
+      <span class="status" id="status">Ready • Press Ctrl+S to save • Ctrl+E to export</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
