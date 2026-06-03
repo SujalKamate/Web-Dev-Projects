@@ -1,0 +1,304 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  color: #e0e0e0;
+  padding: 1rem;
+  transition: background 1.2s ease;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+/* ---------- sky themes ---------- */
+body.sky-clear {
+  background: linear-gradient(160deg, #1a6bb5 0%, #56a0d3 50%, #a8d8f0 100%);
+}
+body.sky-cloudy {
+  background: linear-gradient(160deg, #4a5568 0%, #718096 50%, #a0aec0 100%);
+}
+body.sky-rainy {
+  background: linear-gradient(160deg, #2d3748 0%, #4a5568 50%, #718096 100%);
+}
+body.sky-snowy {
+  background: linear-gradient(160deg, #90cdf4 0%, #bee3f8 50%, #ebf8ff 100%);
+}
+body.sky-stormy {
+  background: linear-gradient(160deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+}
+body.sky-foggy {
+  background: linear-gradient(160deg, #718096 0%, #a0aec0 50%, #cbd5e0 100%);
+}
+body.sky-night {
+  background: linear-gradient(160deg, #0a0a1a 0%, #1a1a2e 50%, #2d2d4e 100%);
+}
+
+/* ---------- canvas ---------- */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- card ---------- */
+.card {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.75rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.app-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- search ---------- */
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-row input {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-row input::placeholder { color: rgba(255, 255, 255, 0.4); }
+.search-row input:focus { border-color: rgba(255, 255, 255, 0.55); }
+
+.btn {
+  padding: 0.65rem 1.2rem;
+  border-radius: 0.75rem;
+  border: none;
+  background: #4a9eff;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn:hover { background: #2f87f0; }
+.btn:active { transform: scale(0.96); }
+.btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.btn--icon {
+  padding: 0.65rem 0.75rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  line-height: 1;
+}
+.btn--icon:hover { background: rgba(255, 255, 255, 0.22); }
+
+/* ---------- history chips ---------- */
+.history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-height: 0;
+}
+
+.chip {
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.chip:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* ---------- forecast strip ---------- */
+.forecast {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+}
+.forecast::-webkit-scrollbar { display: none; }
+
+.forecast-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  min-width: 58px;
+  flex-shrink: 0;
+}
+
+.forecast-day .f-day {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.forecast-day .f-icon { font-size: 1.4rem; }
+.forecast-day .f-hi {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+.forecast-day .f-lo {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+.error {
+  color: #fc8181;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* ---------- result ---------- */
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-align: center;
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.city-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.local-time {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.04em;
+}
+
+.condition-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.condition-icon { font-size: 2.4rem; }
+
+.condition-text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- temp + unit toggle ---------- */
+.temp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.temp {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.unit-btn {
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.unit-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.unit-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ---------- feels like ---------- */
+.feels-like {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- detail pills ---------- */
+.details {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  min-width: 80px;
+}
+
+.detail-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

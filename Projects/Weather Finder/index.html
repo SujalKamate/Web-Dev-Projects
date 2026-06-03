@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <main class="card">
+    <h1 class="app-title">Weather Finder</h1>
+
+    <div class="search-row">
+      <input
+        id="city-input"
+        type="search"
+        placeholder="Enter city name…"
+        aria-label="City name"
+        autocomplete="off"
+      />
+      <button id="locate-btn" class="btn btn--icon" aria-label="Use my location">📍</button>
+      <button id="search-btn" class="btn">Search</button>
+    </div>
+
+    <div id="history" class="history" aria-label="Recent searches"></div>
+
+    <p id="error" class="error" hidden></p>
+
+    <section id="result" class="result" hidden aria-live="polite">
+      <div class="city-name" id="city-name"></div>
+      <div class="local-time" id="local-time"></div>
+
+      <div class="condition-row">
+        <span id="condition-icon" class="condition-icon" aria-hidden="true"></span>
+        <span id="condition-text" class="condition-text"></span>
+      </div>
+
+      <div class="temp-row">
+        <div class="temp" id="temp"></div>
+        <button id="unit-toggle" class="unit-btn" aria-label="Toggle temperature unit">°F</button>
+      </div>
+
+      <div class="feels-like" id="feels-like"></div>
+
+      <div class="details">
+        <div class="detail">
+          <span class="detail-label">Humidity</span>
+          <span id="humidity" class="detail-value"></span>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Wind</span>
+          <span id="wind" class="detail-value"></span>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Visibility</span>
+          <span id="visibility" class="detail-value"></span>
+        </div>
+      </div>
+
+      <div id="forecast" class="forecast" aria-label="5-day forecast"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
