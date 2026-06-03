@@ -1,8 +1,8 @@
 {
   "title": "Music Player",
-  "description": "An iPhone-style audio player with album art cards, scrubber, and a queue you can swipe through.",
+  "description": "iPhone-style audio player with iTunes Search API integration, album artwork, and 30-second preview playback.",
   "author": { "name": "Web Dev Projects", "github": "cu-sanjay" },
-  "tags": ["audio", "ui", "vanilla-js"],
+  "tags": ["audio", "ui", "api", "search", "vanilla-js"],
   "entry": "index.html",
   "thumbnail": "thumbnail.svg"
 }
