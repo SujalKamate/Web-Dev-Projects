@@ -1,4 +1,5 @@
 {
+  "slug": "Memory Card Game",
   "title": "Memory Card Game",
   "description": "A gamified memory match card game with 3D flip animations, leveling system, combo streaks, XP progression, multiple realms, and localStorage persistence.",
   "author": {
@@ -14,5 +15,8 @@
     "css-3d",
     "canvas"
   ],
-  "entry": "index.html",
+  "entry": "Projects/Memory%20Card%20Game/index.html",
+  "folder": "Projects/Memory Card Game",
+  "thumbnail": null,
+  "addedAt": "2026-06-04T00:00:00.000Z"
 }
