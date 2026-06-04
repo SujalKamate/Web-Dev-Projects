@@ -1,6 +1,7 @@
 {
-  "name": "Random Quote Generator",
+  "title": "Random Quote Generator",
   "description": "Displays a random motivational or famous quote on button click.",
-  "author": { "name": "Web Dev Projects", "github": "cu-sanjay" },
-  "language": ["HTML", "CSS", "JavaScript"]
+  "author": { "name": "Muskan Kumari", "github": "Muskankr" },
+  "tags": ["utility", "vanilla-js", "api"],
+  "entry": "index.html"
 }
