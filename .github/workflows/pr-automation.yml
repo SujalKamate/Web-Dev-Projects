@@ -51,7 +51,7 @@ jobs:
                 owner,
                 repo,
                 issue_number: prNum,
-                body: 'PR failed checks: Modifications to the root `project.json` are not allowed.'
+                body: 'PR failed checks: Modifications to the root `project.json` are not allowed. Please keep changes inside the new project folder only.'
               });
               return;
             }
@@ -70,7 +70,7 @@ jobs:
               owner,
               repo,
               issue_number: prNum,
-              labels: ['NSoc2026', 'Accepted', 'level3']
+              labels: ["NSoC'26", "NSoC'26 Accepted", 'level3']
             });
 
             await github.rest.pulls.merge({
