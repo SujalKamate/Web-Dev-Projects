@@ -1,0 +1,18 @@
+{
+  "slug": "Emoji-Match-Mania",
+  "title": "Emoji Match Mania",
+  "description": "An interactive memory match card game filled with fun emojis, track your moves and time!",
+  "author": {
+    "name": "Ishan",
+    "github": "ishanjee620-sketch"
+  },
+  "tags": [
+    "game",
+    "javascript",
+    "frontend"
+  ],
+  "entry": "Projects/Emoji-Match-Mania/index.html",
+  "folder": "Projects/Emoji-Match-Mania",
+  "thumbnail": null,
+  "addedAt": "2026-06-04T20:43:35.000Z"
+}
