@@ -1,5 +1,5 @@
 {
-  "title": "Career Roadmap Planner with Interactive Learning Paths & Progress Tracking",
+  "title": "Career Roadmap Planner",
   "description": "A responsive career planner allowing users to chart educational journeys (Frontend, Backend, AI/ML, Data Science), track skill acquisition progress, and reference curated documentation links.",
   "entry": "index.html",
   "tags": ["HTML", "CSS", "JavaScript", "Education"],
