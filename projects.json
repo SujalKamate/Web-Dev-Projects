@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-05T09:23:07.451Z",
-  "count": 38,
+  "generatedAt": "2026-06-05T09:28:03.491Z",
+  "count": 39,
   "projects": [
     {
       "slug": "2048 Game",
@@ -18,7 +18,7 @@
       "entry": "Projects/2048%20Game/index.html",
       "folder": "Projects/2048%20Game",
       "thumbnail": "Projects/2048%20Game/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.075Z"
+      "addedAt": "2026-06-05T09:27:58.610Z"
     },
     {
       "slug": "Age Calculator",
@@ -36,27 +36,28 @@
       "entry": "Projects/Age%20Calculator/index.html",
       "folder": "Projects/Age%20Calculator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.075Z"
+      "addedAt": "2026-06-05T09:27:58.611Z"
     },
     {
       "slug": "Blog",
       "title": "Blog",
-      "description": "My personal blog",
+      "description": "A clean React blog application built with Vite, Tailwind CSS, Redux Toolkit, React Router, React Hook Form, TinyMCE, and Appwrite. Features user authentication, post creation and management, image uploads, protected routes, and light/dark theme switching.",
       "author": {
-        "name": "Unknown",
-        "github": "no one"
+        "name": "Kumar Aashutosh Rana",
+        "github": "Aashutosh24"
       },
       "tags": [
-        "blog",
-        "web",
-        "js",
-        "html",
-        "css"
+        "react",
+        "vite",
+        "tailwindcss",
+        "redux-toolkit",
+        "appwrite",
+        "blog"
       ],
       "entry": "Projects/Blog/index.html",
       "folder": "Projects/Blog",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.076Z"
+      "addedAt": "2026-06-05T09:27:58.611Z"
     },
     {
       "slug": "Calendar And Scheduling App",
@@ -74,7 +75,7 @@
       "entry": "Projects/Calendar%20And%20Scheduling%20App/index.html",
       "folder": "Projects/Calendar%20And%20Scheduling%20App",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.078Z"
+      "addedAt": "2026-06-05T09:27:58.614Z"
     },
     {
       "slug": "Chat Room",
@@ -94,7 +95,7 @@
       "entry": "Projects/Chat%20Room/index.html",
       "folder": "Projects/Chat%20Room",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.079Z"
+      "addedAt": "2026-06-05T09:27:58.614Z"
     },
     {
       "slug": "Color Palette Generator",
@@ -113,7 +114,7 @@
       "entry": "Projects/Color%20Palette%20Generator/index.html",
       "folder": "Projects/Color%20Palette%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.079Z"
+      "addedAt": "2026-06-05T09:27:58.614Z"
     },
     {
       "slug": "Daily Wheels",
@@ -131,7 +132,7 @@
       "entry": "Projects/Daily%20Wheels/index.html",
       "folder": "Projects/Daily%20Wheels",
       "thumbnail": "Projects/Daily%20Wheels/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.079Z"
+      "addedAt": "2026-06-05T09:27:58.615Z"
     },
     {
       "slug": "Developer Portfolio Builder",
@@ -152,7 +153,7 @@
       "entry": "Projects/Developer%20Portfolio%20Builder/index.html",
       "folder": "Projects/Developer%20Portfolio%20Builder",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.080Z"
+      "addedAt": "2026-06-05T09:27:58.615Z"
     },
     {
       "slug": "Dice Roller Simulator",
@@ -172,7 +173,7 @@
       "entry": "Projects/Dice%20Roller%20Simulator/index.html",
       "folder": "Projects/Dice%20Roller%20Simulator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.080Z"
+      "addedAt": "2026-06-05T09:27:58.615Z"
     },
     {
       "slug": "Digital Clock",
@@ -190,7 +191,7 @@
       "entry": "Projects/Digital%20Clock/index.html",
       "folder": "Projects/Digital%20Clock",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.081Z"
+      "addedAt": "2026-06-05T09:27:58.616Z"
     },
     {
       "slug": "Ecommerce Store",
@@ -211,7 +212,7 @@
       "entry": "Projects/Ecommerce%20Store/index.html",
       "folder": "Projects/Ecommerce%20Store",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.081Z"
+      "addedAt": "2026-06-05T09:27:58.616Z"
     },
     {
       "slug": "Expense Tracker",
@@ -230,7 +231,7 @@
       "entry": "Projects/Expense%20Tracker/index.html",
       "folder": "Projects/Expense%20Tracker",
       "thumbnail": "Projects/Expense%20Tracker/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.081Z"
+      "addedAt": "2026-06-05T09:27:58.616Z"
     },
     {
       "slug": "Fitness Progress Dashboard",
@@ -250,7 +251,7 @@
       "entry": "Projects/Fitness%20Progress%20Dashboard/index.html",
       "folder": "Projects/Fitness%20Progress%20Dashboard",
       "thumbnail": "Projects/Fitness%20Progress%20Dashboard/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.082Z"
+      "addedAt": "2026-06-05T09:27:58.617Z"
     },
     {
       "slug": "Food Delivary App Ui",
@@ -268,7 +269,7 @@
       "entry": "Projects/Food%20Delivary%20App%20Ui/index.html",
       "folder": "Projects/Food%20Delivary%20App%20Ui",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.082Z"
+      "addedAt": "2026-06-05T09:27:58.617Z"
     },
     {
       "slug": "GitHub User Search",
@@ -287,7 +288,7 @@
       "entry": "Projects/GitHub%20User%20Search/index.html",
       "folder": "Projects/GitHub%20User%20Search",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.082Z"
+      "addedAt": "2026-06-05T09:27:58.618Z"
     },
     {
       "slug": "Habit Tracker",
@@ -308,7 +309,7 @@
       "entry": "Projects/Habit%20Tracker/index.html",
       "folder": "Projects/Habit%20Tracker",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.083Z"
+      "addedAt": "2026-06-05T09:27:58.618Z"
     },
     {
       "slug": "Image Gallery",
@@ -327,7 +328,7 @@
       "entry": "Projects/Image%20Gallery/index.html",
       "folder": "Projects/Image%20Gallery",
       "thumbnail": "Projects/Image%20Gallery/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.084Z"
+      "addedAt": "2026-06-05T09:27:58.619Z"
     },
     {
       "slug": "Invoice Billing Generator",
@@ -348,7 +349,7 @@
       "entry": "Projects/Invoice%20Billing%20Generator/index.html",
       "folder": "Projects/Invoice%20Billing%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.085Z"
+      "addedAt": "2026-06-05T09:27:58.620Z"
     },
     {
       "slug": "Job Application Tracker",
@@ -368,7 +369,7 @@
       "entry": "Projects/Job%20Application%20Tracker/index.html",
       "folder": "Projects/Job%20Application%20Tracker",
       "thumbnail": "Projects/Job%20Application%20Tracker/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.085Z"
+      "addedAt": "2026-06-05T09:27:58.621Z"
     },
     {
       "slug": "Linkedln Clone",
@@ -388,7 +389,7 @@
       "entry": "Projects/Linkedln%20Clone/index.html",
       "folder": "Projects/Linkedln%20Clone",
       "thumbnail": "Projects/Linkedln%20Clone/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.086Z"
+      "addedAt": "2026-06-05T09:27:58.621Z"
     },
     {
       "slug": "Markdown Editor",
@@ -408,7 +409,7 @@
       "entry": "Projects/Markdown%20Editor/index.html",
       "folder": "Projects/Markdown%20Editor",
       "thumbnail": "Projects/Markdown%20Editor/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.086Z"
+      "addedAt": "2026-06-05T09:27:58.621Z"
     },
     {
       "slug": "Memory Card Game",
@@ -429,7 +430,7 @@
       "entry": "Projects/Memory%20Card%20Game/index.html",
       "folder": "Projects/Memory%20Card%20Game",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.086Z"
+      "addedAt": "2026-06-05T09:27:58.622Z"
     },
     {
       "slug": "Movie Search App",
@@ -449,7 +450,7 @@
       "entry": "Projects/Movie%20Search%20App/index.html",
       "folder": "Projects/Movie%20Search%20App",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.087Z"
+      "addedAt": "2026-06-05T09:27:58.622Z"
     },
     {
       "slug": "Music Player",
@@ -469,7 +470,7 @@
       "entry": "Projects/Music%20Player/index.html",
       "folder": "Projects/Music%20Player",
       "thumbnail": "Projects/Music%20Player/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.087Z"
+      "addedAt": "2026-06-05T09:27:58.622Z"
     },
     {
       "slug": "Netflix Clone",
@@ -490,7 +491,7 @@
       "entry": "Projects/Netflix%20Clone/index.html",
       "folder": "Projects/Netflix%20Clone",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.087Z"
+      "addedAt": "2026-06-05T09:27:58.623Z"
     },
     {
       "slug": "News Aggregator Interface",
@@ -510,7 +511,7 @@
       "entry": "Projects/News%20Aggregator%20Interface/index.html",
       "folder": "Projects/News%20Aggregator%20Interface",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.088Z"
+      "addedAt": "2026-06-05T09:27:58.623Z"
     },
     {
       "slug": "Notes App",
@@ -528,7 +529,7 @@
       "entry": "Projects/Notes%20App/index.html",
       "folder": "Projects/Notes%20App",
       "thumbnail": "Projects/Notes%20App/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.088Z"
+      "addedAt": "2026-06-05T09:27:58.623Z"
     },
     {
       "slug": "Password Generator",
@@ -547,7 +548,7 @@
       "entry": "Projects/Password%20Generator/index.html",
       "folder": "Projects/Password%20Generator",
       "thumbnail": "Projects/Password%20Generator/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.088Z"
+      "addedAt": "2026-06-05T09:27:58.624Z"
     },
     {
       "slug": "Pomodoro Timer",
@@ -567,7 +568,7 @@
       "entry": "Projects/Pomodoro%20Timer/index.html",
       "folder": "Projects/Pomodoro%20Timer",
       "thumbnail": "Projects/Pomodoro%20Timer/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.089Z"
+      "addedAt": "2026-06-05T09:27:58.624Z"
     },
     {
       "slug": "QR Code Generator",
@@ -585,7 +586,7 @@
       "entry": "Projects/QR%20Code%20Generator/index.html",
       "folder": "Projects/QR%20Code%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.089Z"
+      "addedAt": "2026-06-05T09:27:58.624Z"
     },
     {
       "slug": "Quiz Master",
@@ -604,7 +605,7 @@
       "entry": "Projects/Quiz%20Master/index.html",
       "folder": "Projects/Quiz%20Master",
       "thumbnail": "Projects/Quiz%20Master/thumbnail.svg",
-      "addedAt": "2026-06-05T09:23:03.089Z"
+      "addedAt": "2026-06-05T09:27:58.625Z"
     },
     {
       "slug": "Random Quote Generator",
@@ -622,7 +623,7 @@
       "entry": "Projects/Random%20Quote%20Generator/index.html",
       "folder": "Projects/Random%20Quote%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.089Z"
+      "addedAt": "2026-06-05T09:27:58.625Z"
     },
     {
       "slug": "Real Estate Listing",
@@ -641,7 +642,7 @@
       "entry": "Projects/Real%20Estate%20Listing/index.html",
       "folder": "Projects/Real%20Estate%20Listing",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.090Z"
+      "addedAt": "2026-06-05T09:27:58.625Z"
     },
     {
       "slug": "Restaurant Ordering Interface",
@@ -659,7 +660,7 @@
       "entry": "Projects/Restaurant%20Ordering%20Interface/index.html",
       "folder": "Projects/Restaurant%20Ordering%20Interface",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.090Z"
+      "addedAt": "2026-06-05T09:27:58.625Z"
     },
     {
       "slug": "Resume Builder Form",
@@ -680,7 +681,25 @@
       "entry": "Projects/Resume%20Builder%20Form/index.html",
       "folder": "Projects/Resume%20Builder%20Form",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.090Z"
+      "addedAt": "2026-06-05T09:27:58.626Z"
+    },
+    {
+      "slug": "Task Management Dashboard",
+      "title": "Task Management Dashboard",
+      "description": "An ultra-premium, dependency-free developer workspace platform designed using native web semantics. The architecture incorporates a strict three-column dashboard layouts configuration tracking dynamic statistical counts filters, state modification streams, low/medium/high task urgency hierarchies, a chronological system transaction logger engine, and a structural client-side data persistence layer driven entirely via optimized browser LocalStorage allocations.",
+      "author": {
+        "name": "Shruti Narsulwar",
+        "github": "Shrutiii01"
+      },
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "entry": "Projects/Task%20Management%20Dashboard/index.html",
+      "folder": "Projects/Task%20Management%20Dashboard",
+      "thumbnail": null,
+      "addedAt": "2026-06-05T09:27:58.626Z"
     },
     {
       "slug": "Travel Booking Dashboard",
@@ -698,7 +717,7 @@
       "entry": "Projects/Travel%20Booking%20Dashboard/index.html",
       "folder": "Projects/Travel%20Booking%20Dashboard",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.091Z"
+      "addedAt": "2026-06-05T09:27:58.626Z"
     },
     {
       "slug": "Typing Speed Tester",
@@ -716,7 +735,7 @@
       "entry": "Projects/Typing%20Speed%20Tester/index.html",
       "folder": "Projects/Typing%20Speed%20Tester",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.091Z"
+      "addedAt": "2026-06-05T09:27:58.627Z"
     },
     {
       "slug": "Weather Finder",
@@ -734,7 +753,7 @@
       "entry": "Projects/Weather%20Finder/index.html",
       "folder": "Projects/Weather%20Finder",
       "thumbnail": null,
-      "addedAt": "2026-06-05T09:23:03.091Z"
+      "addedAt": "2026-06-05T09:27:58.627Z"
     }
   ]
 }
