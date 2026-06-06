@@ -4,6 +4,8 @@ const grid = document.getElementById("grid");
 const tpl = document.getElementById("card-template");
 const search = document.getElementById("search");
 const shuffleBtn = document.getElementById("shuffle-btn");
+const themeToggle = document.getElementById("theme-toggle");
+const sortSelect = document.getElementById("sort-select");
 const tagbar = document.getElementById("tagbar");
 const empty = document.getElementById("empty");
 
@@ -11,6 +13,7 @@ const statCount = document.getElementById("stat-count");
 const statUpdated = document.getElementById("stat-updated");
 
 const state = { all: [], filtered: [], activeTag: null, query: "" };
+const state = { all: [], activeTag: null, query: "", sortBy: "default" };
 
 const PALETTES = [
   ["#efe1cf", "#b86a2b"],
@@ -67,6 +70,13 @@ function render() {
   });
 
   state.filtered = list;
+  if (state.sortBy === "newest") {
+    list.sort((a, b) => new Date(b.addedAt || 0) - new Date(a.addedAt || 0));
+  } else if (state.sortBy === "oldest") {
+    list.sort((a, b) => new Date(a.addedAt || 0) - new Date(b.addedAt || 0));
+  } else if (state.sortBy === "alpha") {
+    list.sort((a, b) => a.title.localeCompare(b.title));
+  }
 
   grid.replaceChildren();
   if (!list.length) {
@@ -181,6 +191,18 @@ if (shuffleBtn) {
         cardEl.classList.remove("card--highlight");
       }, 2000);
     }
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", newTheme === "dark" ? "#0b0c10" : "#f5f1ea");
+if (sortSelect) {
+  sortSelect.addEventListener("change", (e) => {
+    state.sortBy = e.target.value;
+    render();
   });
 }
 
