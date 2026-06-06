@@ -54,12 +54,22 @@
         </header>
 
         <div class="toolbar">
-          <label class="search">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10 3-5-5" />
-            </svg>
-            <input id="search" type="search" placeholder="Search projects, tags, authors" autocomplete="off" />
-          </label>
+          <div class="toolbar-controls">
+            <label class="search">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10 3-5-5" />
+              </svg>
+              <input id="search" type="search" placeholder="Search projects, tags, authors" autocomplete="off" />
+            </label>
+            <div class="sort-select-wrapper">
+              <select id="sort-select" class="sort-select" aria-label="Sort projects">
+                <option value="default">Default</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="alpha">Alphabetical A-Z</option>
+              </select>
+            </div>
+          </div>
           <div id="tagbar" class="tagbar" role="group" aria-label="Filter by tag"></div>
         </div>
 
@@ -318,6 +328,7 @@
                 e.target.tagName === 'A' || 
                 e.target.tagName === 'BUTTON' || 
                 e.target.tagName === 'INPUT' || 
+                e.target.tagName === 'SELECT' || 
                 e.target.closest('.project-card') || 
                 e.target.closest('.tag')
             )) {
@@ -331,6 +342,7 @@
                 e.target.tagName === 'A' || 
                 e.target.tagName === 'BUTTON' || 
                 e.target.tagName === 'INPUT' || 
+                e.target.tagName === 'SELECT' || 
                 e.target.closest('.project-card') || 
                 e.target.closest('.tag')
             )) {
