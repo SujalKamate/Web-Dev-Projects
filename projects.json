@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-05T16:04:06.581Z",
-  "count": 57,
+  "generatedAt": "2026-06-06T01:46:25.599Z",
+  "count": 58,
   "projects": [
     {
       "slug": "2048 Game",
@@ -18,7 +18,7 @@
       "entry": "Projects/2048%20Game/index.html",
       "folder": "Projects/2048%20Game",
       "thumbnail": "Projects/2048%20Game/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.718Z"
+      "addedAt": "2026-06-06T01:46:21.754Z"
     },
     {
       "slug": "Age Calculator",
@@ -36,7 +36,7 @@
       "entry": "Projects/Age%20Calculator/index.html",
       "folder": "Projects/Age%20Calculator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.719Z"
+      "addedAt": "2026-06-06T01:46:21.755Z"
     },
     {
       "slug": "Blog",
@@ -57,7 +57,7 @@
       "entry": "Projects/Blog/index.html",
       "folder": "Projects/Blog",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.719Z"
+      "addedAt": "2026-06-06T01:46:21.755Z"
     },
     {
       "slug": "Book Library",
@@ -77,7 +77,7 @@
       "entry": "Projects/Book%20Library/index.html",
       "folder": "Projects/Book%20Library",
       "thumbnail": "Projects/Book%20Library/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.725Z"
+      "addedAt": "2026-06-06T01:46:21.760Z"
     },
     {
       "slug": "Calendar And Scheduling App",
@@ -95,7 +95,7 @@
       "entry": "Projects/Calendar%20And%20Scheduling%20App/index.html",
       "folder": "Projects/Calendar%20And%20Scheduling%20App",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.725Z"
+      "addedAt": "2026-06-06T01:46:21.760Z"
     },
     {
       "slug": "Chat Room",
@@ -115,7 +115,7 @@
       "entry": "Projects/Chat%20Room/index.html",
       "folder": "Projects/Chat%20Room",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.725Z"
+      "addedAt": "2026-06-06T01:46:21.761Z"
     },
     {
       "slug": "Color Guessing Game",
@@ -133,7 +133,7 @@
       "entry": "Projects/Color%20Guessing%20Game/index.html",
       "folder": "Projects/Color%20Guessing%20Game",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.726Z"
+      "addedAt": "2026-06-06T01:46:21.761Z"
     },
     {
       "slug": "Color Palette Generator",
@@ -152,7 +152,7 @@
       "entry": "Projects/Color%20Palette%20Generator/index.html",
       "folder": "Projects/Color%20Palette%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.726Z"
+      "addedAt": "2026-06-06T01:46:21.761Z"
     },
     {
       "slug": "Daily Wheels",
@@ -170,7 +170,7 @@
       "entry": "Projects/Daily%20Wheels/index.html",
       "folder": "Projects/Daily%20Wheels",
       "thumbnail": "Projects/Daily%20Wheels/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.727Z"
+      "addedAt": "2026-06-06T01:46:21.762Z"
     },
     {
       "slug": "Developer Portfolio Builder",
@@ -191,7 +191,7 @@
       "entry": "Projects/Developer%20Portfolio%20Builder/index.html",
       "folder": "Projects/Developer%20Portfolio%20Builder",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.727Z"
+      "addedAt": "2026-06-06T01:46:21.762Z"
     },
     {
       "slug": "Dice Roller Simulator",
@@ -211,7 +211,7 @@
       "entry": "Projects/Dice%20Roller%20Simulator/index.html",
       "folder": "Projects/Dice%20Roller%20Simulator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.727Z"
+      "addedAt": "2026-06-06T01:46:21.762Z"
     },
     {
       "slug": "Digital Clock",
@@ -229,7 +229,7 @@
       "entry": "Projects/Digital%20Clock/index.html",
       "folder": "Projects/Digital%20Clock",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.728Z"
+      "addedAt": "2026-06-06T01:46:21.763Z"
     },
     {
       "slug": "Ecommerce Store",
@@ -250,7 +250,7 @@
       "entry": "Projects/Ecommerce%20Store/index.html",
       "folder": "Projects/Ecommerce%20Store",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.728Z"
+      "addedAt": "2026-06-06T01:46:21.763Z"
     },
     {
       "slug": "Expense Tracker",
@@ -269,7 +269,7 @@
       "entry": "Projects/Expense%20Tracker/index.html",
       "folder": "Projects/Expense%20Tracker",
       "thumbnail": "Projects/Expense%20Tracker/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.729Z"
+      "addedAt": "2026-06-06T01:46:21.764Z"
     },
     {
       "slug": "Fitness Progress Dashboard",
@@ -289,7 +289,7 @@
       "entry": "Projects/Fitness%20Progress%20Dashboard/index.html",
       "folder": "Projects/Fitness%20Progress%20Dashboard",
       "thumbnail": "Projects/Fitness%20Progress%20Dashboard/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.729Z"
+      "addedAt": "2026-06-06T01:46:21.764Z"
     },
     {
       "slug": "Flow Free Clone",
@@ -308,7 +308,7 @@
       "entry": "Projects/Flow%20Free%20Clone/index.html",
       "folder": "Projects/Flow%20Free%20Clone",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.729Z"
+      "addedAt": "2026-06-06T01:46:21.765Z"
     },
     {
       "slug": "Food Delivary App Ui",
@@ -326,7 +326,7 @@
       "entry": "Projects/Food%20Delivary%20App%20Ui/index.html",
       "folder": "Projects/Food%20Delivary%20App%20Ui",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.730Z"
+      "addedAt": "2026-06-06T01:46:21.765Z"
     },
     {
       "slug": "GitHub User Search",
@@ -345,7 +345,7 @@
       "entry": "Projects/GitHub%20User%20Search/index.html",
       "folder": "Projects/GitHub%20User%20Search",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.730Z"
+      "addedAt": "2026-06-06T01:46:21.765Z"
     },
     {
       "slug": "Habit Tracker",
@@ -366,7 +366,7 @@
       "entry": "Projects/Habit%20Tracker/index.html",
       "folder": "Projects/Habit%20Tracker",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.731Z"
+      "addedAt": "2026-06-06T01:46:21.766Z"
     },
     {
       "slug": "Hungama Game",
@@ -384,7 +384,7 @@
       "entry": "Projects/Hungama%20Game/index.html",
       "folder": "Projects/Hungama%20Game",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.732Z"
+      "addedAt": "2026-06-06T01:46:21.767Z"
     },
     {
       "slug": "Image Gallery",
@@ -403,7 +403,7 @@
       "entry": "Projects/Image%20Gallery/index.html",
       "folder": "Projects/Image%20Gallery",
       "thumbnail": "Projects/Image%20Gallery/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.733Z"
+      "addedAt": "2026-06-06T01:46:21.768Z"
     },
     {
       "slug": "Interview Preparation",
@@ -424,7 +424,7 @@
       "entry": "Projects/Interview%20Preparation/index.html",
       "folder": "Projects/Interview%20Preparation",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.733Z"
+      "addedAt": "2026-06-06T01:46:21.768Z"
     },
     {
       "slug": "Invoice Billing Generator",
@@ -445,7 +445,7 @@
       "entry": "Projects/Invoice%20Billing%20Generator/index.html",
       "folder": "Projects/Invoice%20Billing%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.734Z"
+      "addedAt": "2026-06-06T01:46:21.770Z"
     },
     {
       "slug": "Island Expansion Game",
@@ -464,7 +464,7 @@
       "entry": "Projects/Island%20Expansion%20Game/index.html",
       "folder": "Projects/Island%20Expansion%20Game",
       "thumbnail": "Projects/Island%20Expansion%20Game/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.736Z"
+      "addedAt": "2026-06-06T01:46:21.770Z"
     },
     {
       "slug": "Job Application Tracker",
@@ -484,7 +484,7 @@
       "entry": "Projects/Job%20Application%20Tracker/index.html",
       "folder": "Projects/Job%20Application%20Tracker",
       "thumbnail": "Projects/Job%20Application%20Tracker/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.736Z"
+      "addedAt": "2026-06-06T01:46:21.771Z"
     },
     {
       "slug": "Linkedln Clone",
@@ -504,7 +504,7 @@
       "entry": "Projects/Linkedln%20Clone/index.html",
       "folder": "Projects/Linkedln%20Clone",
       "thumbnail": "Projects/Linkedln%20Clone/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.736Z"
+      "addedAt": "2026-06-06T01:46:21.771Z"
     },
     {
       "slug": "Markdown Editor",
@@ -524,7 +524,7 @@
       "entry": "Projects/Markdown%20Editor/index.html",
       "folder": "Projects/Markdown%20Editor",
       "thumbnail": "Projects/Markdown%20Editor/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.736Z"
+      "addedAt": "2026-06-06T01:46:21.771Z"
     },
     {
       "slug": "Memory Card Game",
@@ -545,7 +545,7 @@
       "entry": "Projects/Memory%20Card%20Game/index.html",
       "folder": "Projects/Memory%20Card%20Game",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.737Z"
+      "addedAt": "2026-06-06T01:46:21.772Z"
     },
     {
       "slug": "Minesweeper Lite",
@@ -564,7 +564,7 @@
       "entry": "Projects/Minesweeper%20Lite/index.html",
       "folder": "Projects/Minesweeper%20Lite",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.737Z"
+      "addedAt": "2026-06-06T01:46:21.772Z"
     },
     {
       "slug": "Movie Search App",
@@ -584,7 +584,7 @@
       "entry": "Projects/Movie%20Search%20App/index.html",
       "folder": "Projects/Movie%20Search%20App",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.738Z"
+      "addedAt": "2026-06-06T01:46:21.773Z"
     },
     {
       "slug": "Music Player",
@@ -604,7 +604,7 @@
       "entry": "Projects/Music%20Player/index.html",
       "folder": "Projects/Music%20Player",
       "thumbnail": "Projects/Music%20Player/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.738Z"
+      "addedAt": "2026-06-06T01:46:21.773Z"
     },
     {
       "slug": "Netflix Clone",
@@ -625,7 +625,7 @@
       "entry": "Projects/Netflix%20Clone/index.html",
       "folder": "Projects/Netflix%20Clone",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.738Z"
+      "addedAt": "2026-06-06T01:46:21.773Z"
     },
     {
       "slug": "News Aggregator Interface",
@@ -645,7 +645,7 @@
       "entry": "Projects/News%20Aggregator%20Interface/index.html",
       "folder": "Projects/News%20Aggregator%20Interface",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.739Z"
+      "addedAt": "2026-06-06T01:46:21.773Z"
     },
     {
       "slug": "Notes App",
@@ -663,7 +663,7 @@
       "entry": "Projects/Notes%20App/index.html",
       "folder": "Projects/Notes%20App",
       "thumbnail": "Projects/Notes%20App/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.739Z"
+      "addedAt": "2026-06-06T01:46:21.774Z"
     },
     {
       "slug": "Number Connect Puzzle",
@@ -684,7 +684,7 @@
       "entry": "Projects/Number%20Connect%20Puzzle/index.html",
       "folder": "Projects/Number%20Connect%20Puzzle",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.739Z"
+      "addedAt": "2026-06-06T01:46:21.774Z"
     },
     {
       "slug": "Password Generator",
@@ -703,7 +703,7 @@
       "entry": "Projects/Password%20Generator/index.html",
       "folder": "Projects/Password%20Generator",
       "thumbnail": "Projects/Password%20Generator/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.739Z"
+      "addedAt": "2026-06-06T01:46:21.774Z"
     },
     {
       "slug": "Pipe Connection Puzzle",
@@ -722,7 +722,7 @@
       "entry": "Projects/Pipe%20Connection%20Puzzle/index.html",
       "folder": "Projects/Pipe%20Connection%20Puzzle",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.740Z"
+      "addedAt": "2026-06-06T01:46:21.774Z"
     },
     {
       "slug": "Pomodoro Timer",
@@ -742,7 +742,7 @@
       "entry": "Projects/Pomodoro%20Timer/index.html",
       "folder": "Projects/Pomodoro%20Timer",
       "thumbnail": "Projects/Pomodoro%20Timer/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.740Z"
+      "addedAt": "2026-06-06T01:46:21.775Z"
     },
     {
       "slug": "QR Code Generator",
@@ -760,7 +760,7 @@
       "entry": "Projects/QR%20Code%20Generator/index.html",
       "folder": "Projects/QR%20Code%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.740Z"
+      "addedAt": "2026-06-06T01:46:21.775Z"
     },
     {
       "slug": "Quiz Master",
@@ -779,7 +779,7 @@
       "entry": "Projects/Quiz%20Master/index.html",
       "folder": "Projects/Quiz%20Master",
       "thumbnail": "Projects/Quiz%20Master/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.741Z"
+      "addedAt": "2026-06-06T01:46:21.775Z"
     },
     {
       "slug": "Random Quote Generator",
@@ -797,7 +797,7 @@
       "entry": "Projects/Random%20Quote%20Generator/index.html",
       "folder": "Projects/Random%20Quote%20Generator",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.741Z"
+      "addedAt": "2026-06-06T01:46:21.775Z"
     },
     {
       "slug": "Reaction Time Tester",
@@ -818,7 +818,7 @@
       "entry": "Projects/Reaction%20Time%20Tester/index.html",
       "folder": "Projects/Reaction%20Time%20Tester",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.741Z"
+      "addedAt": "2026-06-06T01:46:21.776Z"
     },
     {
       "slug": "Real Estate Listing",
@@ -837,7 +837,7 @@
       "entry": "Projects/Real%20Estate%20Listing/index.html",
       "folder": "Projects/Real%20Estate%20Listing",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.741Z"
+      "addedAt": "2026-06-06T01:46:21.776Z"
     },
     {
       "slug": "Restaurant Ordering Interface",
@@ -855,7 +855,7 @@
       "entry": "Projects/Restaurant%20Ordering%20Interface/index.html",
       "folder": "Projects/Restaurant%20Ordering%20Interface",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.742Z"
+      "addedAt": "2026-06-06T01:46:21.776Z"
     },
     {
       "slug": "Resume Builder Form",
@@ -876,7 +876,26 @@
       "entry": "Projects/Resume%20Builder%20Form/index.html",
       "folder": "Projects/Resume%20Builder%20Form",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.742Z"
+      "addedAt": "2026-06-06T01:46:21.776Z"
+    },
+    {
+      "slug": "Rock Paper Scissors",
+      "title": "Rock Paper Scissors",
+      "description": "An interactive Rock Paper Scissors game played against the computer featuring real-time score tracking, responsive glassmorphism UI, and smooth custom animations.",
+      "author": {
+        "name": "Janhvi Soni",
+        "github": "janhvisoni804"
+      },
+      "tags": [
+        "vanilla-js",
+        "game-logic",
+        "css-grid",
+        "localstorage"
+      ],
+      "entry": "Projects/Rock%20Paper%20Scissors/index.html",
+      "folder": "Projects/Rock%20Paper%20Scissors",
+      "thumbnail": null,
+      "addedAt": "2026-06-06T01:46:21.777Z"
     },
     {
       "slug": "Shape Builder Puzzle",
@@ -895,7 +914,7 @@
       "entry": "Projects/Shape%20Builder%20Puzzle/index.html",
       "folder": "Projects/Shape%20Builder%20Puzzle",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.742Z"
+      "addedAt": "2026-06-06T01:46:21.777Z"
     },
     {
       "slug": "Simon Says Game",
@@ -913,7 +932,7 @@
       "entry": "Projects/Simon%20Says%20Game/index.html",
       "folder": "Projects/Simon%20Says%20Game",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.743Z"
+      "addedAt": "2026-06-06T01:46:21.777Z"
     },
     {
       "slug": "Subscription Management Dashboard",
@@ -932,7 +951,7 @@
       "entry": "Projects/Subscription%20Management%20Dashboard/index.html",
       "folder": "Projects/Subscription%20Management%20Dashboard",
       "thumbnail": "Projects/Subscription%20Management%20Dashboard/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.743Z"
+      "addedAt": "2026-06-06T01:46:21.778Z"
     },
     {
       "slug": "Task Management Dashboard",
@@ -950,7 +969,7 @@
       "entry": "Projects/Task%20Management%20Dashboard/index.html",
       "folder": "Projects/Task%20Management%20Dashboard",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.743Z"
+      "addedAt": "2026-06-06T01:46:21.778Z"
     },
     {
       "slug": "Tic Tac Toe",
@@ -969,7 +988,7 @@
       "entry": "Projects/Tic%20Tac%20Toe/index.html",
       "folder": "Projects/Tic%20Tac%20Toe",
       "thumbnail": "Projects/Tic%20Tac%20Toe/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.744Z"
+      "addedAt": "2026-06-06T01:46:21.778Z"
     },
     {
       "slug": "Travel Booking Dashboard",
@@ -987,7 +1006,7 @@
       "entry": "Projects/Travel%20Booking%20Dashboard/index.html",
       "folder": "Projects/Travel%20Booking%20Dashboard",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.744Z"
+      "addedAt": "2026-06-06T01:46:21.779Z"
     },
     {
       "slug": "Typing Practice App",
@@ -1006,7 +1025,7 @@
       "entry": "Projects/Typing%20Practice%20App/index.html",
       "folder": "Projects/Typing%20Practice%20App",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.744Z"
+      "addedAt": "2026-06-06T01:46:21.779Z"
     },
     {
       "slug": "Typing Speed Tester",
@@ -1024,7 +1043,7 @@
       "entry": "Projects/Typing%20Speed%20Tester/index.html",
       "folder": "Projects/Typing%20Speed%20Tester",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.745Z"
+      "addedAt": "2026-06-06T01:46:21.779Z"
     },
     {
       "slug": "Weather Finder",
@@ -1042,7 +1061,7 @@
       "entry": "Projects/Weather%20Finder/index.html",
       "folder": "Projects/Weather%20Finder",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.745Z"
+      "addedAt": "2026-06-06T01:46:21.779Z"
     },
     {
       "slug": "Whack A Mole",
@@ -1061,7 +1080,7 @@
       "entry": "Projects/Whack%20A%20Mole/index.html",
       "folder": "Projects/Whack%20A%20Mole",
       "thumbnail": "Projects/Whack%20A%20Mole/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.745Z"
+      "addedAt": "2026-06-06T01:46:21.780Z"
     },
     {
       "slug": "Word Scramble Game",
@@ -1080,7 +1099,7 @@
       "entry": "Projects/Word%20Scramble%20Game/index.html",
       "folder": "Projects/Word%20Scramble%20Game",
       "thumbnail": "Projects/Word%20Scramble%20Game/thumbnail.svg",
-      "addedAt": "2026-06-05T16:04:01.745Z"
+      "addedAt": "2026-06-06T01:46:21.780Z"
     },
     {
       "slug": "YouTube Homepage Clone",
@@ -1101,7 +1120,7 @@
       "entry": "Projects/YouTube%20Homepage%20Clone/index.html",
       "folder": "Projects/YouTube%20Homepage%20Clone",
       "thumbnail": null,
-      "addedAt": "2026-06-05T16:04:01.746Z"
+      "addedAt": "2026-06-06T01:46:21.780Z"
     }
   ]
 }
