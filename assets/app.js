@@ -177,9 +177,18 @@ function dismissHoverCard() {
 function showHoverCard(anchorEl, githubUsername) {
   dismissHoverCard();
   hoverTimeout = setTimeout(async () => {
-    const profile = await fetchGitHubProfile(githubUsername);
-    if (!profile) return;
     const localProjects = getLocalContributions(githubUsername);
+    const fetchedProfile = await fetchGitHubProfile(githubUsername);
+    const profile = fetchedProfile || {
+      name: anchorEl.textContent.replace(/^by\s+/i, "").trim(),
+      login: githubUsername,
+      avatar_url: `https://github.com/${githubUsername}.png`,
+      bio: "GitHub profile details currently unavailable (rate limited or offline).",
+      location: "",
+      public_repos: "—",
+      followers: "—",
+      html_url: `https://github.com/${githubUsername}`
+    };
     const card = createHoverCard(profile, localProjects, githubUsername);
     activeHoverCard = card;
     positionHoverCard(card, anchorEl);
