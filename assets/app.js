@@ -12,7 +12,7 @@ const empty = document.getElementById("empty");
 const statCount = document.getElementById("stat-count");
 const statUpdated = document.getElementById("stat-updated");
 
-const state = { all: [], filtered: [], activeTag: null, query: "", sortBy: "default", authorFilter: null };
+const state = { all: [], filtered: [], activeTag: null, query: "", sortBy: "default", authorFilter: null, onlyBookmarks: false };
 
 /* ── GitHub Profile Cache ───────────────────────── */
 const ghProfileCache = new Map();
@@ -205,7 +205,26 @@ function showHoverCard(anchorEl, githubUsername) {
   }, 300); // 300ms debounce
 }
 
-/* ── Palettes & Thumbnails ──────────────────────── */
+/* ── Bookmark / Favorite State Helpers ────────────────── */
+function getBookmarks() {
+  try {
+    return JSON.parse(localStorage.getItem("bookmarked_projects")) || [];
+  } catch {
+    return [];
+  }
+}
+
+function toggleBookmark(slug) {
+  const bookmarks = getBookmarks();
+  const idx = bookmarks.indexOf(slug);
+  if (idx > -1) {
+    bookmarks.splice(idx, 1);
+  } else {
+    bookmarks.push(slug);
+  }
+  localStorage.setItem("bookmarked_projects", JSON.stringify(bookmarks));
+  return bookmarks;
+}
 
 const PALETTES = [
   ["#efe1cf", "#b86a2b"],
@@ -251,7 +270,9 @@ function placeholderThumb(project) {
 
 function render() {
   const q = state.query.trim().toLowerCase();
+  const bookmarks = getBookmarks();
   const list = state.all.filter((p) => {
+    if (state.onlyBookmarks && !bookmarks.includes(p.slug)) return false;
     if (state.authorFilter) {
       return p.author && p.author.github && p.author.github.toLowerCase() === state.authorFilter.toLowerCase();
     }
@@ -285,6 +306,7 @@ function render() {
   for (const p of list) {
     const node = tpl.content.firstElementChild.cloneNode(true);
     node.dataset.slug = p.slug;
+    const bookmarkBtn = node.querySelector(".card__bookmark-btn");
     const media = node.querySelector(".card__media");
     const thumb = node.querySelector(".card__thumb");
     const title = node.querySelector(".card__title");
@@ -293,6 +315,20 @@ function render() {
     const author = node.querySelector(".card__author");
     const open = node.querySelector(".card__open");
     const source = node.querySelector(".card__source");
+
+    if (bookmarks.includes(p.slug)) {
+      bookmarkBtn.classList.add("is-bookmarked");
+    }
+
+    bookmarkBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleBookmark(p.slug);
+      bookmarkBtn.classList.toggle("is-bookmarked");
+      if (state.onlyBookmarks) {
+        render();
+      }
+    });
 
     media.href = p.entry;
     thumb.style.backgroundImage = `url("${p.thumbnail || placeholderThumb(p)}")`;
@@ -331,15 +367,15 @@ function renderTagbar() {
   const tags = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12);
 
   tagbar.replaceChildren();
-
-  // "All" button (also clears author filter)
+  // "All" button (clears active tag, author filter, and bookmark filter)
   const all = document.createElement("button");
   all.type = "button";
   all.textContent = "All";
-  all.setAttribute("aria-pressed", state.activeTag === null && !state.authorFilter);
+  all.setAttribute("aria-pressed", state.activeTag === null && !state.authorFilter && !state.onlyBookmarks);
   all.addEventListener("click", () => {
     state.activeTag = null;
     state.authorFilter = null;
+    state.onlyBookmarks = false;
     renderTagbar();
     render();
   });
@@ -359,6 +395,24 @@ function renderTagbar() {
     });
     tagbar.appendChild(chip);
   }
+
+  // Favorites button
+  const favBtn = document.createElement("button");
+  favBtn.type = "button";
+  favBtn.innerHTML = `
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="${state.onlyBookmarks ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+    </svg>Favorites
+  `;
+  favBtn.setAttribute("aria-pressed", state.onlyBookmarks);
+  favBtn.addEventListener("click", () => {
+    state.onlyBookmarks = !state.onlyBookmarks;
+    state.authorFilter = null; // Clear author filter when viewing favorites
+    state.activeTag = null; // Clear active tag when viewing favorites
+    renderTagbar();
+    render();
+  });
+  tagbar.appendChild(favBtn);
 
   for (const [tag] of tags) {
     const b = document.createElement("button");
@@ -452,3 +506,4 @@ document.addEventListener("click", (e) => {
 });
 
 boot();
+
