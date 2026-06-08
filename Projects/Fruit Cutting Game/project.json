@@ -1,0 +1,9 @@
+{
+  "name": "Fruit Cutting Game",
+  "description": "Slice falling fruits using mouse or touch while avoiding bombs to score points.",
+  "author": {
+    "name": "Muskan",
+    "github": "Muskankr"
+  },
+  "tags": ["game", "arcade", "canvas", "vanilla-js", "interactive", "casual"]
+}

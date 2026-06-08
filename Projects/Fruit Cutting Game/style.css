@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: monospace;
+  background: #222;
+  color: #fff;
+  text-align: center;
+}
+
+#menu {
+  margin-top: 50px;
+}
+
+#gameCanvas {
+  display: block;
+  margin: 20px auto;
+  background: #333;
+  border: 3px solid #fff;
+}
+
+#scoreBoard {
+  font-size: 20px;
+  margin-top: 10px;
+}
