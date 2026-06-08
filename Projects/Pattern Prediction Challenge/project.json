@@ -1,0 +1,10 @@
+{
+  "title": "Pattern Prediction Challenge",
+  "description": "A procedural puzzle game where players predict the next item in a sequence. Tracks accuracy across sessions and increases difficulty dynamically.",
+  "author": {
+    "name": "Muskankr",
+    "github": "Muskankr"
+  },
+  "tags": ["game", "patterns", "javascript", "puzzle", "prediction"],
+  "entry": "index.html"
+}
