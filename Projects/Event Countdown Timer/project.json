@@ -1,0 +1,8 @@
+{
+  "title": "Event Countdown Timer",
+  "description": "A real-time countdown timer dashboard with a single master clock loop, 4-column chronometer grids (Days/Hours/Minutes/Seconds), future-date validation, completed-state celebration, and localStorage persistence.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["countdown", "timer", "dashboard", "localstorage", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

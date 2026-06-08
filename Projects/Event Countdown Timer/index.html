@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Countdown Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div class="topbar-left">
+        <span class="brand">Countdown</span>
+        <span class="brand-sub">Event Timer</span>
+      </div>
+      <div class="topbar-right">
+        <span class="stat" id="statActive">0</span>
+        <span class="stat-label">active</span>
+        <span class="stat-divider"></span>
+        <span class="stat" id="statComplete">0</span>
+        <span class="stat-label">done</span>
+      </div>
+    </header>
+
+    <div id="entry-panel">
+      <div class="entry-row">
+        <div class="field flex-2">
+          <label for="eventName">Event Name</label>
+          <input type="text" id="eventName" placeholder="e.g. New Year 2027" maxlength="50" autocomplete="off">
+        </div>
+        <div class="field flex-1">
+          <label for="eventDate">Target Date &amp; Time</label>
+          <input type="datetime-local" id="eventDate">
+        </div>
+        <div class="field flex-0">
+          <button id="addBtn" class="btn btn-primary">+ Add</button>
+        </div>
+      </div>
+      <div id="formError" class="form-error"></div>
+    </div>
+
+    <div id="empty-state">
+      <span>No events yet &mdash; add one above</span>
+    </div>
+
+    <div id="grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
