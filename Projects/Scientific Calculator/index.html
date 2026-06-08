@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="display">
+      <div id="displayEq"></div>
+      <div id="displayVal">0</div>
+      <div id="displayIndicators">
+        <span id="angleBadge" class="ind-badge">DEG</span>
+        <span id="memBadge" class="ind-badge hidden">M</span>
+      </div>
+    </div>
+
+    <div id="keypad">
+      <!-- Row 1: advanced -->
+      <button class="key fn" data-action="sin">sin</button>
+      <button class="key fn" data-action="cos">cos</button>
+      <button class="key fn" data-action="tan">tan</button>
+      <button class="key fn" data-action="asin">sin⁻¹</button>
+      <button class="key fn" data-action="acos">cos⁻¹</button>
+      <button class="key fn" data-action="atan">tan⁻¹</button>
+      <button class="key fn" data-action="ln">ln</button>
+      <button class="key fn" data-action="log">log</button>
+      <button class="key fn" data-action="sqrt">√</button>
+      <button class="key fn" data-action="square">x²</button>
+      <!-- Row 2: memory -->
+      <button class="key mem" data-action="mc">MC</button>
+      <button class="key mem" data-action="mr">MR</button>
+      <button class="key mem" data-action="mplus">M+</button>
+      <button class="key mem" data-action="mminus">M−</button>
+      <button class="key op" data-action="^">xʸ</button>
+      <!-- Row 3 -->
+      <button class="key num" data-action="7">7</button>
+      <button class="key num" data-action="8">8</button>
+      <button class="key num" data-action="9">9</button>
+      <button class="key op" data-action="/">÷</button>
+      <button class="key fn" data-action="angle">DEG</button>
+      <!-- Row 4 -->
+      <button class="key num" data-action="4">4</button>
+      <button class="key num" data-action="5">5</button>
+      <button class="key num" data-action="6">6</button>
+      <button class="key op" data-action="*">×</button>
+      <button class="key fn" data-action="pi">π</button>
+      <!-- Row 5 -->
+      <button class="key num" data-action="1">1</button>
+      <button class="key num" data-action="2">2</button>
+      <button class="key num" data-action="3">3</button>
+      <button class="key op" data-action="-">−</button>
+      <button class="key fn" data-action="e">e</button>
+      <!-- Row 6 -->
+      <button class="key num" data-action="0">0</button>
+      <button class="key num" data-action=".">.</button>
+      <button class="key fn" data-action="(">(</button>
+      <button class="key fn" data-action=")">)</button>
+      <button class="key op" data-action="+">+</button>
+      <!-- Row 7 -->
+      <button class="key clear" data-action="clear">AC</button>
+      <button class="key backspace" data-action="backspace">⌫</button>
+      <button class="key his" data-action="history">HIST</button>
+      <button class="key eval" data-action="=">=</button>
+    </div>
+
+    <div id="historyPanel" class="hidden">
+      <div id="historyHeader">
+        <span>History</span>
+        <button id="historyClose">&times;</button>
+      </div>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <div id="historyOverlay" class="hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

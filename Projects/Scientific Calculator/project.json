@@ -1,0 +1,8 @@
+{
+  "title": "Scientific Calculator",
+  "description": "A full-featured scientific calculator with trig functions (deg/rad), logarithms, powers/roots, memory registers (MC/MR/M+/M−), history panel with localStorage, and keyboard support.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["calculator", "scientific", "math", "trigonometry", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
