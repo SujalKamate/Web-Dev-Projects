@@ -1,0 +1,16 @@
+{
+  "title": "One Line Drawing Puzzle Game",
+  "description": "Connect all dots using a single continuous line without retracing paths through progressively challenging procedurally generated puzzles.",
+  "entry": "index.html",
+  "author": {
+    "name": "Jagriti-student",
+    "github": "https://github.com/Jagriti-student"
+  },
+  "tags": [
+    "game",
+    "puzzle",
+    "logic",
+    "canvas",
+    "interactive"
+  ]
+}
