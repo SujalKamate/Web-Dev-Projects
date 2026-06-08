@@ -11,5 +11,7 @@
     "api",
     "dashboard",
     "learning-project"
-  ]
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
 }
