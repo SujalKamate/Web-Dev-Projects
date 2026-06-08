@@ -1,0 +1,8 @@
+{
+  "title": "Drawing Board",
+  "description": "A full-featured canvas drawing app with brush/eraser modes, undo stack, color picker with quick colors, variable brush size, clear canvas, PNG export, mouse and touch support.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["drawing", "canvas", "sketch", "creative", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawing Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="toolbar">
+      <div class="tool-group">
+        <label class="color-wrap" title="Pick color">
+          <input type="color" id="colorPicker" value="#10b981">
+        </label>
+        <div class="quick-colors">
+          <button class="qc" data-color="#10b981" style="background:#10b981"></button>
+          <button class="qc" data-color="#00f0ff" style="background:#00f0ff"></button>
+          <button class="qc" data-color="#f59e0b" style="background:#f59e0b"></button>
+          <button class="qc" data-color="#ef4444" style="background:#ef4444"></button>
+          <button class="qc" data-color="#8b5cf6" style="background:#8b5cf6"></button>
+          <button class="qc" data-color="#ffffff" style="background:#ffffff"></button>
+          <button class="qc" data-color="#000000" style="background:#000000"></button>
+        </div>
+      </div>
+      <div class="tool-group">
+        <label class="slider-label">Size</label>
+        <input type="range" id="sizeSlider" min="1" max="50" value="4">
+        <span id="sizeDisplay" class="size-display">4</span>
+      </div>
+      <div class="tool-group">
+        <button id="eraserBtn" class="tool-btn" title="Eraser">Eraser</button>
+        <button id="undoBtn" class="tool-btn" title="Undo">Undo</button>
+      </div>
+      <div class="tool-group">
+        <button id="clearBtn" class="tool-btn" title="Clear">Clear</button>
+        <button id="exportBtn" class="tool-btn export" title="Export PNG">Export</button>
+      </div>
+    </div>
+
+    <div id="canvas-wrap">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div id="statusbar">
+      <span id="statusMode">Brush</span>
+      <span id="statusCoords">0, 0</span>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
