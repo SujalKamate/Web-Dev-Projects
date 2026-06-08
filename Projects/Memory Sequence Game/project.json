@@ -1,5 +1,7 @@
 {
   "title": "Memory Sequence Game",
-  "description": "A memory sequence game where players repeat increasing color patterns",
-  "entry": "index.html"
+  "description": "A memory-based sequence game where players repeat increasing color patterns",
+  "entry": "index.html",
+  "author": "Jagriti-student",
+  "tags": ["game", "memory", "javascript", "frontend"]
 }
