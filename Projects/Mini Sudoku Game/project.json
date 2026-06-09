@@ -1,0 +1,10 @@
+{
+  "title": "Mini Sudoku Game",
+  "description": "A simplified Sudoku puzzle game with interactive grid, validation, hints, and premium UI.",
+  "entry": "index.html",
+  "author": {
+    "name": "Jagriti",
+    "github": "Jagriti-student"
+  },
+  "tags": ["game", "puzzle", "logic", "vanilla-js", "grid", "interactive"]
+}
