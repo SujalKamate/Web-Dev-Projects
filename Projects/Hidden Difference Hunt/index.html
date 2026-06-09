@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidden Difference Hunt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>HIDDEN DIFFERENCE</h1>
+        <span class="brand-sub">// Visual Verification Deck</span>
+      </div>
+
+      <div class="controls">
+        <button id="btn-generate" class="btn-primary">GENERATE NEW MAP SET</button>
+        <div class="toggle-row">
+          <span class="toggle-label">DAILY CHALLENGE</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="daily-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="sector-badge">
+        <span class="badge-label">Sector</span>
+        <span class="badge-value">Crypto-Geometric Grid</span>
+      </div>
+
+      <div class="telemetry">
+        <div class="metric">
+          <span class="metric-label">TIME ELAPSED</span>
+          <span class="metric-value monospace" id="timer">00:00:000</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">DIFFERENCES</span>
+          <span class="metric-value monospace" id="diff-counter">00 / 05 FOUND</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">MISTAKES</span>
+          <span class="metric-value monospace" id="mistake-counter">00 / 03</span>
+        </div>
+      </div>
+
+      <div class="diagnostics">
+        <span class="diag-label">STATUS</span>
+        <span class="diag-value" id="status-text">READY</span>
+      </div>
+
+      <div class="seed-display">
+        <span class="seed-label">SEED</span>
+        <span class="seed-value monospace" id="seed-value">—</span>
+      </div>
+
+      <div class="footer-info">
+        <span class="footer-text">Hidden Difference Hunt v1.0</span>
+      </div>
+    </aside>
+
+    <main class="viewport">
+      <div class="comparison-viewport">
+        <div class="canvas-wrapper">
+          <canvas id="canvas-source" width="500" height="500"></canvas>
+          <span class="canvas-label">SOURCE MATRIX</span>
+        </div>
+        <div class="canvas-divider"></div>
+        <div class="canvas-wrapper">
+          <canvas id="canvas-replica" width="500" height="500"></canvas>
+          <span class="canvas-label">REPLICA MATRIX</span>
+        </div>
+      </div>
+      <div class="crosshair-bar">
+        <span class="crosshair-coords" id="coords">X: —&nbsp;&nbsp;Y: —</span>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

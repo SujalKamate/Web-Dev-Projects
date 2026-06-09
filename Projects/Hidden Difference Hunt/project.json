@@ -1,0 +1,17 @@
+{
+  "title": "Hidden Difference Hunt",
+  "description": "An interactive, high-fidelity visual verification utility that challenges visual acuity and cognitive spot-checking. Features procedural generation of complex geometric canvas environments, real-time cross-canvas synchronous cursor overlays, precise pixel bounding-box collision detection matrices, daily challenge seed integration, and a high-accuracy telemetry dashboard tracking time-series performance and interaction errors.",
+  "entry": "index.html",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Canvas",
+    "Procedural-Generation",
+    "Collision-Detection"
+  ],
+  "author": {
+    "name": "Shruti Narsulwar",
+    "github": "shrutiii01"
+  }
+}
