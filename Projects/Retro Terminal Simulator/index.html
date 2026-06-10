@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro Terminal Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="terminal">
+
+    <div id="output">
+        <div class="welcome">
+            Retro Terminal Simulator v1.0
+            <br>
+            Type <span class="highlight">help</span> to get started.
+        </div>
+    </div>
+
+    <div class="input-line">
+        <span class="prompt">></span>
+        <input
+            type="text"
+            id="commandInput"
+            autocomplete="off"
+            autofocus
+        >
+    </div>
+
+</div>
+
+<div id="matrixCanvas"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

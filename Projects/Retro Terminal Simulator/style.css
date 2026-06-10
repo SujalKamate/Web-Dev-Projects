@@ -1,0 +1,84 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:#00ff66;
+    font-family:Consolas, monospace;
+    height:100vh;
+    overflow:hidden;
+}
+
+.terminal{
+    padding:20px;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+#output{
+    flex:1;
+    overflow-y:auto;
+    white-space:pre-wrap;
+    margin-bottom:10px;
+}
+
+.input-line{
+    display:flex;
+    align-items:center;
+}
+
+.prompt{
+    margin-right:10px;
+    color:#00ff66;
+}
+
+input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:#00ff66;
+    font-size:1rem;
+    font-family:inherit;
+}
+
+.highlight{
+    color:#fff;
+}
+
+.command{
+    color:#fff;
+}
+
+.response{
+    margin:5px 0 15px;
+}
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00ff66;
+}
+
+.matrix-active{
+    animation:flicker 0.08s infinite;
+}
+
+@keyframes flicker{
+    0%{opacity:1}
+    50%{opacity:.95}
+    100%{opacity:1}
+}
+
+#matrixCanvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}

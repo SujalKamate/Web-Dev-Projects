@@ -1,0 +1,12 @@
+{
+  "title": "Retro Terminal Simulator",
+  "description": "A retro-inspired terminal simulator built using HTML, CSS, and JavaScript.",
+  "author": {
+    "name": "Pranav M S Krishnan",
+    "github": "Pranav-MSK"
+  },
+  "tags": [
+    "retro","terminal","css"
+  ],
+  "entry": "index.html"
+}
