@@ -1,0 +1,18 @@
+{
+  "title": "Mystery Box Open Game",
+  "description": "Open mystery boxes to reveal random rewards, earn points, discover rare items, and compete for the highest score.",
+  "author": {
+    "name": "MistryVishwa",
+    "github": "MistryVishwa"
+  },
+  "tags": [
+    "game",
+    "javascript",
+    "casual",
+    "rewards",
+    "interactive",
+    "web-audio"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
