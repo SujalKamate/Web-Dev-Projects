@@ -1,0 +1,48 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070c;color:#cbd5e1;font-family:"SF Mono",Consolas,"Courier New",monospace;min-height:100vh;display:flex;justify-content:center;padding:2vmin}
+#app{width:min(1400px,98vmin);display:flex;flex-direction:column;gap:1.2vmin}
+#teleBar{display:grid;grid-template-columns:repeat(auto-fit,minmax(18vmin,1fr));gap:1vmin}
+.tile{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:1.2vmin;padding:1.8vmin 1.2vmin;display:flex;flex-direction:column;gap:0.3vmin}
+.tile-lbl{font-size:1.4vmin;text-transform:uppercase;letter-spacing:0.3em;color:#475569}
+.tile-val{font-size:3vmin;font-weight:700;letter-spacing:-0.02em}
+.cy{color:#00f0ff}
+.gr{color:#10b981}
+#deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(34vmin,1fr));gap:1.2vmin}
+section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:1.4vmin;padding:2vmin;display:flex;flex-direction:column;gap:1.2vmin}
+.pnl-hd{font-size:1.6vmin;text-transform:uppercase;letter-spacing:0.3em;color:#475569;font-weight:600}
+.ctrl label{font-size:1.5vmin;display:flex;justify-content:space-between;color:#94a3b8}
+.ctrl label span{color:#00f0ff;font-weight:700}
+input[type=range]{width:100%;height:0.6vmin;-webkit-appearance:none;appearance:none;background:rgba(255,255,255,0.04);border-radius:0.3vmin;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:2vmin;height:2vmin;border-radius:50%;background:#00f0ff;cursor:pointer;border:2px solid rgba(0,240,255,0.3);box-shadow:0 0 1.2vmin rgba(0,240,255,0.2)}
+input[type=range]::-moz-range-thumb{width:2vmin;height:2vmin;border-radius:50%;background:#00f0ff;cursor:pointer;border:2px solid rgba(0,240,255,0.3)}
+select{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:0.8vmin;padding:1vmin 1.2vmin;color:#e2e8f0;font-family:inherit;font-size:1.5vmin;cursor:pointer;outline:none}
+select:focus{border-color:#00f0ff}
+#canvasWrap{position:relative;flex:1;min-height:30vmin;background:rgba(0,0,0,0.2);border-radius:0.8vmin;overflow:hidden}
+#chartCanvas{width:100%;height:100%;display:block}
+#ledgerPanel{display:flex;flex-direction:column;gap:0.6vmin}
+#ledgerCount{font-weight:400;color:#64748b;font-size:1.3vmin}
+#ledgerWrap{flex:1;overflow-y:auto;max-height:42vmin;scrollbar-width:thin;scrollbar-color:rgba(0,240,255,0.15) transparent}
+#ledgerWrap::-webkit-scrollbar{width:0.4vmin}
+#ledgerWrap::-webkit-scrollbar-track{background:transparent}
+#ledgerWrap::-webkit-scrollbar-thumb{background:rgba(0,240,255,0.15);border-radius:0.2vmin}
+#ledgerTable{width:100%;border-collapse:collapse;font-size:1.3vmin}
+#ledgerTable th{position:sticky;top:0;background:#05070c;color:#475569;text-transform:uppercase;letter-spacing:0.15em;padding:0.8vmin 0.6vmin;text-align:right;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.04)}
+#ledgerTable th:first-child{text-align:center}
+#ledgerTable td{padding:0.6vmin;text-align:right;border-bottom:1px solid rgba(255,255,255,0.02);color:#94a3b8}
+#ledgerTable td:first-child{text-align:center;color:#475569}
+#ledgerTable tr:hover td{color:#e2e8f0}
+#ledgerTable td:last-child{color:#00f0ff;font-weight:600}
+#footBar{display:flex;gap:1vmin;justify-content:flex-end;padding:0.6vmin 0}
+#resetBtn{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:0.8vmin;padding:1.2vmin 3vmin;color:#64748b;font-family:inherit;font-size:1.4vmin;cursor:pointer;transition:all 0.2s;text-transform:uppercase;letter-spacing:0.2em}
+#resetBtn:hover{background:rgba(255,42,95,0.08);border-color:rgba(255,42,95,0.2);color:#ff2a5f}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-0.8vmin)}40%{transform:translateX(0.8vmin)}60%{transform:translateX(-0.5vmin)}80%{transform:translateX(0.5vmin)}}
+.shake{animation:shake 0.35s ease-in-out}
+@media(max-width:720px){
+  #teleBar{grid-template-columns:repeat(2,1fr)}
+  #deck{grid-template-columns:1fr}
+  .tile-val{font-size:4.5vmin}
+  .pnl-hd{font-size:2.4vmin}
+  .ctrl label{font-size:2.2vmin}
+  #ledgerTable{font-size:2vmin}
+  #resetBtn{font-size:2vmin;padding:1.6vmin 4vmin}
+}

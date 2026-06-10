@@ -1,0 +1,8 @@
+{
+  "title": "Investment Return Calculator",
+  "description": "Wealth projection sandbox with Canvas-based growth trajectory chart, granular multi-mode compounding engine (lump-sum + SIP annuity), chronological schedule ledger, localStorage persistence, and immersive dark terminal UI.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["finance", "investment", "compounding", "calculator", "canvas", "chart", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
