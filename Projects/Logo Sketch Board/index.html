@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Sketch Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Top Toolbar -->
+    <div id="topBar">
+      <div id="brand">Logo Sketch Board</div>
+      <button id="undoBtn" class="tb-btn" title="Undo">&#8630;</button>
+      <button id="redoBtn" class="tb-btn" title="Redo">&#8631;</button>
+      <button id="clearBtn" class="tb-btn" title="Wipe Slate">&#10005;</button>
+      <span class="tb-sep"></span>
+      <span class="tb-label">Palette</span>
+      <button class="swatch" data-color="#00f0ff" style="background:#00f0ff"></button>
+      <button class="swatch" data-color="#ff2a5f" style="background:#ff2a5f"></button>
+      <button class="swatch" data-color="#10b981" style="background:#10b981"></button>
+      <button class="swatch" data-color="#f59e0b" style="background:#f59e0b"></button>
+      <button class="swatch" data-color="#8b5cf6" style="background:#8b5cf6"></button>
+      <button class="swatch" data-color="#ffffff" style="background:#ffffff"></button>
+      <span class="tb-sep"></span>
+      <button id="exportBtn" class="tb-btn tb-export">Export PNG</button>
+    </div>
+
+    <!-- Main -->
+    <div id="main">
+      <!-- Left Toolbox -->
+      <div id="leftPanel" class="panel">
+        <div class="panel-title">Tools</div>
+        <button id="toolFree" class="tool-btn tool-active" data-tool="free">&#9998; Freehand</button>
+        <button id="toolCircle" class="tool-btn" data-tool="circle">&#9711; Circle</button>
+        <button id="toolSquare" class="tool-btn" data-tool="square">&#9632; Square</button>
+
+        <div class="panel-title" style="margin-top:10px">Brush</div>
+        <div class="ctrl-row"><span class="ctrl-lbl">Size</span><input type="range" id="brushSize" min="1" max="40" value="4"><span id="sizeVal" class="ctrl-val">4</span></div>
+        <div class="ctrl-row"><span class="ctrl-lbl">Opacity</span><input type="range" id="brushOpacity" min="5" max="100" value="100"><span id="opacityVal" class="ctrl-val">100</span></div>
+
+        <div class="panel-title" style="margin-top:10px">Grid</div>
+        <label class="toggle-row"><input type="checkbox" id="gridToggle"> <span>Snap to Grid</span></label>
+        <div class="ctrl-row" id="gridSizeRow"><span class="ctrl-lbl">Density</span><input type="range" id="gridDensity" min="10" max="80" value="40"><span id="gridVal" class="ctrl-val">40</span></div>
+
+        <div id="activeLayer" style="margin-top:auto;font-size:10px;color:#475569">Layer: <span id="layerCount">0</span> strokes</div>
+      </div>
+
+      <!-- Canvas -->
+      <div id="canvasWrap">
+        <canvas id="sketchCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      <span id="coordDisplay">(0, 0)</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

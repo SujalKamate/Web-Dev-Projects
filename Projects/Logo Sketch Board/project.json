@@ -1,0 +1,8 @@
+{
+  "title": "Logo Sketch Board",
+  "description": "A vector-style drawing studio with freehand quadratic curve interpolation, circle/square shape guides, grid snapping, undo/redo state management, and transparent PNG export using the HTML5 Canvas API.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["drawing", "canvas", "sketch", "logo", "design", "vector", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
