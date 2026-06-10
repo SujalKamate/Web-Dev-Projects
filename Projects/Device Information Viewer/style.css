@@ -1,0 +1,38 @@
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#05060b;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#app{min-height:100vh;display:flex;flex-direction:column;gap:10px;padding:14px;max-width:960px;margin:0 auto;position:relative}
+
+#topBar{display:flex;align-items:center;gap:8px 18px;padding:10px 16px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);border-radius:10px;backdrop-filter:blur(12px);flex-wrap:wrap}
+#brand{font-size:13px;font-weight:700;color:#00f0ff;white-space:nowrap;margin-right:auto}
+.tel-item{display:flex;align-items:center;gap:5px;font-size:10px}
+.tel-label{color:#475569;text-transform:uppercase;letter-spacing:0.3px}
+.tel-value{font-weight:700;font-family:'SF Mono','Consolas',monospace;font-size:10px;color:#00f0ff}
+.tel-value.status-ok{color:#10b981}
+
+#grid{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+
+.card{background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);border-radius:8px;padding:14px 16px;backdrop-filter:blur(12px);display:flex;flex-direction:column;gap:6px;transition:opacity 0.3s}
+.card-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#475569}
+.card-value{font-size:15px;font-weight:700;font-family:'SF Mono','Consolas',monospace;color:#00f0ff;word-break:break-all}
+.card-sub{font-size:11px;font-family:monospace;color:#64748b}
+
+.battery-row{display:flex;align-items:center;gap:8px}
+.batt-val{font-size:22px;font-weight:700;font-family:monospace;color:#00f0ff;min-width:40px}
+.batt-bar{flex:1;height:6px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden}
+.batt-fill{height:100%;width:0%;background:#10b981;border-radius:4px;transition:width 0.3s}
+.batt-sub{font-size:10px;color:#64748b;font-family:monospace}
+
+#footer{display:flex;gap:8px;flex-wrap:wrap}
+#footer button{flex:1;min-width:120px;padding:9px 14px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:#e2e8f0;transition:all 0.12s}
+#footer button:hover{border-color:#00f0ff;color:#00f0ff}
+
+#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);padding:10px 24px;border-radius:6px;font-size:12px;font-weight:600;z-index:100;transition:opacity 0.3s;pointer-events:none}
+#toast.hidden{opacity:0}
+#toast.show{opacity:1;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);color:#34d399}
+
+@media (max-width:480px){
+  #app{padding:8px;gap:6px}
+  #topBar{gap:4px 10px;padding:8px 10px}
+  #brand{width:100%}
+  .card-value{font-size:13px}
+}

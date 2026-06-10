@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Information Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="topBar">
+      <div id="brand">Device Diagnostics</div>
+      <div class="tel-item"><span class="tel-label">Integrity</span><span id="telIntegrity" class="tel-value status-ok">Nominal</span></div>
+      <div class="tel-item"><span class="tel-label">Engine</span><span id="telEngine" class="tel-value">—</span></div>
+      <div class="tel-item"><span class="tel-label">Time</span><span id="telTime" class="tel-value">—</span></div>
+    </div>
+
+    <div id="grid">
+      <div class="card"><span class="card-title">Operating System</span><span id="dOS" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">Browser</span><span id="dBrowser" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">CPU Threads</span><span id="dCPU" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">Screen</span><span id="dScreen" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">Viewport</span><span id="dViewport" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">Pixel Ratio</span><span id="dDPR" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">Color Depth</span><span id="dColor" class="card-value">—</span></div>
+      <div class="card"><span class="card-title">Orientation</span><span id="dOrientation" class="card-value">—</span></div>
+      <div class="card" id="batteryCard"><span class="card-title">Battery</span>
+        <div class="battery-row"><span id="bLevel" class="batt-val">—</span><div class="batt-bar"><div id="bFill" class="batt-fill"></div></div></div>
+        <div class="batt-sub"><span id="bCharging">—</span> · <span id="bDischarge">—</span></div>
+      </div>
+      <div class="card"><span class="card-title">Network</span><span id="dNetType" class="card-value">—</span><span id="dNetSpeed" class="card-sub">—</span></div>
+      <div class="card"><span class="card-title">Platform Arch</span><span id="dArch" class="card-value">—</span></div>
+    </div>
+
+    <div id="footer">
+      <button id="refreshBtn">Trigger Hardware Probe Refresh</button>
+      <button id="copyBtn">Copy Diagnostic Digest JSON to Clipboard</button>
+    </div>
+
+    <div id="toast" class="hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

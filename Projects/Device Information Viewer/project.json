@@ -1,0 +1,8 @@
+{
+  "title": "Device Information Viewer",
+  "description": "A hardware diagnostics dashboard that reads OS, browser, CPU threads, screen/viewport geometry, battery status, network info via native Web APIs. Features live resize tracking, clipboard JSON export, and a dark cybernetic UI.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["device-info", "diagnostics", "hardware", "battery-api", "network-api", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
