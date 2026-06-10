@@ -2,14 +2,16 @@
 "title": "Population Growth Simulator",
 "description": "An ultra-premium, light botanical-themed interactive ecosystem simulation workspace modeling Exponential and Logistic biological population dynamics with real-time vector graphing, complete telemetry logs, and raw CSV data exporters.",
 "entry": "index.html",
-"tags": ["Biology", "Statistics", "Simulation", "Interactive-Graphs", "Data-Export", "Botanical-UI"],
-"author": "Eco-Sphere Engineering",
-"version": "1.0.0",
-"license": "MIT",
-"repository": "",
-"keywords": ["population dynamics", "exponential growth", "logistic growth", "carrying capacity", "ecological simulation", "mathematical biology", "verhulst equation"],
-"browser": "Chrome, Firefox, Edge, Safari (ES6+)",
-"dependencies": {
-"chart.js": "4.4.7 (CDN)"
-}
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Color-Theory",
+    "Vector-Interpolation",
+    "Generative-Algorithms"
+  ],
+  "author": {
+    "name": "Shruti Narsulwar",
+    "github": "shrutiii01"
+  }
 }
