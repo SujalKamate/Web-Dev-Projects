@@ -35,7 +35,7 @@
       ],
       "entry": "Projects/Age%20Calculator/index.html",
       "folder": "Projects/Age%20Calculator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Age Calculator.svg",
       "addedAt": "2026-06-10T06:58:01.736Z"
     },
     {
@@ -56,7 +56,7 @@
       ],
       "entry": "Projects/Anti%20To%20Do%20List/index.html",
       "folder": "Projects/Anti%20To%20Do%20List",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Anti To Do List.svg",
       "addedAt": "2026-06-10T06:58:01.737Z"
     },
     {
@@ -135,7 +135,7 @@
       ],
       "entry": "Projects/Blind%20Color%20Mixer/index.html",
       "folder": "Projects/Blind%20Color%20Mixer",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Blind Color Mixer.svg",
       "addedAt": "2026-06-10T06:58:01.737Z"
     },
     {
@@ -173,7 +173,7 @@
       ],
       "entry": "Projects/Block%20Steak%20Matrix/index.html",
       "folder": "Projects/Block%20Steak%20Matrix",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Block Steak Matrix.svg",
       "addedAt": "2026-06-10T06:58:01.738Z"
     },
     {
@@ -191,7 +191,7 @@
       ],
       "entry": "Projects/Blog/index.html",
       "folder": "Projects/Blog",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Blog.svg",
       "addedAt": "2026-06-10T06:58:01.738Z"
     },
     {
@@ -250,7 +250,7 @@
       ],
       "entry": "Projects/Browser%20Whiteboard/index.html",
       "folder": "Projects/Browser%20Whiteboard",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Browser Whiteboard.svg",
       "addedAt": "2026-06-10T06:58:01.739Z"
     },
     {
@@ -271,7 +271,7 @@
       ],
       "entry": "Projects/Bug%20Hunt%20Game/index.html",
       "folder": "Projects/Bug%20Hunt%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Bug Hunt Game.svg",
       "addedAt": "2026-06-10T06:58:01.739Z"
     },
     {
@@ -289,7 +289,7 @@
       ],
       "entry": "Projects/Calendar%20And%20Scheduling%20App/index.html",
       "folder": "Projects/Calendar%20And%20Scheduling%20App",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Calendar And Scheduling App.svg",
       "addedAt": "2026-06-10T06:58:01.740Z"
     },
     {
@@ -350,7 +350,7 @@
       ],
       "entry": "Projects/Career%20Roadmap%20Planner/index.html",
       "folder": "Projects/Career%20Roadmap%20Planner",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Career Roadmap Planner.svg",
       "addedAt": "2026-06-10T06:58:01.740Z"
     },
     {
@@ -370,7 +370,7 @@
       ],
       "entry": "Projects/Chat%20Room/index.html",
       "folder": "Projects/Chat%20Room",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Chat Room.svg",
       "addedAt": "2026-06-10T06:58:01.740Z"
     },
     {
@@ -388,7 +388,7 @@
       ],
       "entry": "Projects/Chimp%20Memory%20Matrix/index.html",
       "folder": "Projects/Chimp%20Memory%20Matrix",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Chimp Memory Matrix.svg",
       "addedAt": "2026-06-10T06:58:01.741Z"
     },
     {
@@ -406,7 +406,7 @@
       ],
       "entry": "Projects/Chroma%20Match%20Puzzle/index.html",
       "folder": "Projects/Chroma%20Match%20Puzzle",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Chroma Match Puzzle.svg",
       "addedAt": "2026-06-10T06:58:01.741Z"
     },
     {
@@ -424,7 +424,7 @@
       ],
       "entry": "Projects/Chrono%20Sweeper/index.html",
       "folder": "Projects/Chrono%20Sweeper",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Chrono Sweeper.svg",
       "addedAt": "2026-06-10T06:58:01.741Z"
     },
     {
@@ -464,7 +464,7 @@
       ],
       "entry": "Projects/Coin%20Flip%20Game/index.html",
       "folder": "Projects/Coin%20Flip%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Coin Flip Game.svg",
       "addedAt": "2026-06-10T06:58:01.741Z"
     },
     {
@@ -483,7 +483,7 @@
       ],
       "entry": "Projects/Color%20Catcher/index.html",
       "folder": "Projects/Color%20Catcher",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Color Catcher.svg",
       "addedAt": "2026-06-10T06:58:01.742Z"
     },
     {
@@ -501,7 +501,7 @@
       ],
       "entry": "Projects/Color%20Guessing%20Game/index.html",
       "folder": "Projects/Color%20Guessing%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Color Guessing Game.svg",
       "addedAt": "2026-06-10T06:58:01.742Z"
     },
     {
@@ -519,7 +519,7 @@
       ],
       "entry": "Projects/Color%20Matching%20Challenge/index.html",
       "folder": "Projects/Color%20Matching%20Challenge",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Color Matching Challenge.svg",
       "addedAt": "2026-06-10T06:58:01.742Z"
     },
     {
@@ -538,7 +538,7 @@
       ],
       "entry": "Projects/Color%20Palette%20Generator/index.html",
       "folder": "Projects/Color%20Palette%20Generator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Color Palette Generator.svg",
       "addedAt": "2026-06-10T06:58:01.742Z"
     },
     {
@@ -556,7 +556,7 @@
       ],
       "entry": "Projects/Connect%20Four%20Game/index.html",
       "folder": "Projects/Connect%20Four%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Connect Four Game.svg",
       "addedAt": "2026-06-10T06:58:01.743Z"
     },
     {
@@ -594,7 +594,7 @@
       ],
       "entry": "Projects/Corsi%20Block%20Tapper/index.html",
       "folder": "Projects/Corsi%20Block%20Tapper",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Corsi Block Tapper.svg",
       "addedAt": "2026-06-10T06:58:01.743Z"
     },
     {
@@ -612,7 +612,7 @@
       ],
       "entry": "Projects/Css%20Domino%20Builder/index.html",
       "folder": "Projects/Css%20Domino%20Builder",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Css Domino Builder.svg",
       "addedAt": "2026-06-10T06:58:01.743Z"
     },
     {
@@ -630,7 +630,7 @@
       ],
       "entry": "Projects/Cycle%20Grid/index.html",
       "folder": "Projects/Cycle%20Grid",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Cycle Grid.svg",
       "addedAt": "2026-06-10T06:58:01.743Z"
     },
     {
@@ -669,7 +669,7 @@
       ],
       "entry": "Projects/Developer%20Portfolio%20Builder/index.html",
       "folder": "Projects/Developer%20Portfolio%20Builder",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Developer Portfolio Builder.svg",
       "addedAt": "2026-06-10T06:58:01.744Z"
     },
     {
@@ -689,7 +689,7 @@
       ],
       "entry": "Projects/Dice%20Roller%20Simulator/index.html",
       "folder": "Projects/Dice%20Roller%20Simulator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Dice Roller Simulator.svg",
       "addedAt": "2026-06-10T06:58:01.744Z"
     },
     {
@@ -707,7 +707,7 @@
       ],
       "entry": "Projects/Digital%20Clock/index.html",
       "folder": "Projects/Digital%20Clock",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Digital Clock.svg",
       "addedAt": "2026-06-10T06:58:01.745Z"
     },
     {
@@ -727,7 +727,7 @@
       ],
       "entry": "Projects/Digital%20Lock%20Cracker/index.html",
       "folder": "Projects/Digital%20Lock%20Cracker",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Digital Lock Cracker.svg",
       "addedAt": "2026-06-10T06:58:01.745Z"
     },
     {
@@ -747,7 +747,7 @@
       ],
       "entry": "Projects/Digital%20Vision%20Board/index.html",
       "folder": "Projects/Digital%20Vision%20Board",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Digital Vision Board.svg",
       "addedAt": "2026-06-10T06:58:01.745Z"
     },
     {
@@ -785,7 +785,7 @@
       ],
       "entry": "Projects/Dual%20N%20Back%20Lite%20App/index.html",
       "folder": "Projects/Dual%20N%20Back%20Lite%20App",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Dual N Back Lite App.svg",
       "addedAt": "2026-06-10T06:58:01.745Z"
     },
     {
@@ -806,7 +806,7 @@
       ],
       "entry": "Projects/Ecommerce%20Store/index.html",
       "folder": "Projects/Ecommerce%20Store",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Ecommerce Store.svg",
       "addedAt": "2026-06-10T06:58:01.746Z"
     },
     {
@@ -847,7 +847,7 @@
       ],
       "entry": "Projects/Escape%20Room%20Mini%20Game/index.html",
       "folder": "Projects/Escape%20Room%20Mini%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Escape Room Mini Game.svg",
       "addedAt": "2026-06-10T06:58:01.746Z"
     },
     {
@@ -987,7 +987,7 @@
       ],
       "entry": "Projects/Flow%20Free%20Clone/index.html",
       "folder": "Projects/Flow%20Free%20Clone",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Flow Free Clone.svg",
       "addedAt": "2026-06-10T06:58:01.748Z"
     },
     {
@@ -1005,7 +1005,7 @@
       ],
       "entry": "Projects/Focus%20Beats/index.html",
       "folder": "Projects/Focus%20Beats",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Focus Beats.svg",
       "addedAt": "2026-06-10T06:58:01.748Z"
     },
     {
@@ -1023,7 +1023,7 @@
       ],
       "entry": "Projects/Food%20Delivary%20App%20Ui/index.html",
       "folder": "Projects/Food%20Delivary%20App%20Ui",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Food Delivary App Ui.svg",
       "addedAt": "2026-06-10T06:58:01.748Z"
     },
     {
@@ -1044,7 +1044,7 @@
       ],
       "entry": "Projects/Friendship%20Letter/index.html",
       "folder": "Projects/Friendship%20Letter",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Friendship Letter.svg",
       "addedAt": "2026-06-10T06:58:01.749Z"
     },
     {
@@ -1063,7 +1063,7 @@
       ],
       "entry": "Projects/Fruit%20Cutting%20Game/index.html",
       "folder": "Projects/Fruit%20Cutting%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Fruit Cutting Game.svg",
       "addedAt": "2026-06-10T06:58:01.749Z"
     },
     {
@@ -1082,7 +1082,7 @@
       ],
       "entry": "Projects/GitHub%20User%20Search/index.html",
       "folder": "Projects/GitHub%20User%20Search",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/GitHub User Search.svg",
       "addedAt": "2026-06-10T06:58:01.749Z"
     },
     {
@@ -1120,7 +1120,7 @@
       ],
       "entry": "Projects/Grid%20Lock/index.html",
       "folder": "Projects/Grid%20Lock",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Grid Lock.svg",
       "addedAt": "2026-06-10T06:58:01.750Z"
     },
     {
@@ -1160,7 +1160,7 @@
       ],
       "entry": "Projects/Habit%20Tracker/index.html",
       "folder": "Projects/Habit%20Tracker",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Habit Tracker.svg",
       "addedAt": "2026-06-10T06:58:01.750Z"
     },
     {
@@ -1181,7 +1181,7 @@
       ],
       "entry": "Projects/Hidden%20Difference%20Hunt/index.html",
       "folder": "Projects/Hidden%20Difference%20Hunt",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Hidden Difference Hunt.svg",
       "addedAt": "2026-06-10T06:58:01.751Z"
     },
     {
@@ -1199,7 +1199,7 @@
       ],
       "entry": "Projects/Hungama%20Game/index.html",
       "folder": "Projects/Hungama%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Hungama Game.svg",
       "addedAt": "2026-06-10T06:58:01.751Z"
     },
     {
@@ -1237,7 +1237,7 @@
       ],
       "entry": "Projects/Interactive%20Steganography%20Tool/index.html",
       "folder": "Projects/Interactive%20Steganography%20Tool",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Interactive Steganography Tool.svg",
       "addedAt": "2026-06-10T06:58:01.751Z"
     },
     {
@@ -1255,7 +1255,7 @@
       ],
       "entry": "Projects/Interactive%20Typography%20Playground/index.html",
       "folder": "Projects/Interactive%20Typography%20Playground",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Interactive Typography Playground.svg",
       "addedAt": "2026-06-10T06:58:01.752Z"
     },
     {
@@ -1276,7 +1276,7 @@
       ],
       "entry": "Projects/Interview%20Preparation/index.html",
       "folder": "Projects/Interview%20Preparation",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Interview Preparation.svg",
       "addedAt": "2026-06-10T06:58:01.752Z"
     },
     {
@@ -1297,7 +1297,7 @@
       ],
       "entry": "Projects/Invoice%20Billing%20Generator/index.html",
       "folder": "Projects/Invoice%20Billing%20Generator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Invoice Billing Generator.svg",
       "addedAt": "2026-06-10T06:58:01.752Z"
     },
     {
@@ -1395,7 +1395,7 @@
       ],
       "entry": "Projects/Lucky%20Spin%20Wheel/index.html",
       "folder": "Projects/Lucky%20Spin%20Wheel",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Lucky Spin Wheel.svg",
       "addedAt": "2026-06-10T06:58:01.753Z"
     },
     {
@@ -1496,7 +1496,7 @@
       ],
       "entry": "Projects/Memory%20Card%20Game/index.html",
       "folder": "Projects/Memory%20Card%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Memory Card Game.svg",
       "addedAt": "2026-06-10T06:58:01.754Z"
     },
     {
@@ -1515,7 +1515,7 @@
       ],
       "entry": "Projects/Memory%20Sequence%20Game/index.html",
       "folder": "Projects/Memory%20Sequence%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Memory Sequence Game.svg",
       "addedAt": "2026-06-10T06:58:01.754Z"
     },
     {
@@ -1534,7 +1534,7 @@
       ],
       "entry": "Projects/Minesweeper%20Lite/index.html",
       "folder": "Projects/Minesweeper%20Lite",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Minesweeper Lite.svg",
       "addedAt": "2026-06-10T06:58:01.755Z"
     },
     {
@@ -1555,7 +1555,7 @@
       ],
       "entry": "Projects/Mini%20Chess%20Clock/index.html",
       "folder": "Projects/Mini%20Chess%20Clock",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Mini Chess Clock.svg",
       "addedAt": "2026-06-10T06:58:01.755Z"
     },
     {
@@ -1576,7 +1576,7 @@
       ],
       "entry": "Projects/Mini%20Sudoku%20Game/index.html",
       "folder": "Projects/Mini%20Sudoku%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Mini Sudoku Game.svg",
       "addedAt": "2026-06-10T06:58:01.755Z"
     },
     {
@@ -1596,7 +1596,7 @@
       ],
       "entry": "Projects/Movie%20Search%20App/index.html",
       "folder": "Projects/Movie%20Search%20App",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Movie Search App.svg",
       "addedAt": "2026-06-10T06:58:01.755Z"
     },
     {
@@ -1657,7 +1657,7 @@
       ],
       "entry": "Projects/Netflix%20Clone/index.html",
       "folder": "Projects/Netflix%20Clone",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Netflix Clone.svg",
       "addedAt": "2026-06-10T06:58:01.756Z"
     },
     {
@@ -1677,7 +1677,7 @@
       ],
       "entry": "Projects/News%20Aggregator%20Interface/index.html",
       "folder": "Projects/News%20Aggregator%20Interface",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/News Aggregator Interface.svg",
       "addedAt": "2026-06-10T06:58:01.756Z"
     },
     {
@@ -1716,7 +1716,7 @@
       ],
       "entry": "Projects/Number%20Connect%20Puzzle/index.html",
       "folder": "Projects/Number%20Connect%20Puzzle",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Number Connect Puzzle.svg",
       "addedAt": "2026-06-10T06:58:01.756Z"
     },
     {
@@ -1755,7 +1755,7 @@
       ],
       "entry": "Projects/Odd%20One%20Out%20Game/index.html",
       "folder": "Projects/Odd%20One%20Out%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Odd One Out Game.svg",
       "addedAt": "2026-06-10T06:58:01.756Z"
     },
     {
@@ -1775,7 +1775,7 @@
       ],
       "entry": "Projects/One%20Line%20Drawing%20Puzzle%20Game/index.html",
       "folder": "Projects/One%20Line%20Drawing%20Puzzle%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/One Line Drawing Puzzle Game.svg",
       "addedAt": "2026-06-10T06:58:01.757Z"
     },
     {
@@ -1834,7 +1834,7 @@
       ],
       "entry": "Projects/Path%20Drawing%20Puzzle/index.html",
       "folder": "Projects/Path%20Drawing%20Puzzle",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Path Drawing Puzzle.svg",
       "addedAt": "2026-06-10T06:58:01.757Z"
     },
     {
@@ -1854,7 +1854,7 @@
       ],
       "entry": "Projects/Pattern%20Prediction%20Challenge/index.html",
       "folder": "Projects/Pattern%20Prediction%20Challenge",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Pattern Prediction Challenge.svg",
       "addedAt": "2026-06-10T06:58:01.757Z"
     },
     {
@@ -1875,7 +1875,7 @@
       ],
       "entry": "Projects/Pendulum%20Simulation/index.html",
       "folder": "Projects/Pendulum%20Simulation",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Pendulum Simulation.svg",
       "addedAt": "2026-06-10T06:58:01.757Z"
     },
     {
@@ -1933,7 +1933,7 @@
       ],
       "entry": "Projects/Pipe%20Connection%20Puzzle/index.html",
       "folder": "Projects/Pipe%20Connection%20Puzzle",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Pipe Connection Puzzle.svg",
       "addedAt": "2026-06-10T06:58:01.758Z"
     },
     {
@@ -1973,7 +1973,7 @@
       ],
       "entry": "Projects/Pixel%20Drawing%20Duel/index.html",
       "folder": "Projects/Pixel%20Drawing%20Duel",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Pixel Drawing Duel.svg",
       "addedAt": "2026-06-10T06:58:01.759Z"
     },
     {
@@ -1991,7 +1991,7 @@
       ],
       "entry": "Projects/Platter%20Dropper%20Game/index.html",
       "folder": "Projects/Platter%20Dropper%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Platter Dropper Game.svg",
       "addedAt": "2026-06-10T06:58:01.759Z"
     },
     {
@@ -2111,7 +2111,7 @@
       ],
       "entry": "Projects/Projectile%20Motion%20Simulator/index.html",
       "folder": "Projects/Projectile%20Motion%20Simulator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Projectile Motion Simulator.svg",
       "addedAt": "2026-06-10T06:58:01.760Z"
     },
     {
@@ -2129,7 +2129,7 @@
       ],
       "entry": "Projects/QR%20Code%20Generator/index.html",
       "folder": "Projects/QR%20Code%20Generator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/QR Code Generator.svg",
       "addedAt": "2026-06-10T06:58:01.760Z"
     },
     {
@@ -2166,7 +2166,7 @@
       ],
       "entry": "Projects/Quntum%20Chess/index.html",
       "folder": "Projects/Quntum%20Chess",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Quntum Chess.svg",
       "addedAt": "2026-06-10T06:58:01.761Z"
     },
     {
@@ -2224,7 +2224,7 @@
       ],
       "entry": "Projects/Random%20Quote%20Generator/index.html",
       "folder": "Projects/Random%20Quote%20Generator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Random Quote Generator.svg",
       "addedAt": "2026-06-10T06:58:01.761Z"
     },
     {
@@ -2283,7 +2283,7 @@
       ],
       "entry": "Projects/Real%20Estate%20Listing/index.html",
       "folder": "Projects/Real%20Estate%20Listing",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Real Estate Listing.svg",
       "addedAt": "2026-06-10T06:58:01.762Z"
     },
     {
@@ -2320,7 +2320,7 @@
       ],
       "entry": "Projects/Restaurant%20Ordering%20Interface/index.html",
       "folder": "Projects/Restaurant%20Ordering%20Interface",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Restaurant Ordering Interface.svg",
       "addedAt": "2026-06-10T06:58:01.762Z"
     },
     {
@@ -2341,7 +2341,7 @@
       ],
       "entry": "Projects/Resume%20Builder%20Form/index.html",
       "folder": "Projects/Resume%20Builder%20Form",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Resume Builder Form.svg",
       "addedAt": "2026-06-10T06:58:01.762Z"
     },
     {
@@ -2359,7 +2359,7 @@
       ],
       "entry": "Projects/Reverse%20Captcha/index.html",
       "folder": "Projects/Reverse%20Captcha",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Reverse Captcha.svg",
       "addedAt": "2026-06-10T06:58:01.763Z"
     },
     {
@@ -2378,7 +2378,7 @@
       ],
       "entry": "Projects/Rock%20Paper%20Scissors/index.html",
       "folder": "Projects/Rock%20Paper%20Scissors",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Rock Paper Scissors.svg",
       "addedAt": "2026-06-10T06:58:01.763Z"
     },
     {
@@ -2398,7 +2398,7 @@
       ],
       "entry": "Projects/Rotation%20Matching%20Game/index.html",
       "folder": "Projects/Rotation%20Matching%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Rotation Matching Game.svg",
       "addedAt": "2026-06-10T06:58:01.763Z"
     },
     {
@@ -2437,7 +2437,7 @@
       ],
       "entry": "Projects/Shape%20Builder%20Puzzle/index.html",
       "folder": "Projects/Shape%20Builder%20Puzzle",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Shape Builder Puzzle.svg",
       "addedAt": "2026-06-10T06:58:01.763Z"
     },
     {
@@ -2457,7 +2457,7 @@
       ],
       "entry": "Projects/Shape%20Recognition%20Game/index.html",
       "folder": "Projects/Shape%20Recognition%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Shape Recognition Game.svg",
       "addedAt": "2026-06-10T06:58:01.764Z"
     },
     {
@@ -2475,7 +2475,7 @@
       ],
       "entry": "Projects/Simon%20Recall/index.html",
       "folder": "Projects/Simon%20Recall",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Simon Recall.svg",
       "addedAt": "2026-06-10T06:58:01.764Z"
     },
     {
@@ -2493,7 +2493,7 @@
       ],
       "entry": "Projects/Simon%20Says%20Game/index.html",
       "folder": "Projects/Simon%20Says%20Game",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Simon Says Game.svg",
       "addedAt": "2026-06-10T06:58:01.764Z"
     },
     {
@@ -2533,7 +2533,7 @@
       ],
       "entry": "Projects/Solar%20System%20Simulation/index.html",
       "folder": "Projects/Solar%20System%20Simulation",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Solar System Simulation.svg",
       "addedAt": "2026-06-10T06:58:01.764Z"
     },
     {
@@ -2595,7 +2595,7 @@
       ],
       "entry": "Projects/Square%20Pic/index.html",
       "folder": "Projects/Square%20Pic",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Square Pic.svg",
       "addedAt": "2026-06-10T06:58:01.773Z"
     },
     {
@@ -2616,7 +2616,7 @@
       ],
       "entry": "Projects/Submit%20Troll/index.html",
       "folder": "Projects/Submit%20Troll",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Submit Troll.svg",
       "addedAt": "2026-06-10T06:58:01.774Z"
     },
     {
@@ -2653,7 +2653,7 @@
       ],
       "entry": "Projects/Task%20Management%20Dashboard/index.html",
       "folder": "Projects/Task%20Management%20Dashboard",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Task Management Dashboard.svg",
       "addedAt": "2026-06-10T06:58:01.774Z"
     },
     {
@@ -2671,7 +2671,7 @@
       ],
       "entry": "Projects/The%20Stroop%20Interference%20Grid/index.html",
       "folder": "Projects/The%20Stroop%20Interference%20Grid",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/The Stroop Interference Grid.svg",
       "addedAt": "2026-06-10T06:58:01.774Z"
     },
     {
@@ -2746,7 +2746,7 @@
       ],
       "entry": "Projects/Trail%20Making%20Lab/index.html",
       "folder": "Projects/Trail%20Making%20Lab",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Trail Making Lab.svg",
       "addedAt": "2026-06-10T06:58:01.775Z"
     },
     {
@@ -2764,7 +2764,7 @@
       ],
       "entry": "Projects/Travel%20Booking%20Dashboard/index.html",
       "folder": "Projects/Travel%20Booking%20Dashboard",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Travel Booking Dashboard.svg",
       "addedAt": "2026-06-10T06:58:01.775Z"
     },
     {
@@ -2783,7 +2783,7 @@
       ],
       "entry": "Projects/Typing%20Practice%20App/index.html",
       "folder": "Projects/Typing%20Practice%20App",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Typing Practice App.svg",
       "addedAt": "2026-06-10T06:58:01.775Z"
     },
     {
@@ -2801,7 +2801,7 @@
       ],
       "entry": "Projects/Typing%20Speed%20Tester/index.html",
       "folder": "Projects/Typing%20Speed%20Tester",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Typing Speed Tester.svg",
       "addedAt": "2026-06-10T06:58:01.775Z"
     },
     {
@@ -2839,7 +2839,7 @@
       ],
       "entry": "Projects/Vigilance%20Clock%20Test/index.html",
       "folder": "Projects/Vigilance%20Clock%20Test",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Vigilance Clock Test.svg",
       "addedAt": "2026-06-10T06:58:01.776Z"
     },
     {
@@ -2857,7 +2857,7 @@
       ],
       "entry": "Projects/Virtual%20Piano%20Synthesizer/index.html",
       "folder": "Projects/Virtual%20Piano%20Synthesizer",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Virtual Piano Synthesizer.svg",
       "addedAt": "2026-06-10T06:58:01.776Z"
     },
     {
@@ -2875,7 +2875,7 @@
       ],
       "entry": "Projects/Virtual%20Table%20Fan%20Simulator/index.html",
       "folder": "Projects/Virtual%20Table%20Fan%20Simulator",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Virtual Table Fan Simulator.svg",
       "addedAt": "2026-06-10T06:58:01.776Z"
     },
     {
@@ -2913,7 +2913,7 @@
       ],
       "entry": "Projects/Weather%20Finder/index.html",
       "folder": "Projects/Weather%20Finder",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Weather Finder.svg",
       "addedAt": "2026-06-10T06:58:01.777Z"
     },
     {
@@ -2934,7 +2934,7 @@
       ],
       "entry": "Projects/Weather%20Forecast%20Dashboard/index.html",
       "folder": "Projects/Weather%20Forecast%20Dashboard",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/Weather Forecast Dashboard.svg",
       "addedAt": "2026-06-10T06:58:01.777Z"
     },
     {
@@ -3014,7 +3014,7 @@
       ],
       "entry": "Projects/YouTube%20Homepage%20Clone/index.html",
       "folder": "Projects/YouTube%20Homepage%20Clone",
-      "thumbnail": null,
+      "thumbnail": "assets/thumbs/YouTube Homepage Clone.svg",
       "addedAt": "2026-06-10T06:58:01.778Z"
     }
   ]

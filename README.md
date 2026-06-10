@@ -2,8 +2,6 @@
 
 <img src="assets/GH_Header.png" alt="OpenStudio — Build in public. Grow through open source." width="100%" />
 
-<br/><br/>
-
 # OpenStudio
 
 ### Build in public. Grow through open source.
