@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch The Falling Objects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-stats">
+            <div class="stat-box">Score: <span id="score">0</span></div>
+            <div class="stat-box" id="level-box">Lvl: <span id="level">1</span></div>
+            <div class="stat-box" id="combo-box">Combo: <span id="combo">0</span></div>
+        </div>
+
+        <div class="shield-container">
+            <div class="shield-label">SHIELD INTEGRITY:</div>
+            <div class="shield-bar-outer">
+                <div id="shield-bar-inner"></div>
+            </div>
+        </div>
+        
+        <div id="game-area">
+            <div id="basket">
+                <div class="basket-glow-layer"></div>
+            </div>
+        </div>
+
+        <div id="overlay" class="overlay">
+            <h1 id="overlay-title">Space Catcher Pro</h1>
+            
+            <div id="how-to-play" class="instruction-box">
+                <h3>🚀 ADVANCED MISSION PROTOCOLS</h3>
+                <ul>
+                    <li>Use <b>Left/Right Arrow</b> or <b>A / D</b> to shift the Cosmic Basket.</li>
+                    <li>Catch <b>Stars (⭐)</b> for <b>+10 Points</b>. Missing them reduces shield integrity.</li>
+                    <li>Avoid <b>Meteors (🔴)</b> unless your combo shield is overloaded!</li>
+                    <li><b>Combo Overload:</b> Reach a 5x catch combo to become invincible for 3 seconds!</li>
+                    <li><b>Power-Ups:</b> Catch <b>Green Hearts (💚)</b> to repair shield or <b>Clocks (⚡)</b> for Slow-Motion!</li>
+                </ul>
+            </div>
+
+            <div id="stat-board-container" class="stat-board-grid" style="display: none;">
+                <div class="ui-badge badge-score">
+                    <span class="badge-title">FINAL SCORE</span>
+                    <span id="final-score-val" class="badge-number">0</span>
+                </div>
+                <div class="ui-badge badge-level">
+                    <span class="badge-title">MAX LEVEL</span>
+                    <span id="final-level-val" class="badge-number">1</span>
+                </div>
+            </div>
+
+            <p id="overlay-text">System Diagnostics: Shields Online. Ready for launch.</p>
+            <button id="start-btn">Launch System</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

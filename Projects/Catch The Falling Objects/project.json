@@ -1,0 +1,19 @@
+{
+  "title": "Catch The Falling Objects",
+  "description": "An arcade space-themed 2D game built with vanilla JS. Control a cosmic basket to collect falling stars while dodging hazardous meteors. Tracks score and features interactive overlays.",
+  "author": {
+    "name": "Janhvi Soni",
+    "github": "janhvisoni804"
+  },
+  "tags": [
+    "game",
+    "vanilla-js",
+    "arcade",
+    "keyboard-controls",
+    "collision-detection",
+    "power-ups",
+    "web-audio-api"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
