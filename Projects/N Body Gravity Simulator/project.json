@@ -1,0 +1,18 @@
+{
+    "title": "N Body Gravity Simulator",
+    "description": "An ultra-premium, light botanical-themed orbital physics platform simulating multi-body gravitational interactions via high-fidelity numerical integration, featuring collision detection, interactive click-and-slingshot planet creation, persistent fading orbital paths, and raw CSV vector exports.",
+    "entry": "index.html",
+    "tags": [
+        "Astronomy",
+        "Numerical-Methods",
+        "Physics",
+        "N-Body-Simulation",
+        "HTML5-Canvas",
+        "Data-Export",
+        "Botanical-UI"
+    ],
+    "author": {
+        "name": "Shruti Narsulwar",
+        "github": "shrutiii01"
+    }
+}
