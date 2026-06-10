@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Top bar -->
+    <div id="topBar">
+      <span id="brand">Avatar Generator</span>
+      <span id="variantCount">Variants: <b id="varCount">1</b></span>
+    </div>
+
+    <!-- Main split -->
+    <div id="main">
+      <!-- Preview -->
+      <div id="previewPanel" class="panel">
+        <div class="panel-title">Live Avatar</div>
+        <div id="avatarViewport">
+          <div id="avatarWrap">
+            <svg id="avatarSvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div id="ctrlPanel" class="panel">
+        <div class="panel-title">Customize</div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Face Shape</span>
+          <div class="opt-row" id="faceOpts"></div>
+        </div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Eyes</span>
+          <div class="opt-row" id="eyesOpts"></div>
+        </div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Mouth</span>
+          <div class="opt-row" id="mouthOpts"></div>
+        </div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Hair</span>
+          <div class="opt-row" id="hairOpts"></div>
+        </div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Accessory</span>
+          <div class="opt-row" id="accOpts"></div>
+        </div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Skin Tone</span>
+          <div class="chip-row" id="skinChips"></div>
+        </div>
+
+        <div class="ctrl-group">
+          <span class="ctrl-label">Hair Color</span>
+          <div class="chip-row" id="hairChips"></div>
+        </div>
+
+        <div id="actionRow">
+          <button id="randomBtn">Procedural Randomize</button>
+          <button id="resetBtn">Flush to Default</button>
+          <button id="exportBtn">Export High-Res PNG</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

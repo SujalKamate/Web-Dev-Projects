@@ -1,0 +1,8 @@
+{
+  "title": "Avatar Generator",
+  "description": "A procedural avatar builder using layered SVG components. Features face shapes, eyes, mouths, hairstyles, accessories, skin/hair color pickers, randomize, reset, and high-res PNG export via canvas compositing.",
+  "author": { "name": "Girish Madarkar", "github": "Girish0902" },
+  "tags": ["avatar", "generator", "svg", "canvas", "creator", "vanilla-js"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

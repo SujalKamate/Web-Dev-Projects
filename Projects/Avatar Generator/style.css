@@ -1,0 +1,58 @@
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body { height:100%; background:#05060b; color:#e2e8f0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; font-size:13px; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+#app { min-height:100vh; display:flex; flex-direction:column; gap:8px; padding:10px; max-width:960px; margin:0 auto; }
+
+/* ---- Top Bar ---- */
+#topBar { display:flex; align-items:center; gap:16px; padding:8px 14px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.03); border-radius:8px; backdrop-filter:blur(12px); }
+#brand { font-size:14px; font-weight:700; color:#00f0ff; }
+#variantCount { font-size:11px; color:#64748b; margin-left:auto; }
+#variantCount b { font-family:monospace; color:#00f0ff; }
+
+/* ---- Main ---- */
+#main { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:8px; min-height:0; }
+
+.panel { background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.03); border-radius:10px; padding:14px; backdrop-filter:blur(12px); display:flex; flex-direction:column; gap:10px; overflow-y:auto; }
+.panel-title { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#475569; }
+
+/* ---- Preview ---- */
+#previewPanel { align-items:center; justify-content:center; }
+#avatarViewport { flex:1; display:flex; align-items:center; justify-content:center; width:100%; }
+#avatarWrap { width:100%; max-width:280px; aspect-ratio:1/1; background:rgba(255,255,255,0.005); border-radius:12px; overflow:hidden; }
+#avatarSvg { width:100%; height:100%; display:block; }
+
+/* ---- Controls ---- */
+#ctrlPanel { gap:6px; }
+
+.ctrl-group { display:flex; flex-direction:column; gap:4px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.02); }
+.ctrl-group:last-of-type { border-bottom:none; }
+.ctrl-label { font-size:10px; font-weight:600; color:#64748b; text-transform:uppercase; letter-spacing:0.3px; }
+
+.opt-row { display:flex; gap:4px; flex-wrap:wrap; }
+.opt-pill { font-size:10px; padding:4px 10px; border-radius:4px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); color:#94a3b8; cursor:pointer; transition:all 0.12s; font-family:inherit; }
+.opt-pill:hover { border-color:rgba(255,255,255,0.06); color:#e2e8f0; }
+.opt-pill.active { background:rgba(0,240,255,0.04); border-color:#00f0ff; color:#00f0ff; }
+
+.chip-row { display:flex; gap:4px; flex-wrap:wrap; }
+.chip { width:22px; height:22px; border-radius:50%; border:1px solid rgba(255,255,255,0.04); cursor:pointer; transition:all 0.12s; outline:none; }
+.chip:hover { transform:scale(1.15); }
+.chip.active { box-shadow:0 0 0 2px #05060b, 0 0 0 3px #00f0ff; }
+
+#actionRow { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+#actionRow button { flex:1; min-width:80px; padding:7px 10px; border-radius:5px; font-size:10px; font-weight:600; cursor:pointer; font-family:inherit; border:none; transition:all 0.12s; }
+#randomBtn { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:#e2e8f0; }
+#randomBtn:hover { border-color:#00f0ff; color:#00f0ff; }
+#resetBtn { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:#e2e8f0; }
+#resetBtn:hover { border-color:#ef4444; color:#ef4444; }
+#exportBtn { background:#00f0ff; color:#05060b; }
+#exportBtn:hover { box-shadow:0 4px 16px rgba(0,240,255,0.15); }
+
+/* ---- Responsive ---- */
+@media (max-width:640px) {
+  #app { padding:6px; gap:6px; }
+  #main { grid-template-columns:1fr; }
+  #avatarWrap { max-width:200px; }
+  #ctrlPanel { max-height:400px; }
+  #actionRow button { min-width:60px; font-size:9px; }
+}
