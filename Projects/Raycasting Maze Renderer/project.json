@@ -1,0 +1,18 @@
+{
+  "title": "Raycasting Maze Renderer",
+  "description": "A dual-canvas raycasting engine with 2D top-down radar map and pseudo-3D first-person viewport. Real-time DDA raycasting with fish-eye correction, distance-based column shading, interactive keyboard controls (WASD/Arrows), wall toggling via click, and adjustable FOV/ray count/view distance sliders.",
+  "author": {
+    "name": "Girish Madarkar",
+    "github": "Girish0902"
+  },
+  "tags": [
+    "raycasting",
+    "3d",
+    "graphics",
+    "maze",
+    "game-engine",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
