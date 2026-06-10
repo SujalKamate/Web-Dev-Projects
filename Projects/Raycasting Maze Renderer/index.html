@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raycasting Maze Renderer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Dashboard -->
+    <div id="dash">
+      <div class="dash-item"><label>FOV</label><input type="range" id="fovSlider" min="30" max="120" value="66"><span id="fovVal">66°</span></div>
+      <div class="dash-item"><label>Rays</label><input type="range" id="raySlider" min="40" max="320" value="120"><span id="rayVal">120</span></div>
+      <div class="dash-item"><label>View Dist</label><input type="range" id="distSlider" min="4" max="20" value="12" step="0.5"><span id="distVal">12</span></div>
+    </div>
+
+    <!-- Canvases -->
+    <div id="viewport">
+      <div id="canvas2dWrap"><canvas id="c2d"></canvas></div>
+      <div id="canvas3dWrap"><canvas id="c3d"></canvas></div>
+    </div>
+
+    <!-- Telemetry -->
+    <div id="tele">
+      <span>Heading: <b id="telHeading">0°</b></span>
+      <span>Grid: <b id="telGrid">(0,0)</b></span>
+      <span>Rays: <b id="telRaysCast">0</b></span>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      <button id="genBtn">Generate Random Maze Layout</button>
+      <button id="resetBtn">Reset Camera Position</button>
+      <span id="ctrlHint">WASD/Arrows: move · ← → : rotate · Click 2D grid: toggle wall</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
