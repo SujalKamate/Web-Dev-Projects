@@ -1,0 +1,388 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --panel-hover: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+
+    --main: #3b82f6;
+    --feature: #f97316;
+    --merge: #22c55e;
+
+    --border: #475569;
+    --shadow: rgba(0,0,0,0.25);
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    line-height:1.5;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    text-align:center;
+    padding:32px 20px;
+    border-bottom:1px solid var(--border);
+}
+
+header h1{
+    font-size:2.4rem;
+    margin-bottom:8px;
+}
+
+header p{
+    color:var(--muted);
+    font-size:1rem;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+    width:min(1400px, 95%);
+    margin:30px auto;
+}
+
+/* =========================
+   CONTROL PANELS
+========================= */
+
+.controls{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.panel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 8px 20px var(--shadow);
+}
+
+.panel h2{
+    margin-bottom:14px;
+    font-size:1.05rem;
+}
+
+.panel input,
+.panel select{
+    width:100%;
+    margin-bottom:12px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#0b1220;
+    color:var(--text);
+    font-size:0.95rem;
+}
+
+.panel input:focus,
+.panel select:focus{
+    outline:none;
+    border-color:var(--main);
+}
+
+.panel button{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    border-radius:10px;
+    padding:12px;
+    font-size:0.95rem;
+    font-weight:600;
+    background:var(--main);
+    color:white;
+    transition:0.25s ease;
+}
+
+.panel button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+
+/* =========================
+   STATUS CARDS
+========================= */
+
+.status-panel{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.status-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:16px;
+    text-align:center;
+    padding:20px;
+}
+
+.status-card h3{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin-bottom:10px;
+}
+
+.status-card span{
+    display:block;
+    font-size:1.5rem;
+    font-weight:700;
+}
+
+/* =========================
+   GRAPH SECTION
+========================= */
+
+.graph-section{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+.graph-header{
+    padding:18px 22px;
+    border-bottom:1px solid var(--border);
+}
+
+.graph-header h2{
+    font-size:1.15rem;
+}
+
+.graph-container{
+    padding:20px;
+    overflow:auto;
+}
+
+#gitGraph{
+    background:#08101d;
+    border-radius:12px;
+    min-width:900px;
+}
+
+/* =========================
+   SVG ELEMENTS
+========================= */
+
+.commit-node{
+    cursor:pointer;
+    transition:0.25s;
+}
+
+.commit-node:hover{
+    transform:scale(1.08);
+}
+
+.commit-label{
+    fill:white;
+    font-size:12px;
+    font-weight:600;
+}
+
+.branch-label{
+    fill:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.connection-line{
+    stroke-width:4;
+    fill:none;
+}
+
+.head-indicator{
+    fill:#ef4444;
+}
+
+.commit-message{
+    fill:#cbd5e1;
+    font-size:12px;
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+.history-section{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:30px;
+}
+
+.history-section h2{
+    margin-bottom:16px;
+}
+
+#historyLog{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-height:320px;
+    overflow:auto;
+}
+
+.log-entry{
+    background:#0b1220;
+    border-left:4px solid var(--main);
+    padding:12px 14px;
+    border-radius:8px;
+}
+
+.log-entry small{
+    color:var(--muted);
+    display:block;
+    margin-top:4px;
+}
+
+/* =========================
+   LEGEND
+========================= */
+
+.legend{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.legend h2{
+    margin-bottom:15px;
+}
+
+.legend-items{
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.legend-color{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+}
+
+.main-color{
+    background:var(--main);
+}
+
+.feature-color{
+    background:var(--feature);
+}
+
+.merge-color{
+    background:var(--merge);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:var(--muted);
+    border-top:1px solid var(--border);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:10px;
+    height:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0b1220;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#475569;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#64748b;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px){
+
+    header h1{
+        font-size:1.9rem;
+    }
+
+    .controls{
+        grid-template-columns:1fr;
+    }
+
+    .status-panel{
+        grid-template-columns:1fr;
+    }
+
+    #gitGraph{
+        min-width:800px;
+    }
+}
+
+@media (max-width: 600px){
+
+    main{
+        width:96%;
+    }
+
+    header{
+        padding:24px 12px;
+    }
+
+    header h1{
+        font-size:1.6rem;
+    }
+
+    .panel,
+    .history-section,
+    .legend{
+        padding:16px;
+    }
+
+    .legend-items{
+        flex-direction:column;
+        gap:12px;
+    }
+}

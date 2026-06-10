@@ -1,0 +1,16 @@
+{
+  "title": "Git Workflow Playground",
+  "description": "An interactive Git visualization simulator that demonstrates commits, branches, merges, rebases, resets and repository history evolution.",
+  "author": {
+    "name": "Pranav M S Krishnan",
+    "github": "Pranav-MSK"
+  },
+  "tags": [
+    "education",
+    "git",
+    "visualization",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
