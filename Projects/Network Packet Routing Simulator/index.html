@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NET-SPROUT // Packet Routing Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <aside id="left-panel">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" width="32" height="32">
+          <circle cx="16" cy="16" r="12" fill="none" stroke="#1b3a24" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="4" fill="#2e7d32"/>
+          <line x1="16" y1="4" x2="16" y2="12" stroke="#1b3a24" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="20" x2="16" y2="28" stroke="#1b3a24" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="12" y2="16" stroke="#1b3a24" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="16" x2="28" y2="16" stroke="#1b3a24" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7.5" y1="7.5" x2="13" y2="13" stroke="#a5d6a7" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="24.5" y1="7.5" x2="19" y2="13" stroke="#a5d6a7" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7.5" y1="24.5" x2="13" y2="19" stroke="#a5d6a7" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="24.5" y1="24.5" x2="19" y2="19" stroke="#a5d6a7" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">NET-SPROUT</span>
+          <span class="brand-sub">// Packet Routing Simulator</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-title">Routing Protocol Selection</div>
+        <div class="algo-tabs" id="algo-tabs">
+          <button class="algo-tab active" data-algo="dijkstra">
+            <span class="algo-indicator" style="background:#4caf50"></span>
+            <span class="algo-label">Dijkstra</span>
+            <span class="algo-desc">Link-State Shortest Path</span>
+          </button>
+          <button class="algo-tab" data-algo="hopcount">
+            <span class="algo-indicator" style="background:#009688"></span>
+            <span class="algo-label">Hop-Count</span>
+            <span class="algo-desc">Minimal Node Transitions</span>
+          </button>
+          <button class="algo-tab" data-algo="traffic">
+            <span class="algo-indicator" style="background:#795548"></span>
+            <span class="algo-label">Traffic-Aware</span>
+            <span class="algo-desc">Dynamic Bottleneck Avoidance</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-title">Topology Manipulation Console</div>
+        <div class="control-group">
+          <label>Add Node</label>
+          <div class="form-row">
+            <input type="text" id="node-id-input" placeholder="ID (e.g. A or 192.168.1.1)" class="form-input">
+            <select id="node-type-select" class="form-select">
+              <option value="router">Router</option>
+              <option value="host">Host</option>
+            </select>
+            <button class="btn btn-small" id="btn-add-node">+</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Add Link</label>
+          <div class="form-row">
+            <select id="link-src-select" class="form-select"><option value="">From</option></select>
+            <span class="form-arrow">&rarr;</span>
+            <select id="link-dst-select" class="form-select"><option value="">To</option></select>
+          </div>
+          <div class="form-row">
+            <input type="range" id="link-bw-slider" min="10" max="1000" value="100" class="form-slider">
+            <span id="link-bw-display" class="form-value">100 Mbps</span>
+          </div>
+          <div class="form-row">
+            <input type="number" id="link-length-input" value="100" min="1" max="10000" class="form-input form-input-sm">
+            <span class="unit-label">m</span>
+            <button class="btn btn-small" id="btn-add-link">+ Link</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Remove</label>
+          <div class="form-row">
+            <select id="delete-select" class="form-select"><option value="">Select item...</option></select>
+            <button class="btn btn-small btn-remove" id="btn-delete">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-title">Packet Injection</div>
+        <div class="control-group">
+          <div class="form-row">
+            <select id="pkt-src-select" class="form-select"><option value="">Source...</option></select>
+            <span class="form-arrow">&rarr;</span>
+            <select id="pkt-dst-select" class="form-select"><option value="">Dest...</option></select>
+          </div>
+          <div class="form-row">
+            <input type="range" id="pkt-size-slider" min="64" max="1500" value="1024" class="form-slider">
+            <span id="pkt-size-display" class="form-value">1024 B</span>
+          </div>
+          <div class="form-row">
+            <input type="number" id="pkt-burst-input" value="1" min="1" max="20" class="form-input form-input-sm">
+            <span class="unit-label">burst</span>
+            <button class="btn btn-primary btn-small" id="btn-dispatch">DISPATCH</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-title">Infrastructure Presets</div>
+        <div class="presets">
+          <button class="preset-btn" data-preset="star">Star Topology</button>
+          <button class="preset-btn" data-preset="mesh">Mesh Core</button>
+          <button class="preset-btn" data-preset="bottleneck">Bottleneck Loop</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-title">System Action Nodes</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="btn-init">INITIALIZE NETWORK</button>
+          <div class="btn-row">
+            <button class="btn btn-danger" id="btn-clear">CLEAR ALL TRAFFIC</button>
+            <button class="btn btn-accent" id="btn-export">EXPORT CSV</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main id="right-panel">
+      <div class="diag-header">
+        <div class="diag-item">
+          <span class="diag-label">In-Flight</span>
+          <span class="diag-value" id="diag-inflight">0</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Avg Latency</span>
+          <span class="diag-value" id="diag-latency">0 <span class="diag-unit">&mu;s</span></span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Delivery Rate</span>
+          <span class="diag-value" id="diag-delivery">100%</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Algorithm</span>
+          <span class="diag-value diag-algo" id="diag-algo">Dijkstra</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Status</span>
+          <span class="diag-value diag-status" id="diag-status">
+            <span class="status-dot awaiting"></span>
+            AWAITING
+          </span>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="canvas-section">
+          <div class="section-header">
+            <span class="section-title">Interactive Network Topology Viewport</span>
+            <span class="section-badge" id="canvas-info">Drag nodes to rearrange</span>
+          </div>
+          <div class="canvas-wrapper">
+            <canvas id="network-canvas"></canvas>
+          </div>
+        </div>
+
+        <div class="telemetry-section">
+          <div class="metric-cards">
+            <div class="metric-card metric-card-wide">
+              <span class="metric-label">Selected Route Path</span>
+              <span class="metric-value metric-path" id="metric-path">No active route</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Total Delay (D_total)</span>
+              <span class="metric-value" id="metric-delay">0 <span class="diag-unit">&mu;s</span></span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Congestion Index</span>
+              <span class="metric-value" id="metric-congestion">0%</span>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="latency-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="log-section">
+          <div class="section-header">
+            <span class="section-title">Packet Telemetry Log</span>
+            <span class="section-badge" id="log-info">0 entries</span>
+          </div>
+          <div class="log-container">
+            <table id="log-table">
+              <thead>
+                <tr>
+                  <th>Packet ID</th>
+                  <th>Source</th>
+                  <th>Dest</th>
+                  <th>Protocol</th>
+                  <th>Current Node</th>
+                  <th>Delay (&mu;s)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="log-body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-banner" id="status-banner">
+        <span class="status-dot awaiting"></span>
+        <span class="status-text">AWAITING TOPOLOGY DISCOVERY</span>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

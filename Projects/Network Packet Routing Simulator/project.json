@@ -1,0 +1,16 @@
+{
+  "title": "Network Packet Routing Simulator",
+  "description": "An ultra-premium, light botanical-themed interactive network architecture simulation workspace modeling Dijkstra Link-State, Hop-Count, and Dynamic Traffic-Aware routing protocols with live draggable graph canvas maps, continuous packet transmission animations, microsecond delay tracking matrices, buffer queues, and raw CSV metric data exporters.",
+  "entry": "index.html",
+  "tags": [
+    "Computer-Networks",
+    "Routing-Algorithms",
+    "Dijkstra-Shortest-Path",
+    "Packet-Switching",
+    "Simulation"
+  ],
+  "author": {
+    "name": "Shruti Narsulwar",
+    "github": "shrutiii01"
+  }
+}
