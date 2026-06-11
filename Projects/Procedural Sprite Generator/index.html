@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procedural Sprite Generator & Pixel Art Studio</title>
+  <meta name="description" content="Generate retro game sprites procedurally using symmetry rules and cellular automata. Paint, animate, and export sprite sheets.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow spheres -->
+  <div class="ambient-glow bg-purple"></div>
+  <div class="ambient-glow bg-blue"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        <h1>Sprite<span>Generator</span></h1>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" id="btn-export-png">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px; vertical-align: middle;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>PNG Sprite Sheet
+        </button>
+        
+        <button class="btn btn-secondary" id="btn-export-css">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px; vertical-align: middle;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>CSS Keyframes
+        </button>
+
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme" title="Switch Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="moon-icon hidden" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Container -->
+  <main class="main-container">
+    <div class="workspace-layout">
+      
+      <!-- Left Sidebar: Tools & Generator Controls -->
+      <section class="card sidebar-config">
+        <div class="card-inner">
+          
+          <!-- Section 1: Pixel Tools -->
+          <h2 class="panel-section-title">Editor Tools</h2>
+          <div class="tools-grid">
+            <button class="tool-btn active" id="tool-draw" title="Draw Brush">🖌️ Draw</button>
+            <button class="tool-btn" id="tool-erase" title="Eraser">🧹 Erase</button>
+            <button class="tool-btn" id="tool-fill" title="Flood Fill">🪣 Fill</button>
+            <button class="tool-btn" id="tool-clear" title="Clear Frame">🗑️ Clear</button>
+          </div>
+
+          <div class="input-group">
+            <label>Grid Resolution</label>
+            <select id="select-resolution" class="select-input">
+              <option value="8">8 x 8 (Micro)</option>
+              <option value="16" selected>16 x 16 (Standard)</option>
+              <option value="32">32 x 32 (Detailed)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Symmetry Mode</label>
+            <select id="select-symmetry" class="select-input">
+              <option value="horizontal" selected>Horizontal (Invader/Spaceship)</option>
+              <option value="vertical">Vertical</option>
+              <option value="both">Both (radial patterns)</option>
+              <option value="none">None (freeform)</option>
+            </select>
+          </div>
+
+          <hr class="divider">
+
+          <!-- Section 2: Color Palette -->
+          <h2 class="panel-section-title">Palette</h2>
+          <div class="palette-container">
+            <div class="color-picker-wrapper">
+              <label for="color-picker" class="picker-label">Custom:</label>
+              <input type="color" id="color-picker" value="#a855f7" class="color-picker-input">
+            </div>
+            <div class="palette-swatches" id="palette-swatches">
+              <!-- Swatches populated by JS -->
+            </div>
+            <div class="preset-palettes">
+              <span class="preset-label">Theme presets:</span>
+              <button class="btn-preset" data-palette="retro">Retro Game</button>
+              <button class="btn-preset" data-palette="cyber">Neon Cyber</button>
+              <button class="btn-preset" data-palette="pastel">Soft Pastel</button>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <!-- Section 3: Procedural Generator -->
+          <h2 class="panel-section-title">Procedural Generator</h2>
+          <p class="panel-desc">Generate pixel layers using seeded Cellular Automata and Noise rules:</p>
+          
+          <div class="input-group">
+            <label for="select-sprite-type">Sprite Type Template</label>
+            <select id="select-sprite-type" class="select-input">
+              <option value="invader" selected>Space Invader / Alien</option>
+              <option value="spaceship">Galactic Spaceship</option>
+              <option value="item">Sword / Melee Item</option>
+              <option value="shield">Defensive Shield</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="input-seed">Generator Seed Code</label>
+            <div class="seed-input-wrapper">
+              <input type="text" id="input-seed" placeholder="Auto-generated seed" class="text-input">
+              <button class="btn btn-secondary btn-sm" id="btn-random-seed" title="Random Seed">🎲</button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-glow width-full" id="btn-generate">Generate Sprite</button>
+
+        </div>
+      </section>
+
+      <!-- Center: Drawing Board Grid & Live Playback Preview -->
+      <section class="board-viewport">
+        
+        <!-- Live Preview Overlay card -->
+        <div class="card preview-card">
+          <div class="card-inner flex-row justify-between align-center">
+            <div class="live-preview-box-wrapper">
+              <div class="live-preview-title">ANIMATION PREVIEW</div>
+              <div class="live-preview-box">
+                <canvas id="live-preview-canvas" width="128" height="128"></canvas>
+              </div>
+            </div>
+            <div class="preview-controls">
+              <button class="sim-btn active" id="btn-play-animation">▶ Play</button>
+              <button class="sim-btn" id="btn-pause-animation">⏸ Pause</button>
+              
+              <div class="fps-slider-wrapper">
+                <label for="input-fps">Speed: <span id="val-fps">6</span> FPS</label>
+                <input type="range" id="input-fps" min="1" max="24" step="1" value="6">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Paint Canvas -->
+        <div class="card canvas-card">
+          <div class="card-inner flex-center">
+            <div class="canvas-wrapper" id="canvas-grid-wrapper">
+              <!-- Pixel Grid Cell Boxes drawn dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Bottom/Right Timeline: Animation Frames List -->
+      <section class="card timeline-card">
+        <div class="card-inner">
+          <h2 class="panel-section-title">Animation Timeline Frames</h2>
+          
+          <div class="timeline-actions">
+            <button class="btn btn-secondary btn-sm" id="btn-add-frame">➕ Add Frame</button>
+            <button class="btn btn-secondary btn-sm" id="btn-copy-frame">👯 Copy Frame</button>
+            <button class="btn btn-danger btn-sm" id="btn-delete-frame">🗑️ Delete Frame</button>
+          </div>
+
+          <div class="timeline-frames-list" id="timeline-frames-container">
+            <!-- Framelist items with thumbnails drawn dynamically -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>Procedural Sprite Generator &copy; 2026. Built with precision for Web Dev Projects.</p>
+  </footer>
+
+  <!-- Code popup overlays for export -->
+  <div class="overlay hidden" id="code-overlay">
+    <div class="card code-modal">
+      <div class="card-inner">
+        <h3 class="panel-section-title">Export CSS Animation Code</h3>
+        <p class="modal-desc">Copy this CSS keyframe code to animate this sprite sheet natively in your web project:</p>
+        <pre class="code-box"><code id="code-box-content">/* CSS Animation output */</code></pre>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="btn-copy-code">Copy Code</button>
+          <button class="btn btn-secondary" id="btn-close-modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

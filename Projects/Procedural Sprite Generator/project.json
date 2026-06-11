@@ -1,0 +1,18 @@
+{
+  "title": "Procedural Sprite Generator",
+  "description": "An interactive pixel art studio and procedural asset generator. Create and generate symmetric retro sprites (creatures, space-ships, items), manage frame timelines, and export CSS/PNG assets.",
+  "author": {
+    "name": "MistryVishwa",
+    "github": "VishwaMistry"
+  },
+  "tags": [
+    "development",
+    "game-dev",
+    "procedural",
+    "pixel-art",
+    "canvas",
+    "interactive"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
