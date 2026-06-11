@@ -1,0 +1,18 @@
+{
+  "title": "Frontend Performance Analyzer",
+  "description": "Analyze and optimize frontend performance through interactive Core Web Vitals simulators and actionable code recommendations.",
+  "author": {
+    "name": "MistryVishwa",
+    "github": "VishwaMistry"
+  },
+  "tags": [
+    "development",
+    "performance",
+    "javascript",
+    "productivity",
+    "interactive",
+    "web-vitals"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

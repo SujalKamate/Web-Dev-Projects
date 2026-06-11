@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Performance Analyzer</title>
+  <meta name="description" content="Simulate, analyze, and optimize core web vitals and frontend metrics with dynamic scanning and interactive diagnostics.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow spheres -->
+  <div class="ambient-glow bg-teal"></div>
+  <div class="ambient-glow bg-indigo"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 12L16 8"/>
+          <path d="M12 7V9"/>
+          <path d="M12 15V17"/>
+          <path d="M7 12H9"/>
+          <path d="M15 12H17"/>
+        </svg>
+        <h1>Speed<span>Analyzer</span></h1>
+      </div>
+      
+      <div class="header-actions">
+        <button class="btn btn-secondary" id="export-json-btn" disabled>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px; vertical-align: middle;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>Export JSON
+        </button>
+
+        <button class="btn btn-secondary" id="export-report-btn" disabled>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px; vertical-align: middle;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>Download Summary
+        </button>
+
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme" title="Switch Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="moon-icon hidden" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Container -->
+  <main class="main-container">
+    <div class="grid-layout">
+      
+      <!-- Left: Metrics Configurator -->
+      <section class="card config-panel">
+        <div class="card-inner">
+          <div class="config-tabs">
+            <button class="config-tab-btn active" id="config-tab-manual">Manual Specs</button>
+            <button class="config-tab-btn" id="config-tab-url">URL Audit</button>
+          </div>
+
+          <!-- Manual Form -->
+          <form id="metrics-form" onsubmit="return false;">
+            <div id="manual-inputs-group">
+              <div class="input-group">
+                <label for="input-load-time">Page Load Time: <span id="val-load-time">3.5</span> s</label>
+                <input type="range" id="input-load-time" min="0.2" max="15" step="0.1" value="3.5">
+                <span class="input-desc">Total time elapsed to load the webpage assets fully.</span>
+              </div>
+
+              <div class="input-group">
+                <label for="input-page-size">Total Page Size: <span id="val-page-size">2.4</span> MB</label>
+                <input type="range" id="input-page-size" min="0.1" max="15" step="0.1" value="2.4">
+                <span class="input-desc">Combined size of HTML, CSS, JS, and image elements.</span>
+              </div>
+
+              <div class="input-group">
+                <label for="input-image-count">Image Count: <span id="val-image-count">15</span></label>
+                <input type="range" id="input-image-count" min="0" max="80" step="1" value="15">
+                <span class="input-desc">Total number of graphic and image assets hosted.</span>
+              </div>
+
+              <div class="input-group">
+                <label for="input-image-size">Total Image Size: <span id="val-image-size">1200</span> KB</label>
+                <input type="range" id="input-image-size" min="50" max="8000" step="50" value="1200">
+                <span class="input-desc">Cumulative size weight of all page images combined.</span>
+              </div>
+
+              <div class="input-group">
+                <label for="input-css-count">CSS File Count: <span id="val-css-count">3</span></label>
+                <input type="range" id="input-css-count" min="1" max="15" step="1" value="3">
+                <span class="input-desc">Number of individual stylesheets blocking render paint.</span>
+              </div>
+
+              <div class="input-group">
+                <label for="input-js-count">JavaScript File Count: <span id="val-js-count">6</span></label>
+                <input type="range" id="input-js-count" min="1" max="25" step="1" value="6">
+                <span class="input-desc">Number of scripts running on main browser thread.</span>
+              </div>
+
+              <div class="form-row">
+                <div class="toggle-group">
+                  <label class="toggle-label" for="toggle-critical-css">Inlined Critical CSS</label>
+                  <input type="checkbox" id="toggle-critical-css" class="ios-toggle">
+                </div>
+                
+                <div class="toggle-group">
+                  <label class="toggle-label" for="toggle-http3">HTTP/3 Network Protocol</label>
+                  <input type="checkbox" id="toggle-http3" class="ios-toggle">
+                </div>
+              </div>
+            </div>
+
+            <!-- URL Scanner Form Group -->
+            <div id="url-inputs-group" class="hidden">
+              <div class="input-group">
+                <label for="input-url-target">Website Address</label>
+                <input type="url" id="input-url-target" placeholder="https://example.com" class="text-input">
+                <span class="input-desc">Enter any valid HTTP/HTTPS address to trace performance metrics.</span>
+              </div>
+              
+              <!-- Quick examples -->
+              <div class="url-presets">
+                <span class="preset-label">Load Preset:</span>
+                <button class="btn-preset" data-url="https://google.com">Google</button>
+                <button class="btn-preset" data-url="https://github.com">GitHub</button>
+                <button class="btn-preset" data-url="http://slow-legacy-site.org">Slow-Http1</button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-glow width-full" id="run-diagnostics-btn">Run Diagnostics</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Center: Diagnostics Viewport -->
+      <section class="main-viewport">
+        
+        <!-- Scanning Screen Loader -->
+        <div class="card scanning-card hidden" id="scan-container">
+          <div class="card-inner flex-center">
+            <div class="scanner-anim-wrapper">
+              <div class="scanner-ring"></div>
+              <div class="scanner-dot"></div>
+            </div>
+            <h3 id="scan-status-title">Starting Performance Audit...</h3>
+            <div class="scan-progress-wrapper">
+              <div class="scan-progress-bar" id="scan-progress"></div>
+            </div>
+            <p id="scan-status-feed">Reading HTML documents...</p>
+          </div>
+        </div>
+
+        <!-- Dashboard Report Viewer -->
+        <div class="dashboard-wrapper" id="dashboard-container">
+          
+          <!-- Scores Summary Card -->
+          <div class="card score-summary-card">
+            <div class="card-inner flex-row-wrap justify-between align-center">
+              
+              <!-- Radial Dial Gauge -->
+              <div class="score-dial-container">
+                <svg width="220" height="220" viewBox="0 0 220 220">
+                  <circle cx="110" cy="110" r="90" class="dial-bg" />
+                  <circle cx="110" cy="110" r="90" class="dial-progress" id="dial-score-indicator" stroke-dasharray="565" stroke-dashoffset="565" />
+                  <text x="110" y="105" class="dial-score-text" id="dial-score-val">0</text>
+                  <text x="110" y="145" class="dial-score-label">OVERALL</text>
+                </svg>
+              </div>
+
+              <!-- Core Web Vitals details -->
+              <div class="web-vitals-breakdown">
+                <h3 class="panel-section-title">Core Web Vitals</h3>
+                
+                <div class="vitals-row">
+                  <div class="vitals-info">
+                    <span class="vitals-name" title="Largest Contentful Paint: Measures loading performance.">LCP (Load Speed)</span>
+                    <span class="vitals-badge" id="badge-lcp">0.0s</span>
+                  </div>
+                  <div class="vitals-status-text" id="status-lcp">Good</div>
+                </div>
+
+                <div class="vitals-row">
+                  <div class="vitals-info">
+                    <span class="vitals-name" title="First Input Delay: Measures page interactivity.">FID (Interactivity)</span>
+                    <span class="vitals-badge" id="badge-fid">0ms</span>
+                  </div>
+                  <div class="vitals-status-text" id="status-fid">Good</div>
+                </div>
+
+                <div class="vitals-row">
+                  <div class="vitals-info">
+                    <span class="vitals-name" title="Cumulative Layout Shift: Measures visual stability.">CLS (Visual Shift)</span>
+                    <span class="vitals-badge" id="badge-cls">0.00</span>
+                  </div>
+                  <div class="vitals-status-text" id="status-cls">Good</div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Optimization Sandbox Panel -->
+          <div class="card sandbox-card">
+            <div class="card-inner">
+              <h3 class="panel-section-title">Interactive Optimization Sandbox</h3>
+              <p class="sandbox-desc">Toggle these best-practice optimizations to watch your score adjust in real-time!</p>
+              
+              <div class="sandbox-grid">
+                <label class="sandbox-item">
+                  <input type="checkbox" id="opt-minify-js">
+                  <span class="opt-label">Minify JS & CSS Code</span>
+                </label>
+                
+                <label class="sandbox-item">
+                  <input type="checkbox" id="opt-webp">
+                  <span class="opt-label">Convert Images to WebP</span>
+                </label>
+
+                <label class="sandbox-item">
+                  <input type="checkbox" id="opt-lazyload">
+                  <span class="opt-label">Lazy Load Offscreen Images</span>
+                </label>
+
+                <label class="sandbox-item">
+                  <input type="checkbox" id="opt-compress">
+                  <span class="opt-label">Brotli/Gzip Compression</span>
+                </label>
+
+                <label class="sandbox-item">
+                  <input type="checkbox" id="opt-defer">
+                  <span class="opt-label">Defer Third-Party Scripts</span>
+                </label>
+
+                <label class="sandbox-item">
+                  <input type="checkbox" id="opt-http">
+                  <span class="opt-label">Force HTTP/3 Multiplexing</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diagnostic Audit Check Report -->
+          <div class="card audits-card">
+            <div class="card-inner">
+              <h3 class="panel-section-title">Diagnostic Audit Checks</h3>
+              <div class="audits-list" id="audits-list-container">
+                <!-- Dynamically populated failed/passed audits -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Right: Audit History & Achievements -->
+      <section class="sidebar-panel">
+        
+        <!-- Statistics Widget -->
+        <div class="card stats-card">
+          <div class="card-inner">
+            <h3 class="sidebar-section-title">Performance Stats</h3>
+            <div class="stats-grid">
+              <div class="stat-box">
+                <span class="label">Audits Run</span>
+                <span class="value" id="stat-audits-count">0</span>
+              </div>
+              <div class="stat-box">
+                <span class="label">Top Score</span>
+                <span class="value" id="stat-top-score">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History widget -->
+        <div class="card history-card">
+          <div class="card-inner">
+            <h3 class="sidebar-section-title">Audit History</h3>
+            <div class="history-list" id="history-container">
+              <div class="empty-history-msg">No diagnostics run yet. Run audits to log results.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trophies widget -->
+        <div class="card trophies-card">
+          <div class="card-inner">
+            <h3 class="sidebar-section-title">Optimization Badges</h3>
+            <div class="trophies-grid" id="trophies-container">
+              <!-- Dynamically populated trophies -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>Frontend Performance Analyzer &copy; 2026. Built with precision for Web Dev Projects.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
