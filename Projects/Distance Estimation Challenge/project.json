@@ -1,0 +1,11 @@
+{
+  "title": "Distance Estimation Challenge",
+  "description": "A gamified app where users estimate distances between objects on screen, score points based on accuracy, and track progress with a leaderboard.",
+  "author": {
+    "name": "Muskan",
+    "github": "Muskankr"
+  },
+  "tags": ["game", "challenge", "estimation", "canvas", "javascript"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
