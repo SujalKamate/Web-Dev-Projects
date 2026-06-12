@@ -1,0 +1,19 @@
+{
+  "title": "Performance Evaluator",
+  "description": "Track your course grades, topic mastery, and detailed academic performance reports.",
+  "author": {
+    "name": "   Priya Kalamkar",
+    "github": "priyakalamkar555-art"
+  },
+  "tags": [
+    "academic",
+    "performance",
+    "grades",
+    "evaluation",
+    "tracking",
+    "javascript",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": null
+}
