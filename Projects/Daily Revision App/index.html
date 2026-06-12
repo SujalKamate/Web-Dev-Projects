@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes & Quick Revision • TaskQuest</title>
+    <meta name="description" content="Store short notes, formulas, summaries, and important revision material for quick learning." />
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">  
+</head>
+<body data-theme="cosmic">
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text);"><i class="ri-home-4-line"></i> Dashboard</a>
+            <h1>Quick Revision</h1>
+            <button class="btn btn-primary" onclick="startRevision()"><i class="ri-flashlight-line"></i> Start Revision Session</button>
+        </header>
+
+        <div class="glass-card">
+            <div class="note-form">
+                <div class="input-group">
+                    <label for="noteTitle">Topic / Title</label>
+                    <input type="text" id="noteTitle" placeholder="e.g. Euler's Identity">
+                </div>
+                <div class="input-group">
+                    <label for="noteContent">Key Material</label>
+                    <textarea id="noteContent" placeholder="Formulas, summaries, or key points..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="noteCategory">Category</label>
+                    <select id="noteCategory">
+                        <option value="Formula">Formula ➗</option>
+                        <option value="Summary">Summary 📝</option>
+                        <option value="Note">Note 📌</option>
+                        <option value="Important">Important ⚠️</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="addNote()"><i class="ri-add-box-line"></i> Store Note</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-bar">
+                <i class="ri-search-line"></i>
+                <input type="text" id="noteSearch" placeholder="Search revision material..." oninput="renderNotes()">
+            </div>
+            <div class="filters" role="group" aria-label="Filter revision notes">
+                <button class="filter-btn active" onclick="setFilter('All', this)" aria-pressed="true">All</button>
+                <button class="filter-btn" onclick="setFilter('Formula', this)" aria-pressed="false">Formulas</button>
+                <button class="filter-btn" onclick="setFilter('Summary', this)" aria-pressed="false">Summaries</button>
+                <button class="filter-btn" onclick="setFilter('Important', this)" aria-pressed="false">Important</button>
+            </div>
+        </div>
+
+        <div class="notes-grid" id="notesGrid"></div>
+    </div>
+
+    <div class="revision-overlay" id="revisionOverlay">
+        <i class="ri-close-line close-rev" onclick="stopRevision()" title="Close revision"></i>
+        <div class="revision-card">
+            <div class="note-tag" id="revTag"></div>
+            <h2 class="revision-title" id="revTitle">Title</h2>
+            <div class="revision-content" id="revContent">Content</div>
+        </div>
+        <div class="revision-progress" id="revProgress">1 / 10</div>
+        <div class="revision-nav">
+            <button class="btn-rev" onclick="prevNote()"><i class="ri-arrow-left-s-line"></i> Previous</button>
+            <button class="btn-rev" onclick="nextNote()">Next <i class="ri-arrow-right-s-line"></i></button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
