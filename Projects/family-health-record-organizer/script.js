@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- State ---
     let members = JSON.parse(localStorage.getItem('fho_members')) || [];
     let emergencyContacts = JSON.parse(localStorage.getItem('fho_emergency')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('fho_user')) || null;
     let currentMemberId = null;
     let currentRecordType = null;
     
@@ -9,6 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const colorBtns = document.querySelectorAll('.color-btn');
     
+    // Auth Elements
+    const authContainer = document.getElementById('authContainer');
+    const mainApp = document.getElementById('mainApp');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const showSignup = document.getElementById('showSignup');
+    const showLogin = document.getElementById('showLogin');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const userAvatar = document.getElementById('userAvatar');
+    const logoutBtn = document.getElementById('logoutBtn');
+
     // Navigation
     const navItems = {
         'dashboard': document.getElementById('navDashboard'),
@@ -35,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'emergency': document.getElementById('emergencyModal')
     };
 
-    // Forms
     const memberForm = document.getElementById('memberForm');
     const recordForm = document.getElementById('recordForm');
     const emergencyForm = document.getElementById('emergencyForm');
@@ -60,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getInitials = (name) => {
+        if(!name) return 'U';
         return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
     };
 
@@ -68,6 +80,57 @@ document.addEventListener('DOMContentLoaded', () => {
         const ageDt = new Date(diffMs);
         return Math.abs(ageDt.getUTCFullYear() - 1970);
     };
+
+    // --- Auth Logic ---
+    const checkAuth = () => {
+        if (currentUser) {
+            authContainer.classList.add('hidden');
+            mainApp.classList.remove('hidden');
+            userNameDisplay.textContent = currentUser.name;
+            userAvatar.textContent = getInitials(currentUser.name);
+            renderDashboard(); // load data
+        } else {
+            authContainer.classList.remove('hidden');
+            mainApp.classList.add('hidden');
+        }
+    };
+
+    showSignup.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+    });
+
+    showLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+    });
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        // Mock login
+        currentUser = { name: email.split('@')[0], email: email };
+        localStorage.setItem('fho_user', JSON.stringify(currentUser));
+        checkAuth();
+    });
+
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        // Mock signup
+        currentUser = { name: name, email: email };
+        localStorage.setItem('fho_user', JSON.stringify(currentUser));
+        checkAuth();
+    });
+
+    logoutBtn.addEventListener('click', () => {
+        currentUser = null;
+        localStorage.removeItem('fho_user');
+        checkAuth();
+    });
 
     // --- Navigation & View Switching ---
     const switchView = (viewName, title, subtitle, showAddMember = false) => {
@@ -290,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             m.records.vaccine.forEach(v => { if(v.nextDue && new Date(v.nextDue) >= new Date()) pendingVax++; });
             m.records.appointment.forEach(a => { if(new Date(a.date) >= new Date()) upcomingAppt++; });
 
-            // Activity (Extract all recent events)
+            // Activity
             Object.values(m.records).flat().forEach(rec => {
                 if(rec.date) {
                     activityList.push({ member: m.name, title: rec.title || rec.reason, date: new Date(rec.date) });
@@ -323,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Render Timeline
         const tl = document.getElementById('recentActivityTimeline');
         tl.innerHTML = '';
-        activityList.sort((a,b) => b.date - a.date); // Most recent first
+        activityList.sort((a,b) => b.date - a.date);
         const recent = activityList.slice(0, 5);
         if(recent.length === 0) {
             tl.innerHTML = '<div class="empty-state-sm text-muted">No recent health activity.</div>';
@@ -350,17 +413,18 @@ document.addEventListener('DOMContentLoaded', () => {
             msg.classList.add('hidden');
             members.forEach(m => {
                 grid.innerHTML += `
-                    <div class="card glass" style="cursor: pointer;" onclick="viewMember('${m.id}')">
-                        <div style="display:flex; gap:15px; align-items:center;">
-                            <div class="profile-avatar" style="width: 60px; height: 60px; font-size: 1.5rem;">${getInitials(m.name)}</div>
+                    <div class="card glass-panel" style="cursor: pointer;" onclick="viewMember('${m.id}')">
+                        <div class="member-grid-header">
+                            <div class="profile-avatar">${getInitials(m.name)}</div>
                             <div>
-                                <h3 style="margin:0; font-size:1.3rem;">${m.name}</h3>
-                                <div class="text-muted" style="margin-top:4px;">${m.relation} • ${calculateAge(m.dob)} years old</div>
+                                <h3>${m.name}</h3>
+                                <div class="text-muted" style="margin-top:5px; font-weight:500;">${m.relation}</div>
                             </div>
                         </div>
-                        <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted)">
-                            <div><strong>Blood:</strong> ${m.blood}</div>
-                            <div class="text-danger"><strong>Allergies:</strong> ${m.allergies}</div>
+                        <div class="member-grid-stats">
+                            <div class="stat-box text-muted">Age <span>${calculateAge(m.dob)}</span></div>
+                            <div class="stat-box text-muted">Blood <span>${m.blood}</span></div>
+                            <div class="stat-box text-danger" style="grid-column: 1/-1;">Allergies <span>${m.allergies}</span></div>
                         </div>
                     </div>
                 `;
@@ -383,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('memberProfileHeader').innerHTML = `
             <div class="profile-avatar">${getInitials(member.name)}</div>
             <div>
-                <h2 style="font-size: 2rem; color: var(--primary);">${member.name}</h2>
+                <h2 style="font-size: 2.2rem; color: var(--primary); font-weight: 800;">${member.name}</h2>
                 <div class="member-meta">
                     <span class="meta-tag">${member.relation}</span>
                     <span class="meta-tag">${calculateAge(member.dob)} yrs (${new Date(member.dob).toLocaleDateString()})</span>
@@ -391,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${member.allergies !== 'None' ? `<span class="meta-tag danger">⚠️ ${member.allergies}</span>` : ''}
                 </div>
             </div>
-            <button class="btn btn-danger" style="margin-left: auto;" onclick="deleteMember('${member.id}')">Delete Member</button>
+            <button class="btn btn-danger shadow-hover" style="margin-left: auto;" onclick="deleteMember('${member.id}')">Delete Member</button>
         `;
 
         // Render Lists
@@ -399,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const list = document.getElementById(elId);
             list.innerHTML = '';
             if (member.records[type].length === 0) {
-                list.innerHTML = '<div class="text-muted" style="font-size:0.9rem; padding: 10px;">No records added.</div>';
+                list.innerHTML = '<div class="text-muted" style="font-size:0.95rem; padding: 15px; font-style:italic;">No records added.</div>';
             } else {
                 member.records[type].forEach(r => {
                     list.innerHTML += htmlGen(r, type);
@@ -409,8 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const genHTML = (r, type) => {
             let content = `<h5>${r.title}</h5>`;
-            if(r.date) content += `<p>Date: ${new Date(r.date).toLocaleDateString()}</p>`;
-            if(r.nextDue) content += `<p class="text-warning">Next Due: ${new Date(r.nextDue).toLocaleDateString()}</p>`;
+            if(r.date) content += `<p>Date: <strong style="color:var(--text-main)">${new Date(r.date).toLocaleDateString()}</strong></p>`;
+            if(r.nextDue) content += `<p class="text-warning fw-bold">Next Due: ${new Date(r.nextDue).toLocaleDateString()}</p>`;
             if(r.dosage) content += `<p>${r.dosage}</p>`;
             if(r.purpose) content += `<p class="text-muted">For: ${r.purpose}</p>`;
             if(r.notes) content += `<p class="text-muted">Notes: ${r.notes}</p>`;
@@ -418,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return `
                 <li class="record-item">
                     ${content}
-                    <button class="delete-record-btn" onclick="deleteRecord('${type}', '${r.id}')">✕</button>
+                    <button class="delete-record-btn" onclick="deleteRecord('${type}', '${r.id}')" title="Delete">✕</button>
                 </li>
             `;
         };
@@ -433,22 +497,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('emergencyContactsGrid');
         grid.innerHTML = '';
         if (emergencyContacts.length === 0) {
-            grid.innerHTML = '<div class="empty-state text-muted" style="grid-column: 1/-1;">No emergency contacts added.</div>';
+            grid.innerHTML = '<div class="empty-state text-muted" style="grid-column: 1/-1;"><h2>No Contacts Found</h2><p>Add emergency contacts to ensure quick access.</p></div>';
         } else {
             emergencyContacts.forEach(c => {
                 grid.innerHTML += `
-                    <div class="card glass" style="border-left: 4px solid var(--danger);">
-                        <h3 class="text-danger" style="margin-bottom: 5px;">${c.name}</h3>
-                        <div class="fw-bold mb-4">${c.role}</div>
-                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">📞 ${c.phone}</div>
-                        ${c.notes ? `<div class="text-muted" style="font-size: 0.9rem;">${c.notes}</div>` : ''}
-                        <button class="btn btn-sm btn-secondary mt-3" onclick="deleteContact('${c.id}')">Remove</button>
+                    <div class="card glass-panel" style="border-left: 5px solid var(--danger);">
+                        <h3 class="text-danger" style="margin-bottom: 8px; font-size: 1.4rem;">${c.name}</h3>
+                        <div class="fw-bold mb-4 text-muted">${c.role}</div>
+                        <div style="font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; color: var(--text-main);">📞 ${c.phone}</div>
+                        ${c.notes ? `<div class="text-muted" style="font-size: 0.95rem; line-height:1.5;">${c.notes}</div>` : ''}
+                        <button class="btn btn-secondary mt-4 w-full" onclick="deleteContact('${c.id}')">Remove Contact</button>
                     </div>
                 `;
             });
         }
     };
 
-    // Initial boot
-    renderDashboard();
+    // Boot Up
+    checkAuth();
 });
