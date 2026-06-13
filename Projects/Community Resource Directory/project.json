@@ -1,0 +1,18 @@
+{
+  "title": "Community Resource Directory",
+  "description": "Create a responsive Community Resource Directory that serves as a centralized platform for organizing and accessing important local resources.",
+  "author": {
+    "name": "MistryVishwa",
+    "github": "MistryVishwa"
+  },
+  "tags": [
+    "enhancement",
+    "good first issue",
+    "javascript",
+    "frontend",
+    "community",
+    "directory",
+    "civic-tech"
+  ],
+  "entry": "index.html"
+}
