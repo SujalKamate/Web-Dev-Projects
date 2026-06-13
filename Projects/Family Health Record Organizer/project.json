@@ -1,0 +1,18 @@
+{
+  "title": "Family Health Record Organizer",
+  "description": "Create a responsive Family Health Record Organizer that allows users to maintain and manage health records for multiple family members including medical history, vaccinations, medications, and emergency contacts.",
+  "author": {
+    "name": "MistryVishwa",
+    "github": "MistryVishwa"
+  },
+  "tags": [
+    "enhancement",
+    "good first issue",
+    "javascript",
+    "frontend",
+    "healthcare",
+    "family-management",
+    "productivity"
+  ],
+  "entry": "index.html"
+}
