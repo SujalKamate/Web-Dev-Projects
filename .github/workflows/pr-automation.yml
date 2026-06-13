@@ -119,8 +119,8 @@ jobs:
 
             await github.rest.issues.addLabels({
               owner, repo, issue_number: prNum,
-              labels: ['project-submission'],
-            }).catch(() => {}); // label may not exist yet — ignore error
+              labels: ['NSoC'26'],
+            }).catch(() => {});
 
             await github.rest.issues.createComment({
               owner, repo, issue_number: prNum,
