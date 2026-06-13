@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Renovation Budget Planner</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-color-theme="indigo">
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>🏗️ RenoPlanner</h2>
-                <button id="themeToggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                <div class="brand">
+                    <span class="brand-icon">✨</span>
+                    <h2>RenoPlanner</h2>
+                </div>
             </div>
             
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active" id="navDashboard">Dashboard</a>
-                <a href="#" class="nav-item" id="navExpenses">Expenses</a>
+                <a href="#" class="nav-item active" id="navDashboard">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="#" class="nav-item" id="navExpenses">
+                    <span class="icon">💸</span> Expenses
+                </a>
             </nav>
 
-            <div class="project-info panel">
+            <div class="project-info panel glass">
                 <h3>Current Project</h3>
                 <input type="text" id="projectName" placeholder="Enter project name..." value="My Home Renovation">
                 <div class="budget-input">
@@ -29,53 +35,86 @@
                     <input type="number" id="totalBudget" value="50000" min="0">
                 </div>
             </div>
+
+            <div class="theme-settings panel glass">
+                <h3>Theme Customization</h3>
+                <div class="theme-controls">
+                    <button id="themeToggle" class="btn-icon" aria-label="Toggle Dark Mode">🌙</button>
+                    <div class="color-picker">
+                        <button class="color-btn indigo active" data-color="indigo"></button>
+                        <button class="color-btn emerald" data-color="emerald"></button>
+                        <button class="color-btn rose" data-color="rose"></button>
+                        <button class="color-btn amber" data-color="amber"></button>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
             <header class="main-header">
-                <h1>Budget Dashboard</h1>
-                <button id="addExpenseBtn" class="btn btn-primary">+ Add Expense</button>
+                <div>
+                    <h1 class="page-title">Budget Dashboard</h1>
+                    <p class="page-subtitle">Track your renovation expenses in real-time.</p>
+                </div>
+                <button id="addExpenseBtn" class="btn btn-primary shadow-hover">+ Add Expense</button>
             </header>
 
             <div class="dashboard-grid" id="dashboardView">
                 <!-- Overview Cards -->
                 <div class="overview-cards">
-                    <div class="card summary-card">
-                        <h3>Total Budget</h3>
-                        <div class="amount text-primary" id="displayTotalBudget">$0</div>
+                    <div class="card summary-card glass">
+                        <div class="card-icon primary-bg">💰</div>
+                        <div class="card-content">
+                            <h3>Total Budget</h3>
+                            <div class="amount text-primary" id="displayTotalBudget">$0</div>
+                        </div>
                     </div>
-                    <div class="card summary-card">
-                        <h3>Total Spent</h3>
-                        <div class="amount text-danger" id="displayTotalSpent">$0</div>
+                    <div class="card summary-card glass">
+                        <div class="card-icon danger-bg">📉</div>
+                        <div class="card-content">
+                            <h3>Total Spent</h3>
+                            <div class="amount text-danger" id="displayTotalSpent">$0</div>
+                        </div>
                     </div>
-                    <div class="card summary-card">
-                        <h3>Remaining</h3>
-                        <div class="amount text-success" id="displayRemaining">$0</div>
+                    <div class="card summary-card glass">
+                        <div class="card-icon success-bg">📈</div>
+                        <div class="card-content">
+                            <h3>Remaining</h3>
+                            <div class="amount text-success" id="displayRemaining">$0</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Progress Bar -->
-                <div class="card progress-card">
-                    <h3>Budget Utilization</h3>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="budgetProgressBar"></div>
+                <div class="dashboard-bottom-grid">
+                    <!-- Progress Bar -->
+                    <div class="card progress-card glass">
+                        <h3>Budget Utilization</h3>
+                        <div class="progress-wrapper">
+                            <div class="progress-container">
+                                <div class="progress-bar" id="budgetProgressBar"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span>0%</span>
+                                <span class="progress-text fw-bold" id="budgetProgressText">0% Used</span>
+                                <span>100%</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress-text" id="budgetProgressText">0% Used</div>
-                </div>
 
-                <!-- Category Breakdown -->
-                <div class="card category-card">
-                    <h3>Spending by Category</h3>
-                    <div class="category-list" id="categoryBreakdown">
-                        <!-- Populated by JS -->
+                    <!-- Category Breakdown -->
+                    <div class="card category-card glass">
+                        <h3>Spending by Category</h3>
+                        <div class="category-list" id="categoryBreakdown">
+                            <!-- Populated by JS -->
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Expenses View (Hidden by default) -->
             <div class="expenses-view hidden" id="expensesView">
-                <div class="card">
+                <div class="card glass full-height">
                     <h3>Expense History</h3>
                     <div class="table-container">
                         <table class="expense-table">
@@ -92,7 +131,10 @@
                                 <!-- Populated by JS -->
                             </tbody>
                         </table>
-                        <div id="noExpensesMsg" class="empty-state">No expenses added yet.</div>
+                        <div id="noExpensesMsg" class="empty-state">
+                            <span class="empty-icon">📄</span>
+                            <p>No expenses added yet.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,7 +143,7 @@
 
     <!-- Add Expense Modal -->
     <div class="modal-overlay hidden" id="expenseModal">
-        <div class="modal">
+        <div class="modal glass-modal">
             <div class="modal-header">
                 <h2>Add New Expense</h2>
                 <button id="closeModalBtn" class="btn-icon">×</button>
@@ -134,7 +176,7 @@
                     <label>Date</label>
                     <input type="date" id="expDate" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-full">Save Expense</button>
+                <button type="submit" class="btn btn-primary w-full shadow-hover">Save Expense</button>
             </form>
         </div>
     </div>

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM Elements - Sidebar
     const themeToggle = document.getElementById('themeToggle');
+    const colorBtns = document.querySelectorAll('.color-btn');
     const projectNameInput = document.getElementById('projectName');
     const totalBudgetInput = document.getElementById('totalBudget');
     const navDashboard = document.getElementById('navDashboard');
@@ -31,10 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const expenseForm = document.getElementById('expenseForm');
 
     // --- Initialization ---
+    // Dark Mode
     if (localStorage.getItem('renoTheme') === 'dark') {
         document.body.setAttribute('data-theme', 'dark');
         themeToggle.textContent = '☀️';
     }
+
+    // Color Theme
+    const savedColorTheme = localStorage.getItem('renoColorTheme') || 'indigo';
+    document.body.setAttribute('data-color-theme', savedColorTheme);
+    colorBtns.forEach(btn => {
+        if (btn.dataset.color === savedColorTheme) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
 
     projectNameInput.value = projectName;
     totalBudgetInput.value = totalBudget;
@@ -74,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateDashboard = () => {
         const { totalSpent, remaining, percentUsed } = calculateTotals();
 
+        // Animate numbers for premium feel
         displayTotalBudget.textContent = formatCurrency(totalBudget);
         displayTotalSpent.textContent = formatCurrency(totalSpent);
         displayRemaining.textContent = formatCurrency(remaining);
@@ -83,13 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
         budgetProgressText.textContent = `${percentUsed.toFixed(1)}% Used`;
 
         if (percentUsed > 100) {
-            budgetProgressBar.style.backgroundColor = 'var(--danger)';
+            budgetProgressBar.style.background = 'var(--danger)';
             displayRemaining.classList.replace('text-success', 'text-danger');
         } else if (percentUsed > 80) {
-            budgetProgressBar.style.backgroundColor = 'var(--warning)';
+            budgetProgressBar.style.background = 'var(--warning)';
             displayRemaining.classList.replace('text-danger', 'text-success');
         } else {
-            budgetProgressBar.style.backgroundColor = 'var(--primary)';
+            budgetProgressBar.style.background = 'linear-gradient(90deg, var(--primary), var(--primary-hover))';
             displayRemaining.classList.replace('text-danger', 'text-success');
         }
 
@@ -97,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cats = getCategoryBreakdown();
         categoryBreakdown.innerHTML = '';
         if (cats.length === 0) {
-            categoryBreakdown.innerHTML = '<div class="text-muted">No spending data yet.</div>';
+            categoryBreakdown.innerHTML = '<div class="text-muted" style="padding: 10px;">No spending data yet.</div>';
         } else {
             cats.forEach(([cat, amount]) => {
                 const el = document.createElement('div');
@@ -124,10 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
             sorted.forEach(exp => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${new Date(exp.date).toLocaleDateString()}</td>
-                    <td>${exp.description}</td>
-                    <td>${exp.category}</td>
-                    <td class="text-danger">-${formatCurrency(exp.amount)}</td>
+                    <td>${new Date(exp.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+                    <td class="fw-bold">${exp.description}</td>
+                    <td><span style="background: var(--bg-body); padding: 4px 8px; border-radius: 4px; font-size: 0.85rem;">${exp.category}</span></td>
+                    <td class="text-danger fw-bold">-${formatCurrency(exp.amount)}</td>
                     <td>
                         <button class="btn btn-danger delete-btn" data-id="${exp.id}">Delete</button>
                     </td>
@@ -166,6 +180,21 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.textContent = '☀️';
             localStorage.setItem('renoTheme', 'dark');
         }
+    });
+
+    // Color Theme Picker
+    colorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const color = btn.dataset.color;
+            document.body.setAttribute('data-color-theme', color);
+            localStorage.setItem('renoColorTheme', color);
+            
+            colorBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Re-render dashboard to update progress bar color gradients if needed
+            updateDashboard();
+        });
     });
 
     // Navigation
@@ -226,6 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
         expenseForm.reset();
         document.getElementById('expDate').valueAsDate = new Date(); // reset to today
         expenseModal.classList.add('hidden');
+        
+        // Switch to expenses view automatically
+        navExpenses.click();
     });
 
     // Initial Render
