@@ -119,7 +119,7 @@ jobs:
 
             await github.rest.issues.addLabels({
               owner, repo, issue_number: prNum,
-              labels: ['NSoC'26'],
+              labels: ['nsoc26'],
             }).catch(() => {});
 
             await github.rest.issues.createComment({
