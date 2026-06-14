@@ -1,0 +1,19 @@
+{
+  "title": "System Design Visualizer",
+  "description": "An interactive client-side design and simulation tool to learn system architecture. It features a drag-and-drop canvas, preset interview architectures, live traffic load simulators with latency/error tracking, and interactive optimization challenges.",
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "tags": [
+    "system-design",
+    "architecture",
+    "visualization",
+    "simulation",
+    "interactive",
+    "vanilla-js",
+    "localstorage"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

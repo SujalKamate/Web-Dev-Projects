@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Design Visualizer & Simulator</title>
+  <!-- Google Fonts: Outfit and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons for Dashboard aesthetics -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-background"></div>
+  
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fa-solid fa-diagram-project glow-icon"></i>
+        <h1>System<span>Architect</span></h1>
+        <span class="badge">Visualizer & Simulator</span>
+      </div>
+      
+      <div class="top-controls">
+        <div class="preset-wrapper">
+          <label for="preset-selector" class="sr-only">Choose Architecture Template</label>
+          <select id="preset-selector">
+            <option value="sandbox">Preset: Sandbox (Blank Canvas)</option>
+            <option value="tinyurl">Preset: TinyURL (Shortener)</option>
+            <option value="netflix">Preset: Netflix (Video Streaming)</option>
+            <option value="whatsapp">Preset: WhatsApp (Real-time Chat)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        
+        <button id="btn-draw-connection" class="btn btn-secondary btn-sm" title="Toggle Connection Draw Mode">
+          <i class="fa-solid fa-link"></i> Draw Connect
+        </button>
+        <button id="btn-clear-canvas" class="btn btn-secondary btn-sm" title="Remove all components">
+          <i class="fa-solid fa-trash-can"></i> Clear Canvas
+        </button>
+        <button id="btn-simulate-load" class="btn btn-primary btn-sm" title="Run simulated traffic flow">
+          <i class="fa-solid fa-play"></i> Simulate Load
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container">
+    
+    <!-- LEFT SIDEBAR: PALETTE & CHALLENGES -->
+    <aside class="sidebar sidebar-left" aria-labelledby="palette-heading">
+      
+      <!-- PALETTE -->
+      <section class="palette-section">
+        <div class="sidebar-header">
+          <i class="fa-solid fa-cubes"></i>
+          <h2 id="palette-heading">Components Palette</h2>
+        </div>
+        <p class="section-help-text">Click an item below to deploy it onto the canvas sandbox.</p>
+        <div class="palette-grid">
+          <button class="palette-item" data-type="client" title="Browser or Mobile Client">
+            <i class="fa-solid fa-laptop-code client-color"></i>
+            <span>Client</span>
+          </button>
+          <button class="palette-item" data-type="dns" title="Domain Name System">
+            <i class="fa-solid fa-globe dns-color"></i>
+            <span>DNS</span>
+          </button>
+          <button class="palette-item" data-type="lb" title="Load Balancer">
+            <i class="fa-solid fa-scale-balanced lb-color"></i>
+            <span>Load Balancer</span>
+          </button>
+          <button class="palette-item" data-type="gateway" title="API Gateway / Web Server">
+            <i class="fa-solid fa-network-wired gw-color"></i>
+            <span>API Gateway</span>
+          </button>
+          <button class="palette-item" data-type="app" title="App / Microservice Server">
+            <i class="fa-solid fa-server app-color"></i>
+            <span>App Server</span>
+          </button>
+          <button class="palette-item" data-type="cache" title="Redis / Memcached In-Memory Cache">
+            <i class="fa-solid fa-bolt cache-color"></i>
+            <span>Cache (Redis)</span>
+          </button>
+          <button class="palette-item" data-type="db" title="SQL / NoSQL Database">
+            <i class="fa-solid fa-database db-color"></i>
+            <span>Database</span>
+          </button>
+          <button class="palette-item" data-type="mq" title="Kafka / RabbitMQ Message Queue">
+            <i class="fa-solid fa-envelope-open-text mq-color"></i>
+            <span>Message Queue</span>
+          </button>
+          <button class="palette-item" data-type="cdn" title="Content Delivery Network">
+            <i class="fa-solid fa-cloud cdn-color"></i>
+            <span>CDN</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- CHALLENGES -->
+      <section class="challenges-section">
+        <div class="sidebar-header">
+          <i class="fa-solid fa-trophy"></i>
+          <h2>Architect Challenges</h2>
+        </div>
+        <div class="challenges-list">
+          <!-- Challenge 1 -->
+          <div class="challenge-card active-challenge" id="challenge-cache" data-challenge-id="cache">
+            <div class="challenge-title">
+              <span class="badge-icon"><i class="fa-solid fa-bolt"></i></span>
+              <h3>Cache Optimizer</h3>
+            </div>
+            <p class="challenge-desc">Reduce database read latency by placing a Cache component in front of it. Target: Average System Latency &lt; 20ms.</p>
+            <div class="progress-row">
+              <span class="status-lbl">Status: Locked</span>
+              <button class="btn btn-secondary btn-sm btn-verify" data-challenge="cache">Verify</button>
+            </div>
+          </div>
+          <!-- Challenge 2 -->
+          <div class="challenge-card" id="challenge-lb" data-challenge-id="lb">
+            <div class="challenge-title">
+              <span class="badge-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+              <h3>Traffic Controller</h3>
+            </div>
+            <p class="challenge-desc">Avoid single app server overload. Introduce a Load Balancer and scale App Servers to 3 nodes. Target: Server load balanced.</p>
+            <div class="progress-row">
+              <span class="status-lbl">Status: Locked</span>
+              <button class="btn btn-secondary btn-sm btn-verify" data-challenge="lb">Verify</button>
+            </div>
+          </div>
+          <!-- Challenge 3 -->
+          <div class="challenge-card" id="challenge-chaos" data-challenge-id="chaos">
+            <div class="challenge-title">
+              <span class="badge-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+              <h3>Chaos Proof</h3>
+            </div>
+            <p class="challenge-desc">Design a redundant database setup. A backup replica database should handle routing if the primary database fails. Target: System runs with 0% error rate.</p>
+            <div class="progress-row">
+              <span class="status-lbl">Status: Locked</span>
+              <button class="btn btn-secondary btn-sm btn-verify" data-challenge="chaos">Verify</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </aside>
+
+    <!-- CENTER CANVAS (DESIGN BOARD) -->
+    <section class="canvas-panel" aria-labelledby="canvas-heading">
+      <h2 class="sr-only" id="canvas-heading">Architecture Designer Canvas</h2>
+      
+      <!-- Canvas Wrapper -->
+      <div id="canvas-workspace" class="canvas-workspace">
+        <div class="canvas-grid-bg"></div>
+        <svg id="canvas-svg-layer" class="canvas-svg-layer"></svg>
+        <div id="canvas-nodes-layer" class="canvas-nodes-layer"></div>
+        
+        <!-- Selection draw hint -->
+        <div id="connection-draw-hint" class="draw-hint hidden">
+          <i class="fa-solid fa-circle-nodes fa-fade"></i> Click source component, then target component to connect them.
+        </div>
+      </div>
+      
+      <!-- Canvas Canvas Guide Info -->
+      <div class="canvas-instruction-bar">
+        <span><i class="fa-solid fa-info-circle"></i> Drag components to reposition. Click a component to inspect. To connect, enable <strong>Draw Connect</strong>, click starting node then ending node.</span>
+      </div>
+    </section>
+
+    <!-- RIGHT SIDEBAR: INSPECTOR & LIVE METRICS -->
+    <aside class="sidebar sidebar-right" aria-labelledby="metrics-heading">
+      
+      <!-- METRICS MONITOR -->
+      <section class="metrics-section">
+        <div class="sidebar-header">
+          <i class="fa-solid fa-chart-line"></i>
+          <h2 id="metrics-heading">System Metrics</h2>
+        </div>
+        
+        <div class="metrics-grid">
+          <!-- Latency -->
+          <div class="metric-card">
+            <span class="title">Avg Latency</span>
+            <span class="val" id="metric-latency">0 ms</span>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="fill-latency" style="width: 0%;"></div>
+            </div>
+          </div>
+          <!-- QPS -->
+          <div class="metric-card">
+            <span class="title">System QPS</span>
+            <span class="val" id="metric-qps">0/sec</span>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="fill-qps" style="width: 0%;"></div>
+            </div>
+          </div>
+          <!-- Error rate -->
+          <div class="metric-card">
+            <span class="title">Success Rate</span>
+            <span class="val text-success" id="metric-success">100%</span>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill success" id="fill-success" style="width: 100%;"></div>
+            </div>
+          </div>
+          <!-- Health status -->
+          <div class="metric-card">
+            <span class="title">System Health</span>
+            <span class="val text-success" id="metric-health">Healthy</span>
+            <div class="health-indicator-dot online" id="health-indicator-dot"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPONENT INSPECTOR -->
+      <section class="inspector-section">
+        <div class="sidebar-header">
+          <i class="fa-solid fa-sliders"></i>
+          <h2>Object Inspector</h2>
+        </div>
+
+        <div id="inspector-empty" class="inspector-empty-msg">
+          <i class="fa-solid fa-arrow-pointer"></i>
+          <p>Click any canvas node to configure its variables and test infrastructure resiliency.</p>
+        </div>
+
+        <div id="inspector-content" class="inspector-form hidden">
+          <div class="form-group-title">
+            <span class="component-icon-badge" id="inspect-icon-badge"><i class="fa-solid fa-server"></i></span>
+            <h3 id="inspect-title-text">App Server</h3>
+          </div>
+
+          <div class="form-group">
+            <label for="inspect-name">Component Name</label>
+            <input type="text" id="inspect-name" class="input-text">
+          </div>
+
+          <div class="form-group">
+            <label>Component Status</label>
+            <div class="status-toggle-row">
+              <span id="inspect-status-label" class="status-label-active text-success">Online</span>
+              <button id="btn-toggle-status" class="btn btn-secondary btn-sm" title="Toggle node status">
+                <i class="fa-solid fa-power-off"></i> Toggle Failure
+              </button>
+            </div>
+          </div>
+
+          <!-- Slide Controls dynamically shown based on component kind -->
+          <div class="form-group slide-control" id="ctrl-latency">
+            <div class="slide-labels">
+              <label for="range-latency">Processing Latency</label>
+              <span class="slide-val" id="val-latency">25 ms</span>
+            </div>
+            <input type="range" id="range-latency" min="0" max="300" step="5" class="input-slider">
+          </div>
+
+          <div class="form-group slide-control" id="ctrl-error">
+            <div class="slide-labels">
+              <label for="range-error">Simulated Error Rate</label>
+              <span class="slide-val text-error" id="val-error">0%</span>
+            </div>
+            <input type="range" id="range-error" min="0" max="100" step="1" class="input-slider">
+          </div>
+
+          <div class="form-group slide-control hidden" id="ctrl-hit-rate">
+            <div class="slide-labels">
+              <label for="range-hit-rate">Cache Hit Rate</label>
+              <span class="slide-val text-accent" id="val-hit-rate">80%</span>
+            </div>
+            <input type="range" id="range-hit-rate" min="0" max="100" step="5" class="input-slider">
+          </div>
+
+          <div class="form-group slide-control hidden" id="ctrl-capacity">
+            <div class="slide-labels">
+              <label for="range-capacity">Max Capacity (QPS)</label>
+              <span class="slide-val" id="val-capacity">5000</span>
+            </div>
+            <input type="range" id="range-capacity" min="500" max="20000" step="500" class="input-slider">
+          </div>
+
+          <div class="inspector-actions">
+            <button id="btn-delete-component" class="btn btn-secondary btn-sm btn-full text-error">
+              <i class="fa-solid fa-trash-can"></i> Delete Component
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </aside>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 System Design Visualizer Dashboard. Built client-side for architecture training.</p>
+      <div class="footer-links">
+        <button id="btn-reset-app-storage" class="footer-btn"><i class="fa-solid fa-trash-can"></i> Reset All Challenge Progress</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
