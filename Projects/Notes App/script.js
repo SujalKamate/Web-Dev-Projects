@@ -25,9 +25,19 @@ function escapeHtml(s) {
 }
 
 function linkify(text) {
-  const escaped = escapeHtml(text);
-  return escaped
-    .replace(/\b(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+  return text
+    .split(/(\bhttps?:\/\/[^\s<]+)/g)
+    .map(function(part, i) {
+      if (i % 2 === 0) return escapeHtml(part);
+      try {
+        const url = new URL(part);
+        if (url.protocol !== 'http:' && url.protocol !== 'https:') return escapeHtml(part);
+        return '<a href="' + escapeHtml(url.href) + '" target="_blank" rel="noopener">' + escapeHtml(part) + '</a>';
+      } catch (_) {
+        return escapeHtml(part);
+      }
+    })
+    .join('')
     .replace(/(^|\s)#([a-z0-9][\w-]{0,30})/gi, '$1<span class="tag-inline">#$2</span>');
 }
 
@@ -47,7 +57,8 @@ function renderList() {
     const li = document.createElement("div");
     li.className = "list__item";
     li.setAttribute("aria-current", n.id === activeId);
-    li.innerHTML = `<h3>${escapeHtml(n.title || "Untitled")}</h3><p>${escapeHtml(n.body.slice(0, 120))}</p>`;
+    const h3 = document.createElement("h3"); h3.textContent = n.title || "Untitled"; li.appendChild(h3);
+    const p  = document.createElement("p");  p.textContent  = n.body.slice(0, 120);     li.appendChild(p);
     li.addEventListener("click", () => open(n.id));
     list.appendChild(li);
   }
@@ -63,7 +74,7 @@ function renderEditor() {
   for (const t of n.tags) {
     const el = document.createElement("li"); el.textContent = "#" + t; tagsEl.appendChild(el);
   }
-  previewEl.innerHTML = n.body ? linkify(n.body) : '<span style="color:var(--muted)">Preview appears here. Links and #tags become live.</span>';
+  previewEl.innerHTML = n.body ? DOMPurify.sanitize(linkify(n.body)) : '<span style="color:var(--muted)">Preview appears here. Links and #tags become live.</span>';
 }
 
 function open(id) { activeId = id; renderList(); renderEditor(); titleEl.focus(); }
