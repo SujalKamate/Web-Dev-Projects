@@ -1,0 +1,16 @@
+{
+  "title": "Categorize It",
+  "description": "A fun and interactive game to test your categorization skills.",
+  "author": {
+    "name": "Priya Kalamkar",
+    "github": "priyakalamkar555-art"
+  },
+  "tags": [
+    "categorization-game",
+    "distribution-game",
+    "interactive-game",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": null
+}

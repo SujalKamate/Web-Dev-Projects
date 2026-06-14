@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorize It! — Group the Items</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="glass-card">
+        <div id="screen-overlay" class="overlay">
+            <h1 id="overlay-title">Categorize It! 🍎</h1>
+            <p id="overlay-desc" style="margin-bottom: 30px; color: var(--text-muted);">Match the items to their correct category.</p>
+            <button class="btn-start" onclick="startGame()">Play Now</button>
+        </div>
+
+        <div class="stats">
+            <div class="level-badge">Level: <span id="level">1</span>/10</div>
+            <div style="color: var(--accent)">Score: <span id="score">0</span></div>
+        </div>
+
+        <div class="items-display" id="items-list">Apple, Banana, Mango</div>
+        <div class="prompt">What category do these belong to?</div>
+
+        <div class="options-grid" id="options-container">
+            <!-- Options will be injected here -->
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
