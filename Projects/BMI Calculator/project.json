@@ -1,0 +1,11 @@
+{
+  "title": "BMI Calculator",
+  "description": "A BMI calculator that takes height and weight as input, displays the BMI value with category (underweight/normal/overweight), and supports metric and imperial units — built using HTML, CSS, and JavaScript.",
+  "author": {
+    "name": "Muskan",
+    "github": "Muskankr"
+  },
+  "tags": ["health", "calculator", "utility", "vanilla-js", "html"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
