@@ -1,0 +1,8 @@
+{
+  "title": "Interactive DSA Visualizer",
+  "description": "An interactive data structures and algorithms visualizer. Visualize Linked Lists, Stacks, Queues, Binary Search Trees, and Graphs with step-by-step animations and execution trace logs.",
+  "author": { "name": "Antigravity", "github": "antigravity" },
+  "tags": ["education", "dsa", "visualizer", "algorithms", "svg", "animations"],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
