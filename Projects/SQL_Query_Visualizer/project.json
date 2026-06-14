@@ -1,0 +1,71 @@
+{
+  "title": "SQL Query Visualizer",
+  "description": "Interactive SQL execution visualizer that demonstrates how SQL queries transform data step-by-step using animations and mock datasets.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ayush Kumar Singh",
+    "github": "ayushsinghbodra"
+  },
+  "tags": [
+    "sql",
+    "database",
+    "visualization",
+    "education",
+    "javascript",
+    "frontend",
+    "interactive",
+    "learning-tool"
+  ],
+  "categories": [
+    "Education",
+    "Developer Tools",
+    "Learning"
+  ],
+  "keywords": [
+    "SQL",
+    "Query",
+    "Database",
+    "Visualization",
+    "Tutorial",
+    "Interactive",
+    "Vanilla JavaScript",
+    "Frontend-only"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayushsinghbodra/SQL-Query-Visualizer"
+  },
+  "features": [
+    "SQL Query Visualization",
+    "Step-by-Step Execution",
+    "Data Transformation View",
+    "Query Explanation",
+    "Execution Statistics",
+    "Example Queries",
+    "No Backend Required",
+    "Responsive Design",
+    "Dark Theme",
+    "Glassmorphism UI"
+  ],
+  "supportedClauses": [
+    "SELECT",
+    "FROM",
+    "WHERE",
+    "ORDER BY",
+    "LIMIT",
+    "GROUP BY",
+    "COUNT(*)"
+  ],
+  "technologies": [
+    "HTML5",
+    "CSS3",
+    "Vanilla JavaScript",
+    "Animation API"
+  ],
+  "license": "MIT",
+  "created": "2024",
+  "updated": "2024",
+  "status": "Active"
+}
