@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub User Analytics Dashboard</title>
+  <!-- Google Fonts: Outfit and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons for Dashboard aesthetics -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-background"></div>
+  
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fa-brands fa-github glow-icon"></i>
+        <h1>Octo<span>Metrics</span></h1>
+        <span class="badge">Developer Profile Labs</span>
+      </div>
+
+      <div class="search-form-wrapper">
+        <form id="search-form" onsubmit="return false;">
+          <input type="text" id="input-username" placeholder="Type username (e.g. torvalds)..." required autocomplete="off" spellcheck="false" aria-label="GitHub Username">
+          <button type="submit" id="btn-search" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze
+          </button>
+        </form>
+      </div>
+
+      <div class="presets-history-wrapper" id="history-container">
+        <!-- Search history pills injected here -->
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WINDOW -->
+  <main class="main-container">
+
+    <!-- LOADER SCREEN -->
+    <section id="scanner-loader" class="section-card loader-card hidden" aria-label="Loading profile metrics">
+      <div class="loader-content">
+        <div class="spinner-ring">
+          <div class="spinner-beam"></div>
+          <i class="fa-brands fa-github logo-spin"></i>
+        </div>
+        <h3>Compiling GitHub Portfolio...</h3>
+        <p class="text-muted">Interpreting repository datasets and contribution statistics</p>
+        <div class="scan-logs" id="loader-logs">
+          <!-- Live log lines -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT DISPLAY -->
+    <div id="dashboard-content" class="dashboard-content">
+      
+      <!-- TOP ROW: PROFILE & KEY METRICS -->
+      <div class="dashboard-row top-row">
+        <!-- Profile info card -->
+        <section class="section-card profile-card" aria-labelledby="profile-heading">
+          <div class="profile-header-row">
+            <img id="profile-avatar" src="" alt="Developer Avatar" class="profile-avatar">
+            <div class="profile-title-col">
+              <h2 id="profile-name">Developer Name</h2>
+              <span class="profile-handle" id="profile-login">@username</span>
+              <span class="archetype-badge" id="profile-archetype">Polyglot Engineer</span>
+            </div>
+          </div>
+          <p class="profile-bio" id="profile-bio">This is the profile bio descriptor section.</p>
+          <div class="profile-meta-grid">
+            <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="profile-location">Location</span></div>
+            <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> Joined <span id="profile-joined">Date</span></div>
+            <div class="meta-item" id="profile-hireable-row"><i class="fa-solid fa-briefcase"></i> <span id="profile-hireable">Open for work</span></div>
+          </div>
+        </section>
+
+        <!-- Stats grid cards -->
+        <section class="stats-grid-container" aria-label="User Stats Summary">
+          <div class="stat-card">
+            <div class="icon-wrap"><i class="fa-solid fa-star text-warning"></i></div>
+            <div class="text-wrap">
+              <span class="val" id="stat-stars">0</span>
+              <span class="lbl">Total Stars</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="icon-wrap"><i class="fa-solid fa-code-fork text-success"></i></div>
+            <div class="text-wrap">
+              <span class="val" id="stat-forks">0</span>
+              <span class="lbl">Total Forks</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="icon-wrap"><i class="fa-solid fa-book-bookmark text-accent"></i></div>
+            <div class="text-wrap">
+              <span class="val" id="stat-repos">0</span>
+              <span class="lbl">Public Repos</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="icon-wrap"><i class="fa-solid fa-users text-secondary"></i></div>
+            <div class="text-wrap">
+              <span class="val" id="stat-followers">0</span>
+              <span class="lbl">Followers</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- MIDDLE ROW: HEATMAP & CHARTS -->
+      <div class="dashboard-row middle-row">
+        <!-- Contribution Heatmap -->
+        <section class="section-card heatmap-card" aria-labelledby="heatmap-heading">
+          <div class="card-header">
+            <i class="fa-solid fa-calendar-grid"></i>
+            <h2 id="heatmap-heading">Contribution History (Last 53 Weeks)</h2>
+          </div>
+          
+          <div class="heatmap-wrapper">
+            <!-- Heatmap days grid -->
+            <div class="heatmap-months-labels" id="heatmap-months">
+              <!-- Jan Feb Mar labels -->
+            </div>
+            <div class="heatmap-grid-container">
+              <div class="weekday-labels">
+                <span>Mon</span>
+                <span>Wed</span>
+                <span>Fri</span>
+              </div>
+              <div class="heatmap-grid" id="heatmap-grid">
+                <!-- Squares plotted dynamically -->
+              </div>
+            </div>
+            
+            <div class="heatmap-legend">
+              <span>Less</span>
+              <span class="legend-box level-0"></span>
+              <span class="legend-box level-1"></span>
+              <span class="legend-box level-2"></span>
+              <span class="legend-box level-3"></span>
+              <span class="legend-box level-4"></span>
+              <span>More</span>
+            </div>
+          </div>
+
+          <!-- Tooltip overlay -->
+          <div id="heatmap-tooltip" class="heatmap-tooltip hidden">Tooltip</div>
+        </section>
+
+        <!-- Donut & Line charts -->
+        <section class="charts-section-card" aria-label="Visual Charts Breakdown">
+          <!-- Languages donut -->
+          <div class="section-card chart-card">
+            <div class="card-header">
+              <i class="fa-solid fa-chart-pie"></i>
+              <h3>Language Distribution</h3>
+            </div>
+            <div class="chart-content-wrapper">
+              <div class="donut-svg-wrapper">
+                <svg id="donut-svg" viewBox="0 0 100 100">
+                  <!-- Dynamic SVG circle slices path -->
+                </svg>
+              </div>
+              <div class="donut-legend" id="donut-legend">
+                <!-- Labels -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Commit timeline -->
+          <div class="section-card chart-card">
+            <div class="card-header">
+              <i class="fa-solid fa-chart-area"></i>
+              <h3>Commit Frequency Timeline</h3>
+            </div>
+            <div class="line-svg-wrapper">
+              <svg id="line-svg" viewBox="0 0 200 80">
+                <!-- Dynamic SVG line path curves -->
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- BOTTOM ROW: REPOSITORIES DIRECTORY -->
+      <section class="section-card repos-section" aria-labelledby="repos-heading">
+        <div class="repos-header-controls">
+          <div class="header-left">
+            <i class="fa-solid fa-folder-open"></i>
+            <h2 id="repos-heading">Repositories Explorer</h2>
+          </div>
+          <div class="filters-row">
+            <div class="search-input-wrapper">
+              <input type="text" id="repo-search" placeholder="Filter repositories..." autocomplete="off">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="select-wrapper">
+              <label for="repo-sort" class="sr-only">Sort Repositories</label>
+              <select id="repo-sort">
+                <option value="stars">Sort by: Stars</option>
+                <option value="forks">Sort by: Forks</option>
+                <option value="name">Sort by: Alphabetical</option>
+              </select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="repos-grid" id="repos-grid">
+          <!-- Repo cards -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 OctoMetrics Dashboard. Built client-side using responsive metrics calculators.</p>
+      <div class="footer-links">
+        <button id="btn-reset-storage" class="footer-btn"><i class="fa-solid fa-trash-can"></i> Reset History Cache</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

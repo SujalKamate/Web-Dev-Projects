@@ -1,0 +1,19 @@
+{
+  "title": "GitHub Analytics Dashboard",
+  "description": "An interactive client-side developer profile analyzer that simulates repository and user activity metrics. It features a username scanner, a contribution activity heatmap grid, language and commit timeline SVG graphs, a repository explorer with search/sorting, and a developer archetype classifier.",
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "tags": [
+    "analytics",
+    "github-api",
+    "charts",
+    "dashboard",
+    "interactive",
+    "vanilla-js",
+    "localstorage"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
