@@ -1,0 +1,18 @@
+{
+  "title": "Sorting Algorithm Lab",
+  "description": "An interactive, high-fidelity playground to visualize and analyze popular sorting algorithms. Control Bubble, Selection, Insertion, Quick, Merge, and Heap Sort on a dynamic visual canvas featuring color-spectrum bars. Features real-time comparison/swap stats, complexity references, synchronized pseudocode tracking, and a performance run history console.",
+  "author": {
+    "name": "Sujal Kamate",
+    "github": "SujalKamate"
+  },
+  "tags": [
+    "Education",
+    "Algorithms",
+    "Visualization",
+    "Performance",
+    "Interactive",
+    "Vanilla-JS"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

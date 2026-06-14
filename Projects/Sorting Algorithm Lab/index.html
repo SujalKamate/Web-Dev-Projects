@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorting Lab // Algorithm Complexity Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar Controls -->
+    <aside id="sidebar">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" width="32" height="32">
+          <rect x="4" y="22" width="6" height="6" rx="1" fill="var(--primary)" />
+          <rect x="13" y="14" width="6" height="14" rx="1" fill="var(--secondary)" />
+          <rect x="22" y="6" width="6" height="22" rx="1" fill="var(--accent)" />
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">SORTING LAB</span>
+          <span class="brand-sub">// Complexity Engine</span>
+        </div>
+      </div>
+
+      <!-- Section: Array Configuration -->
+      <div class="panel-section">
+        <div class="section-title">Array Generator</div>
+        <div class="settings-group">
+          <div class="form-group">
+            <div class="label-row">
+              <span class="input-label">Array Size</span>
+              <span id="label-array-size" class="badge">40 bars</span>
+            </div>
+            <input type="range" id="size-slider" class="range-slider" min="10" max="100" value="40">
+          </div>
+          <div class="form-group">
+            <label class="input-label">Array Input Pattern</label>
+            <select id="array-type-select" class="form-control">
+              <option value="random">Random Distribution</option>
+              <option value="reversed">Reversed Order (Worst-Case)</option>
+              <option value="nearly-sorted">Nearly Sorted (Best-Case)</option>
+              <option value="custom">Custom Input CSV</option>
+            </select>
+          </div>
+          <div id="custom-array-group" class="form-group hidden">
+            <input type="text" id="custom-array-input" class="form-control" placeholder="e.g. 50, 20, 80, 40, 10">
+          </div>
+          <button id="btn-generate-array" class="btn btn-secondary btn-full">Generate New Array</button>
+        </div>
+      </div>
+
+      <!-- Section: Algorithm Selector -->
+      <div class="panel-section">
+        <div class="section-title">Sorting Algorithms</div>
+        <div class="settings-group">
+          <select id="algo-select" class="form-control">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="quick">Quick Sort (Lomuto)</option>
+            <option value="merge">Merge Sort</option>
+            <option value="heap">Heap Sort</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section: Big-O Reference Cards -->
+      <div class="panel-section">
+        <div class="section-title">Complexity Profile</div>
+        <div class="complexity-cards">
+          <div class="comp-card">
+            <span class="comp-label">Time Complexity</span>
+            <div class="comp-row">
+              <span class="comp-sub">Best Case:</span>
+              <span id="complexity-best" class="comp-value">// O(n)</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-sub">Average:</span>
+              <span id="complexity-avg" class="comp-value">// O(n²)</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-sub">Worst Case:</span>
+              <span id="complexity-worst" class="comp-value">// O(n²)</span>
+            </div>
+          </div>
+          <div class="comp-card">
+            <span class="comp-label">Space Complexity</span>
+            <div class="comp-row">
+              <span class="comp-sub">Auxiliary:</span>
+              <span id="complexity-space" class="comp-value">// O(1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Playback Speed and Controllers -->
+      <div class="panel-section">
+        <div class="section-title">Playback Controller</div>
+        <div class="playback-controls">
+          <button id="btn-play" class="btn btn-success play-btn">
+            <span class="btn-icon">▶</span> Play
+          </button>
+          <button id="btn-step" class="btn btn-secondary">Step ⏭</button>
+          <button id="btn-reset-anim" class="btn btn-secondary">Reset</button>
+        </div>
+        <div class="slider-group">
+          <span class="slider-label">Speed</span>
+          <input type="range" id="speed-slider" min="10" max="1500" value="200" step="10">
+          <span id="speed-val">200ms</span>
+        </div>
+      </div>
+
+      <!-- Theme & Reset Footer -->
+      <div class="sidebar-footer">
+        <button id="btn-theme-toggle" class="btn btn-secondary btn-full">🌓 Toggle Interface Theme</button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main id="workspace">
+      <!-- Telemetry Header Bar -->
+      <header class="telemetry-bar">
+        <div class="metric-card">
+          <span class="metric-label">Comparisons</span>
+          <span class="metric-value" id="val-comparisons">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Array Writes/Swaps</span>
+          <span class="metric-value" id="val-swaps">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Elapsed Time</span>
+          <span class="metric-value" id="val-time">0.0s</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Engine Status</span>
+          <span class="metric-value status-badge empty" id="val-status">IDLE</span>
+        </div>
+      </header>
+
+      <!-- Visualization Canvas -->
+      <div class="canvas-container">
+        <div class="canvas-toolbar">
+          <span class="canvas-title">Spectral Array Distribution Canvas</span>
+        </div>
+        <div class="visualizer-canvas" id="array-canvas">
+          <!-- Dynamic bars rendered here -->
+        </div>
+      </div>
+
+      <!-- Execution Panel: Log + Pseudocode -->
+      <footer class="execution-panel">
+        <div class="log-panel">
+          <div class="panel-header">
+            <span class="panel-title">Historical Benchmark Logs</span>
+            <button id="btn-clear-history" class="btn btn-secondary btn-sm">Clear Logs</button>
+          </div>
+          <div class="log-table-container">
+            <table id="history-table">
+              <thead>
+                <tr>
+                  <th>Run</th>
+                  <th>Algorithm</th>
+                  <th>Size</th>
+                  <th>Comparisons</th>
+                  <th>Writes</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody id="history-body">
+                <tr>
+                  <td colspan="6" class="empty-log">Awaiting benchmark runs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="code-panel">
+          <div class="panel-header">
+            <span class="panel-title">Algorithmic Pseudocode</span>
+            <span id="code-algo-title" class="badge">None</span>
+          </div>
+          <div class="code-container">
+            <pre><code id="pseudocode-display">// Select an algorithm or start a playback simulation to see code step tracking.</code></pre>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
