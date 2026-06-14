@@ -99,5 +99,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+          if (typeof closeModal === 'function') {
+            closeModal();
+          }
+        }
+      });
+    </script>
   </body>
 </html>
