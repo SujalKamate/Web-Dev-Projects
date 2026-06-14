@@ -1,0 +1,18 @@
+{
+  "title": "Disk Scheduling Simulator",
+  "description": "An interactive simulator visualizing disk head scheduling algorithms (FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK) with real-time seek charts, concentric track sweep animations, and seek time comparison analysis.",
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "tags": [
+    "education",
+    "operating-systems",
+    "disk-scheduling",
+    "data-visualization",
+    "simulation",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
