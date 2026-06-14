@@ -1,16 +1,17 @@
 {
-  "name": "Emergency Contact Information Vault",
-  "description": "A centralized digital repository to securely organize and quickly access critical emergency information whenever required.",
-  "author": "MistryVishwa",
-  "github": "MistryVishwa",
+  "title": "Emergency Contact Information Vault",
+  "description": "A centralized digital repository to securely organize and quickly access critical emergency infor...",
+  "author": {
+    "name": "MistryVishwa",
+    "github": "MistryVishwa"
+  },
   "tags": [
     "enhancement",
-    "good first issue",
+    "good-first-issue",
     "javascript",
     "frontend",
     "emergency-management",
-    "safety",
-    "productivity"
+    "safety"
   ],
-  "folder_name": "emergency-contact-information-vault"
+  "entry": "index.html"
 }
