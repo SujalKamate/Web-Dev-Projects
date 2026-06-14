@@ -1,0 +1,18 @@
+{
+  "title": "Cache Memory Simulator",
+  "description": "An interactive simulator visualizing cache mapping techniques (Direct, Fully Associative, Set Associative), replacement policies (LRU, FIFO, LFU, Random), and address decoding (Tag, Index, Offset) with step-by-step hitting/eviction animations.",
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "tags": [
+    "education",
+    "operating-systems",
+    "computer-architecture",
+    "cache-memory",
+    "simulation",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
