@@ -1,5 +1,5 @@
 {
-  "title": "SQL Query Visualizer",
+  "title": "SQL Query Visualize",
   "description": "Interactive SQL execution visualizer that demonstrates how SQL queries transform data step-by-step using animations and mock datasets.",
   "author": {
     "name": "Ayush Kumar Singh",
