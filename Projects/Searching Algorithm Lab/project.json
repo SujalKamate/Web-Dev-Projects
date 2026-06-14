@@ -1,0 +1,18 @@
+{
+  "title": "Searching Algorithm Lab",
+  "description": "An interactive, high-fidelity playground to visualize and analyze popular searching algorithms. Control Linear, Binary, Jump, and Interpolation Search on a dynamic visual array of bars. Features real-time comparison/search space reduction stats, complexity references, synchronized pseudocode tracking, and a performance query history log.",
+  "author": {
+    "name": "Sujal Kamate",
+    "github": "SujalKamate"
+  },
+  "tags": [
+    "Education",
+    "Algorithms",
+    "Visualization",
+    "Performance",
+    "Interactive",
+    "Vanilla-JS"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}

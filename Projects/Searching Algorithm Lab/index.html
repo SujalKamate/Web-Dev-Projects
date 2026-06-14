@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Searching Lab // Algorithm Space Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar Controls -->
+    <aside id="sidebar">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" width="32" height="32">
+          <circle cx="16" cy="16" r="12" fill="none" stroke="var(--primary)" stroke-width="2.5" />
+          <line x1="16" y1="16" x2="24" y2="24" stroke="var(--secondary)" stroke-linecap="round" stroke-width="3" />
+          <circle cx="16" cy="16" r="4" fill="var(--accent)" />
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">SEARCHING LAB</span>
+          <span class="brand-sub">// Search Visualizer</span>
+        </div>
+      </div>
+
+      <!-- Section: Array Configuration -->
+      <div class="panel-section">
+        <div class="section-title">Array Generator</div>
+        <div class="settings-group">
+          <div class="form-group">
+            <div class="label-row">
+              <span class="input-label">Array Size</span>
+              <span id="label-array-size" class="badge">40 items</span>
+            </div>
+            <input type="range" id="size-slider" class="range-slider" min="10" max="100" value="40">
+          </div>
+          <div class="form-group">
+            <label class="input-label">Distribution Pattern</label>
+            <select id="array-type-select" class="form-control">
+              <option value="uniform">Uniformly Distributed</option>
+              <option value="skewed">Skewed Distribution</option>
+              <option value="random">Random Distribution</option>
+              <option value="custom">Custom Input CSV</option>
+            </select>
+          </div>
+          <div id="custom-array-group" class="form-group hidden">
+            <input type="text" id="custom-array-input" class="form-control" placeholder="e.g. 10, 24, 35, 42, 59, 78, 92">
+          </div>
+          <button id="btn-generate-array" class="btn btn-secondary btn-full">Generate New Array</button>
+        </div>
+      </div>
+
+      <!-- Section: Search Target & Algorithm Select -->
+      <div class="panel-section">
+        <div class="section-title">Search Configuration</div>
+        <div class="settings-group">
+          <div class="form-group">
+            <label class="input-label">Search Query (Target Value)</label>
+            <input type="number" id="target-input" class="form-control" placeholder="Type or click a bar" min="1" max="250">
+          </div>
+          <div class="form-group">
+            <label class="input-label">Select Algorithm</label>
+            <select id="algo-select" class="form-control">
+              <option value="binary">Binary Search (Sorted)</option>
+              <option value="linear">Linear Search</option>
+              <option value="jump">Jump Search (Sorted)</option>
+              <option value="interpolation">Interpolation Search (Sorted)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Complexity Profile Cards -->
+      <div class="panel-section">
+        <div class="section-title">Complexity Profile</div>
+        <div class="complexity-cards">
+          <div class="comp-card">
+            <span class="comp-label">Time Complexity</span>
+            <div class="comp-row">
+              <span class="comp-sub">Best Case:</span>
+              <span id="complexity-best" class="comp-value">// O(1)</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-sub">Average:</span>
+              <span id="complexity-avg" class="comp-value">// O(log n)</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-sub">Worst Case:</span>
+              <span id="complexity-worst" class="comp-value">// O(log n)</span>
+            </div>
+          </div>
+          <div class="comp-card">
+            <span class="comp-label">Space Complexity</span>
+            <div class="comp-row">
+              <span class="comp-sub">Auxiliary:</span>
+              <span id="complexity-space" class="comp-value">// O(1)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Playback Speed and Controllers -->
+      <div class="panel-section">
+        <div class="section-title">Playback Controller</div>
+        <div class="playback-controls">
+          <button id="btn-play" class="btn btn-success play-btn">
+            <span class="btn-icon">▶</span> Play
+          </button>
+          <button id="btn-step" class="btn btn-secondary">Step ⏭</button>
+          <button id="btn-reset-anim" class="btn btn-secondary">Reset</button>
+        </div>
+        <div class="slider-group">
+          <span class="slider-label">Speed</span>
+          <input type="range" id="speed-slider" min="100" max="2500" value="700" step="50">
+          <span id="speed-val">700ms</span>
+        </div>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="sidebar-footer">
+        <button id="btn-theme-toggle" class="btn btn-secondary btn-full">🌓 Toggle Interface Theme</button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main id="workspace">
+      <!-- Telemetry Header Bar -->
+      <header class="telemetry-bar">
+        <div class="metric-card">
+          <span class="metric-label">Comparisons</span>
+          <span class="metric-value" id="val-comparisons">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Search Space Remaining</span>
+          <span class="metric-value" id="val-reduction">100%</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Active Pointers</span>
+          <span class="metric-value" id="val-pointers">None</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Engine Status</span>
+          <span class="metric-value status-badge empty" id="val-status">IDLE</span>
+        </div>
+      </header>
+
+      <!-- Visualization Canvas -->
+      <div class="canvas-container">
+        <div class="canvas-toolbar">
+          <span class="canvas-title">Topological Array Visualizer Canvas</span>
+        </div>
+        <div class="visualizer-canvas" id="array-canvas">
+          <!-- Dynamic bars rendered here -->
+        </div>
+      </div>
+
+      <!-- Execution Panel: Log + Pseudocode -->
+      <footer class="execution-panel">
+        <div class="log-panel">
+          <div class="panel-header">
+            <span class="panel-title">Historical Search Logs</span>
+            <button id="btn-clear-history" class="btn btn-secondary btn-sm">Clear Logs</button>
+          </div>
+          <div class="log-table-container">
+            <table id="history-table">
+              <thead>
+                <tr>
+                  <th>Run</th>
+                  <th>Algorithm</th>
+                  <th>Target</th>
+                  <th>Comparisons</th>
+                  <th>Space reduction</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody id="history-body">
+                <tr>
+                  <td colspan="6" class="empty-log">Awaiting search queries...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="code-panel">
+          <div class="panel-header">
+            <span class="panel-title">Algorithmic Pseudocode</span>
+            <span id="code-algo-title" class="badge">None</span>
+          </div>
+          <div class="code-container">
+            <pre><code id="pseudocode-display">// Select an algorithm or start a playback simulation to see code step tracking.</code></pre>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
