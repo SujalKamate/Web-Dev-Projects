@@ -1,0 +1,17 @@
+{
+  "title": "Coding Challenge Tracker Pro",
+  "description": "An interactive, premium dashboard workspace designed to track, analyze, and gamify coding challenge progress across multiple competitive platforms. Renders custom SVG analytics charts for platform distributions, tracking streaks, custom interview playlists, and synchronization simulations, complete with full offline data portability.",
+  "author": {
+    "name": "Sujal Kamate",
+    "github": "SujalKamate"
+  },
+  "tags": [
+    "productivity",
+    "dashboard",
+    "charts",
+    "gamification",
+    "localstorage"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
