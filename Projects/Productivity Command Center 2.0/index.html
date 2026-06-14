@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Command Center 2.0</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- App Background Glow Effects -->
+  <div class="glow-bg">
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+  </div>
+
+  <div class="app-layout">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-circle">
+          <i class="fa-solid fa-terminal"></i>
+        </div>
+        <div class="brand-text">
+          <h2>CommandCenter</h2>
+          <span>Version 2.0</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-target="dashboard">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-target="tasks">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Eisenhower Tasks</span>
+        </button>
+        <button class="nav-item" data-target="habits">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>Habit Streaks</span>
+        </button>
+        <button class="nav-item" data-target="notes">
+          <i class="fa-solid fa-file-pen"></i>
+          <span>Markdown Notes</span>
+        </button>
+        <button class="nav-item" data-target="analytics">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Performance Logs</span>
+        </button>
+        <button class="nav-item" data-target="settings">
+          <i class="fa-solid fa-sliders"></i>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Mini Audio Focus Widget -->
+      <div class="sidebar-focus-widget">
+        <div class="focus-title">
+          <i class="fa-solid fa-headphones text-accent animate-pulse"></i>
+          <span>Focus Audio DSP</span>
+        </div>
+        <div class="focus-controls">
+          <select id="sidebar-noise-select" class="noise-select">
+            <option value="none">No Noise Playing</option>
+            <option value="white">White Noise</option>
+            <option value="pink">Pink Noise</option>
+            <option value="brown">Brown Noise</option>
+          </select>
+          <div class="focus-vol-row">
+            <i class="fa-solid fa-volume-low"></i>
+            <input type="range" id="sidebar-noise-volume" min="0" max="1" step="0.05" value="0.5" class="volume-slider">
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="main-wrapper">
+      <!-- TOP STATUS BAR -->
+      <header class="app-header">
+        <div class="palette-trigger-wrapper">
+          <div class="palette-input-box" id="palette-clicker">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <span class="placeholder-text">Type <kbd>/</kbd> or <kbd>Ctrl+/</kbd> to launch Command Palette...</span>
+            <span class="shortcut-badge">⌘/</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Mini Pomodoro Ring in Header -->
+          <div class="header-pomo-status" id="header-pomo-trigger">
+            <i class="fa-solid fa-circle-play timer-play-icon" id="header-pomo-play"></i>
+            <span id="header-timer-clock">25:00</span>
+            <span class="badge" id="header-timer-label">Focus</span>
+          </div>
+
+          <div class="profile-pill">
+            <div class="profile-avatar">S</div>
+            <span class="profile-name">Developer Sujal</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- WORKSPACE CONTROLLER -->
+      <main class="app-workspace">
+        
+        <!-- ==================== DASHBOARD PANEL ==================== -->
+        <section class="workspace-panel active" id="panel-dashboard" aria-labelledby="heading-dashboard">
+          <h1 class="sr-only" id="heading-dashboard">Dashboard Overview</h1>
+          
+          <!-- KPI Stats Grid -->
+          <div class="stats-grid">
+            <div class="kpi-card bg-glass">
+              <div class="kpi-icon color-blue">
+                <i class="fa-solid fa-bullseye"></i>
+              </div>
+              <div class="kpi-info">
+                <h3>Productivity Score</h3>
+                <p id="dash-productivity-score">0%</p>
+                <span class="kpi-trend text-success"><i class="fa-solid fa-arrow-up"></i> Weekly Average</span>
+              </div>
+            </div>
+
+            <div class="kpi-card bg-glass">
+              <div class="kpi-icon color-indigo">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="kpi-info">
+                <h3>Total Focus Time</h3>
+                <p id="dash-focus-time">0 mins</p>
+                <span class="kpi-trend" id="dash-focus-subtitle">0 sessions completed</span>
+              </div>
+            </div>
+
+            <div class="kpi-card bg-glass">
+              <div class="kpi-icon color-teal">
+                <i class="fa-solid fa-fire"></i>
+              </div>
+              <div class="kpi-info">
+                <h3>Habit Streak</h3>
+                <p id="dash-habit-streak">0 Days</p>
+                <span class="kpi-trend text-accent" id="dash-habit-subtitle">Active chains today</span>
+              </div>
+            </div>
+
+            <div class="kpi-card bg-glass">
+              <div class="kpi-icon color-purple">
+                <i class="fa-solid fa-sticky-note"></i>
+              </div>
+              <div class="kpi-info">
+                <h3>Knowledge Base</h3>
+                <p id="dash-notes-count">0 Notes</p>
+                <span class="kpi-trend" id="dash-notes-subtitle">0 markdown lines parsed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Grid Sections -->
+          <div class="dashboard-grid">
+            <!-- Focus Desk (Timer Box) -->
+            <div class="dash-column bg-glass block-focus">
+              <div class="panel-header">
+                <h2><i class="fa-solid fa-stopwatch text-indigo"></i> Focus Station</h2>
+                <div class="pomo-mode-tabs">
+                  <button class="pomo-tab active" data-mode="pomo">Pomodoro</button>
+                  <button class="pomo-tab" data-mode="short">Short Break</button>
+                  <button class="pomo-tab" data-mode="long">Long Break</button>
+                </div>
+              </div>
+              
+              <div class="timer-display-box">
+                <svg class="timer-radial-svg" viewBox="0 0 120 120">
+                  <circle class="timer-bg" cx="60" cy="60" r="52"></circle>
+                  <circle class="timer-progress" id="timer-indicator" cx="60" cy="60" r="52" style="stroke-dasharray: 326.7; stroke-dashoffset: 0;"></circle>
+                </svg>
+                <div class="timer-label-overlay">
+                  <span class="timer-clock-digits" id="timer-digits">25:00</span>
+                  <span class="timer-current-task" id="timer-active-task-desc">No active task selected</span>
+                </div>
+              </div>
+
+              <div class="timer-control-buttons">
+                <button id="btn-timer-toggle" class="btn btn-primary btn-lg"><i class="fa-solid fa-play"></i> Start Timer</button>
+                <button id="btn-timer-reset" class="btn btn-secondary btn-lg"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+              </div>
+
+              <div class="timer-task-selector-wrapper">
+                <label for="timer-task-select">Sync with Active Task:</label>
+                <select id="timer-task-select" class="form-select">
+                  <option value="">-- No linked task (General Focus) --</option>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Quick Matrix Tracker -->
+            <div class="dash-column bg-glass block-matrix">
+              <div class="panel-header">
+                <h2><i class="fa-solid fa-list-check text-blue"></i> High-Priority Backlog</h2>
+                <button class="btn btn-secondary btn-sm" id="btn-dash-goto-tasks">View Full Matrix</button>
+              </div>
+              <div class="dashboard-tasks-container">
+                <div id="dash-urgent-important-list" class="dash-task-sublist">
+                  <!-- Dynamic urgent tasks -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heatmap Card in Dashboard -->
+          <div class="dashboard-heatmap-row bg-glass">
+            <div class="panel-header">
+              <div class="header-left">
+                <h2><i class="fa-solid fa-calendar-days text-teal"></i> Annual Productivity Heatmap</h2>
+                <p class="section-desc">Consolidated visual of focus blocks and habit completions logged throughout the year.</p>
+              </div>
+              <div class="heatmap-legend">
+                <span>Less</span>
+                <span class="legend-box level-0"></span>
+                <span class="legend-box level-1"></span>
+                <span class="legend-box level-2"></span>
+                <span class="legend-box level-3"></span>
+                <span class="legend-box level-4"></span>
+                <span>More</span>
+              </div>
+            </div>
+            <div class="heatmap-overflow-container">
+              <div class="heatmap-grid-canvas" id="annual-heatmap-canvas">
+                <!-- Heatmap grid cells generated dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== EISENHOWER TASK MATRIX ==================== -->
+        <section class="workspace-panel" id="panel-tasks" aria-labelledby="heading-tasks">
+          <div class="panel-header-row">
+            <div>
+              <h1 id="heading-tasks"><i class="fa-solid fa-list-check"></i> Eisenhower Matrix</h1>
+              <p class="section-desc">Sort tasks by Urgency and Importance to organize work priorities dynamically.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-trigger-task-modal">
+              <i class="fa-solid fa-plus"></i> Add New Task
+            </button>
+          </div>
+
+          <!-- The Four Quadrants Matrix Grid -->
+          <div class="matrix-grid">
+            <!-- Q1: Urgent & Important -->
+            <div class="matrix-quadrant bg-glass border-urgent-important" data-quadrant="urgent-important">
+              <div class="quadrant-header">
+                <span class="quadrant-num">Q1</span>
+                <h3>Urgent & Important</h3>
+                <span class="badge badge-urgent-important" id="q1-count">0</span>
+              </div>
+              <div class="quadrant-tasks-list" id="tasks-urgent-important">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Q2: Important & Not Urgent -->
+            <div class="matrix-quadrant bg-glass border-important-noturgent" data-quadrant="important-noturgent">
+              <div class="quadrant-header">
+                <span class="quadrant-num">Q2</span>
+                <h3>Important & Not Urgent</h3>
+                <span class="badge badge-important-noturgent" id="q2-count">0</span>
+              </div>
+              <div class="quadrant-tasks-list" id="tasks-important-noturgent">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Q3: Urgent & Not Important -->
+            <div class="matrix-quadrant bg-glass border-urgent-notimportant" data-quadrant="urgent-notimportant">
+              <div class="quadrant-header">
+                <span class="quadrant-num">Q3</span>
+                <h3>Urgent & Not Important</h3>
+                <span class="badge badge-urgent-notimportant" id="q3-count">0</span>
+              </div>
+              <div class="quadrant-tasks-list" id="tasks-urgent-notimportant">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Q4: Not Urgent & Not Important -->
+            <div class="matrix-quadrant bg-glass border-noturgent-notimportant" data-quadrant="noturgent-notimportant">
+              <div class="quadrant-header">
+                <span class="quadrant-num">Q4</span>
+                <h3>Not Urgent & Not Important</h3>
+                <span class="badge badge-noturgent-notimportant" id="q4-count">0</span>
+              </div>
+              <div class="quadrant-tasks-list" id="tasks-noturgent-notimportant">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== HABITS AND STREAKS ==================== -->
+        <section class="workspace-panel" id="panel-habits" aria-labelledby="heading-habits">
+          <div class="panel-header-row">
+            <div>
+              <h1 id="heading-habits"><i class="fa-solid fa-calendar-check"></i> Habit Streak tracker</h1>
+              <p class="section-desc">Keep track of daily habits, view calendar records, and keep streaks alive.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-trigger-habit-modal">
+              <i class="fa-solid fa-plus"></i> Create New Habit
+            </button>
+          </div>
+
+          <div class="habits-layout">
+            <!-- Habit List Sidebar card -->
+            <div class="habits-list-card bg-glass">
+              <h2>My Habits Registry</h2>
+              <div class="habits-items-wrapper" id="habits-registry-list">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Habit Performance Detail Workspace -->
+            <div class="habit-detail-card bg-glass" id="habit-detail-workspace">
+              <!-- Blank state if no habit selected -->
+              <div class="habit-detail-blank" id="habit-detail-blank">
+                <i class="fa-solid fa-route-highway blank-icon"></i>
+                <h3>Select a habit from the registry</h3>
+                <p>Track metrics, view weekly progress dials, and toggle logged history charts for this habit.</p>
+              </div>
+
+              <!-- Habit Active View -->
+              <div class="habit-detail-active hidden" id="habit-detail-active-view">
+                <div class="habit-detail-header">
+                  <div class="habit-title-area">
+                    <span id="active-habit-color-dot" class="habit-color-badge"></span>
+                    <h2 id="active-habit-title">Habit Title</h2>
+                  </div>
+                  <button id="btn-delete-habit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                </div>
+                <p class="text-muted" id="active-habit-desc">Description of the habit.</p>
+
+                <!-- Metric grids inside active habit card -->
+                <div class="habit-stats-panel">
+                  <div class="h-stat-box">
+                    <span class="h-stat-label">Current Streak</span>
+                    <span class="h-stat-value text-accent" id="active-habit-streak">0 Days</span>
+                  </div>
+                  <div class="h-stat-box">
+                    <span class="h-stat-label">Best Streak</span>
+                    <span class="h-stat-value text-success" id="active-habit-best-streak">0 Days</span>
+                  </div>
+                  <div class="h-stat-box">
+                    <span class="h-stat-label">Completion Rate</span>
+                    <span class="h-stat-value text-info" id="active-habit-rate">0%</span>
+                  </div>
+                </div>
+
+                <!-- Monthly grid tracking list -->
+                <div class="habit-calendar-log-area">
+                  <h3>Monthly Completion Logs</h3>
+                  <p class="calendar-subtext">Click on any date box in the calendar below to toggle completion for that day.</p>
+                  <div class="calendar-grid-header">
+                    <button id="btn-prev-month" class="btn-icon"><i class="fa-solid fa-chevron-left"></i></button>
+                    <span id="calendar-month-label">June 2026</span>
+                    <button id="btn-next-month" class="btn-icon"><i class="fa-solid fa-chevron-right"></i></button>
+                  </div>
+                  <div class="calendar-days-labels">
+                    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                  </div>
+                  <div class="calendar-cells-grid" id="active-habit-calendar-grid">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== MARKDOWN NOTES ==================== -->
+        <section class="workspace-panel" id="panel-notes" aria-labelledby="heading-notes">
+          <div class="notes-layout">
+            <!-- Notes sidebar listing -->
+            <aside class="notes-sidebar bg-glass">
+              <div class="notes-sidebar-header">
+                <h2>Notes Repository</h2>
+                <button class="btn btn-primary btn-sm" id="btn-create-note">
+                  <i class="fa-solid fa-plus"></i> New Note
+                </button>
+              </div>
+              <div class="notes-search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="notes-search-input" placeholder="Search notes..." class="search-input">
+              </div>
+              <div class="notes-list-container" id="notes-list">
+                <!-- Populated dynamically -->
+              </div>
+            </aside>
+
+            <!-- Notes Editor Panel -->
+            <main class="notes-editor-panel bg-glass">
+              <div class="note-editor-blank" id="note-editor-blank-state">
+                <i class="fa-solid fa-note-sticky blank-icon"></i>
+                <h3>Select or create a note to begin</h3>
+                <p>Write notes, organize research summaries, and compile guidelines using standard markdown formats.</p>
+              </div>
+
+              <!-- Note Edit Workspace -->
+              <div class="note-edit-workspace hidden" id="note-edit-workspace-active">
+                <div class="note-editor-header">
+                  <input type="text" id="note-title-field" class="note-title-input" placeholder="Note Title...">
+                  <div class="note-action-buttons">
+                    <button id="btn-save-note" class="btn btn-primary btn-sm"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                    <button id="btn-delete-note" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                  </div>
+                </div>
+
+                <div class="note-meta-row">
+                  <span id="note-date-badge" class="badge">Created: Jun 15, 2026</span>
+                  <span class="note-char-indicator" id="note-char-counter">0 chars</span>
+                </div>
+
+                <!-- Split Editor Pane -->
+                <div class="note-split-view">
+                  <div class="editor-pane">
+                    <div class="pane-title">Markdown Editor</div>
+                    <textarea id="note-textarea" placeholder="Type text here using markdown syntax (e.g., # Header, **bold**, - lists)..."></textarea>
+                  </div>
+                  <div class="preview-pane">
+                    <div class="pane-title">Live Preview Rendering</div>
+                    <div class="markdown-preview-body" id="note-markdown-preview">
+                      <!-- Rendered Markdown goes here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </section>
+
+
+        <!-- ==================== ANALYTICS DASHBOARD ==================== -->
+        <section class="workspace-panel" id="panel-analytics" aria-labelledby="heading-analytics">
+          <div class="panel-header-row">
+            <div>
+              <h1 id="heading-analytics"><i class="fa-solid fa-chart-line"></i> Performance Analytics</h1>
+              <p class="section-desc">Review details of your logged focus blocks, habit streaks consistency, and task matrices completion statistics.</p>
+            </div>
+          </div>
+
+          <div class="analytics-layout-grid">
+            <!-- Heatmap section -->
+            <div class="analytics-card bg-glass full-width-card">
+              <div class="panel-header">
+                <h2>Productivity Activity Grid</h2>
+              </div>
+              <div class="heatmap-overflow-container">
+                <div class="heatmap-grid-canvas" id="analytics-heatmap-canvas">
+                  <!-- Heatmap grids generated dynamically -->
+                </div>
+              </div>
+              <p class="analytics-tip"><i class="fa-solid fa-info-circle text-info"></i> Each square represents a day of the year. Shades represent focus minutes logged and habits completed.</p>
+            </div>
+
+            <!-- Stats breakdown charts -->
+            <div class="analytics-card bg-glass">
+              <div class="panel-header">
+                <h2>Focus Session Distribution</h2>
+              </div>
+              <div class="chart-canvas-wrapper">
+                <svg id="chart-focus-weekly" class="analytics-svg" viewBox="0 0 400 220">
+                  <!-- Gridlines, labels, bars generated dynamically by script -->
+                </svg>
+              </div>
+            </div>
+
+            <div class="analytics-card bg-glass">
+              <div class="panel-header">
+                <h2>Eisenhower Matrix Task Load</h2>
+              </div>
+              <div class="chart-canvas-wrapper">
+                <svg id="chart-matrix-distribution" class="analytics-svg" viewBox="0 0 400 220">
+                  <!-- Gridlines, labels, bars generated dynamically by script -->
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== SETTINGS AND BACKUPS ==================== -->
+        <section class="workspace-panel" id="panel-settings" aria-labelledby="heading-settings">
+          <div class="panel-header-row">
+            <div>
+              <h1 id="heading-settings"><i class="fa-solid fa-sliders"></i> Settings & Backup Management</h1>
+              <p class="section-desc">Manage theme selections, back up your local database files, or clear all storage arrays.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <!-- Theme Settings Card -->
+            <div class="settings-card bg-glass">
+              <h2><i class="fa-solid fa-palette text-blue"></i> Themes & Styling</h2>
+              <p>Toggle display interface themes suited for your layout view.</p>
+              
+              <div class="setting-form-row">
+                <span>Toggle App Theme:</span>
+                <div class="theme-selection-toggle">
+                  <button id="btn-theme-dark" class="btn btn-secondary active"><i class="fa-solid fa-moon"></i> Dark Mode</button>
+                  <button id="btn-theme-light" class="btn btn-secondary"><i class="fa-solid fa-sun"></i> Light Mode</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Database backup actions -->
+            <div class="settings-card bg-glass">
+              <h2><i class="fa-solid fa-database text-teal"></i> Local Storage Portability</h2>
+              <p>Save configurations, notes, habits database indexes, and tasks lists by exporting them to a text JSON file.</p>
+              
+              <div class="settings-action-buttons">
+                <button id="btn-export-backup" class="btn btn-primary"><i class="fa-solid fa-file-export"></i> Export JSON Backup</button>
+                <div class="import-button-wrapper">
+                  <button class="btn btn-secondary btn-full"><i class="fa-solid fa-file-import"></i> Import JSON Backup</button>
+                  <input type="file" id="settings-import-file" accept=".json" class="hidden-file-input">
+                </div>
+              </div>
+            </div>
+
+            <!-- Dangerous settings operations -->
+            <div class="settings-card bg-glass border-danger-card">
+              <h2 class="text-danger"><i class="fa-solid fa-triangle-exclamation text-danger animate-pulse"></i> Danger Zone</h2>
+              <p>Reset the application databases completely. This action resets all custom entries and loads the default seed demonstration data.</p>
+              
+              <button id="btn-clear-databases" class="btn btn-danger btn-full"><i class="fa-solid fa-trash-can"></i> Reset & Reload Seed Data</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="app-footer">
+        <p>&copy; 2026 CommandCenter Workstation. Built for <a href="https://github.com/cu-sanjay/Web-Dev-Projects" target="_blank" rel="noopener noreferrer">Web Dev Projects</a>.</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ==================== COMMAND PALETTE DIALOG OVERLAY ==================== -->
+  <div class="modal-overlay hidden" id="command-palette-modal">
+    <div class="palette-card bg-glass">
+      <div class="palette-search-field">
+        <i class="fa-solid fa-terminal prompt-icon"></i>
+        <input type="text" id="palette-search-input" placeholder="Type a slash command or search workspace..." autocomplete="off">
+        <span class="esc-hint">ESC</span>
+      </div>
+
+      <div class="palette-body">
+        <!-- Default slash command prompts -->
+        <div class="palette-group" id="palette-commands-group">
+          <div class="palette-group-title">Interactive Slash Commands</div>
+          <div class="palette-option" data-command="/task ">
+            <span class="option-cmd">/task [text]</span>
+            <span class="option-desc">Create a new Urgent-Important task</span>
+          </div>
+          <div class="palette-option" data-command="/timer ">
+            <span class="option-cmd">/timer [mins]</span>
+            <span class="option-desc">Configure Pomodoro timer digits</span>
+          </div>
+          <div class="palette-option" data-command="/note ">
+            <span class="option-cmd">/note [title]</span>
+            <span class="option-desc">Create a new Markdown note card</span>
+          </div>
+          <div class="palette-option" data-command="/theme dark">
+            <span class="option-cmd">/theme dark</span>
+            <span class="option-desc">Switch interface to Dark Theme</span>
+          </div>
+          <div class="palette-option" data-command="/theme light">
+            <span class="option-cmd">/theme light</span>
+            <span class="option-desc">Switch interface to Light Theme</span>
+          </div>
+          <div class="palette-option" data-command="/clear">
+            <span class="option-cmd">/clear</span>
+            <span class="option-desc">Clear search queries and results</span>
+          </div>
+        </div>
+
+        <!-- Matching results suggestion list -->
+        <div class="palette-group hidden" id="palette-results-group">
+          <div class="palette-group-title">Workspace Matches</div>
+          <div class="palette-results-wrapper" id="palette-matching-results">
+            <!-- Dynamic search matches -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TASK ADDITION DIALOG OVERLAY ==================== -->
+  <div class="modal-overlay hidden" id="task-creation-modal">
+    <div class="modal-card bg-glass">
+      <div class="modal-header">
+        <h3>Add New Priority Task</h3>
+        <button id="btn-close-task-modal" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="task-text-input">Task Description <span class="required">*</span></label>
+          <input type="text" id="task-text-input" placeholder="e.g. Code dynamic programming algorithm..." class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="task-quadrant-select">Eisenhower Quadrant Priority <span class="required">*</span></label>
+          <select id="task-quadrant-select" class="form-select">
+            <option value="urgent-important">Q1: Urgent & Important</option>
+            <option value="important-noturgent">Q2: Important & Not Urgent</option>
+            <option value="urgent-notimportant">Q3: Urgent & Not Important</option>
+            <option value="noturgent-notimportant">Q4: Not Urgent & Not Important</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="task-est-pomos">Estimated Pomodoros</label>
+          <input type="number" id="task-est-pomos" min="1" max="10" value="2" class="form-input">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-cancel-task" class="btn btn-secondary">Cancel</button>
+        <button id="btn-save-task" class="btn btn-primary">Create Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HABIT ADDITION DIALOG OVERLAY ==================== -->
+  <div class="modal-overlay hidden" id="habit-creation-modal">
+    <div class="modal-card bg-glass">
+      <div class="modal-header">
+        <h3>Create New Habit</h3>
+        <button id="btn-close-habit-modal" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="habit-title-input">Habit Name <span class="required">*</span></label>
+          <input type="text" id="habit-title-input" placeholder="e.g. Read Literature Papers..." class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="habit-desc-input">Description / Purpose</label>
+          <input type="text" id="habit-desc-input" placeholder="e.g. Keep up to date with deep learning developments..." class="form-input">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="habit-color-select">Accent Color theme</label>
+            <select id="habit-color-select" class="form-select">
+              <option value="teal">Teal Highlight</option>
+              <option value="blue">Blue Sky</option>
+              <option value="purple">Violet Magic</option>
+              <option value="orange">Orange Heat</option>
+              <option value="rose">Rose Red</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-cancel-habit" class="btn btn-secondary">Cancel</button>
+        <button id="btn-save-habit" class="btn btn-primary">Add Habit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

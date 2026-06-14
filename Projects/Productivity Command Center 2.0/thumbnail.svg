@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060813" />
+      <stop offset="100%" stop-color="#0b0f24" />
+    </linearGradient>
+    
+    <!-- Accent Gradient -->
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+
+    <!-- Quadrant 1 (Rose) Gradient -->
+    <linearGradient id="q1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#fda4af" />
+    </linearGradient>
+
+    <!-- Teal Gradient -->
+    <linearGradient id="teal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+
+    <!-- Drop Shadows and Glow Shaders -->
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Container Base -->
+  <rect width="320" height="200" rx="16" fill="url(#bg-grad)" />
+  <rect width="320" height="200" rx="16" fill="none" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1.5" />
+
+  <!-- Background Glow Orbs -->
+  <circle cx="50" cy="40" r="50" fill="#f43f5e" opacity="0.1" filter="url(#glow)" />
+  <circle cx="270" cy="160" r="60" fill="#6366f1" opacity="0.12" filter="url(#glow)" />
+
+  <!-- Graphic 1: Command Palette Box (Center Top) -->
+  <g transform="translate(35, 20)">
+    <rect width="250" height="26" rx="8" fill="rgba(17, 23, 52, 0.7)" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1.2" filter="url(#glow)" />
+    <!-- Prompt Icon -->
+    <path d="M14 10 H8 L11 15 L14 10 Z" fill="#6366f1" transform="rotate(-90 11 12.5) translate(0, 1)" />
+    <text x="26" y="17" fill="#f3f4f6" font-family="'Outfit', sans-serif" font-size="8.5" font-weight="600">/task Code DP Synthesizer</text>
+    <rect x="215" y="6" width="28" height="14" rx="4" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255,255,255,0.06)" />
+    <text x="229" y="16" fill="#9ca3af" font-family="monospace" font-size="7" text-anchor="middle">⌘/</text>
+  </g>
+
+  <!-- Graphic 2: Eisenhower Matrix (Left Bottom) -->
+  <g transform="translate(35, 62)">
+    <rect width="115" height="110" rx="12" fill="rgba(17, 23, 52, 0.5)" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    <text x="12" y="16" fill="#9ca3af" font-family="'Outfit', sans-serif" font-size="8" font-weight="700">MATRIX WORKLOAD</text>
+    
+    <!-- Quadrants -->
+    <!-- Q1 (Urgent & Important) -->
+    <rect x="12" y="26" width="42" height="34" rx="6" fill="rgba(244, 63, 94, 0.08)" stroke="rgba(244, 63, 94, 0.2)" stroke-width="1" />
+    <text x="18" y="36" fill="#f43f5e" font-family="'Outfit', sans-serif" font-weight="800" font-size="7.5">Q1</text>
+    <circle cx="38" cy="46" r="3" fill="#f43f5e" />
+    <line x1="18" y1="46" x2="30" y2="46" stroke="rgba(244,63,94,0.4)" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Q2 (Important & Not Urgent) -->
+    <rect x="61" y="26" width="42" height="34" rx="6" fill="rgba(59, 130, 246, 0.08)" stroke="rgba(59, 130, 246, 0.2)" stroke-width="1" />
+    <text x="67" y="36" fill="#3b82f6" font-family="'Outfit', sans-serif" font-weight="800" font-size="7.5">Q2</text>
+    <circle cx="87" cy="46" r="3" fill="#3b82f6" />
+    <line x1="67" y1="46" x2="79" y2="46" stroke="rgba(59,130,246,0.4)" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Q3 (Urgent & Not Important) -->
+    <rect x="12" y="66" width="42" height="34" rx="6" fill="rgba(234, 88, 12, 0.08)" stroke="rgba(234, 88, 12, 0.2)" stroke-width="1" />
+    <text x="18" y="76" fill="#ea580c" font-family="'Outfit', sans-serif" font-weight="800" font-size="7.5">Q3</text>
+    <line x1="18" y1="86" x2="36" y2="86" stroke="rgba(234,88,12,0.4)" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Q4 (Not Urgent & Not Important) -->
+    <rect x="61" y="66" width="42" height="34" rx="6" fill="rgba(139, 92, 246, 0.08)" stroke="rgba(139, 92, 246, 0.2)" stroke-width="1" />
+    <text x="67" y="76" fill="#8b5cf6" font-family="'Outfit', sans-serif" font-weight="800" font-size="7.5">Q4</text>
+    <line x1="67" y1="86" x2="84" y2="86" stroke="rgba(139,92,246,0.4)" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Graphic 3: Habits Heatmap Cells & Streak (Right Bottom) -->
+  <g transform="translate(160, 62)">
+    <rect width="125" height="110" rx="12" fill="rgba(17, 23, 52, 0.5)" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    <text x="12" y="16" fill="#9ca3af" font-family="'Outfit', sans-serif" font-size="8" font-weight="700">HABIT CONSISTENCY</text>
+
+    <!-- Heatmap Cells Grid Mock -->
+    <g transform="translate(12, 26)">
+      <!-- Row 1 -->
+      <rect x="0" y="0" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="11" y="0" width="8" height="8" rx="1.5" fill="#0d3b3c" />
+      <rect x="22" y="0" width="8" height="8" rx="1.5" fill="#096860" />
+      <rect x="33" y="0" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="44" y="0" width="8" height="8" rx="1.5" fill="#0ea58a" />
+      <rect x="55" y="0" width="8" height="8" rx="1.5" fill="#10b981" />
+      <rect x="66" y="0" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="77" y="0" width="8" height="8" rx="1.5" fill="#0d3b3c" />
+      <rect x="88" y="0" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="99" y="0" width="8" height="8" rx="1.5" fill="#10b981" />
+
+      <!-- Row 2 -->
+      <rect x="0" y="11" width="8" height="8" rx="1.5" fill="#096860" />
+      <rect x="11" y="11" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="22" y="11" width="8" height="8" rx="1.5" fill="#10b981" />
+      <rect x="33" y="11" width="8" height="8" rx="1.5" fill="#0ea58a" />
+      <rect x="44" y="11" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="55" y="11" width="8" height="8" rx="1.5" fill="#0d3b3c" />
+      <rect x="66" y="11" width="8" height="8" rx="1.5" fill="#096860" />
+      <rect x="77" y="11" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="88" y="11" width="8" height="8" rx="1.5" fill="#0ea58a" />
+      <rect x="99" y="11" width="8" height="8" rx="1.5" fill="#121833" />
+
+      <!-- Row 3 -->
+      <rect x="0" y="22" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="11" y="22" width="8" height="8" rx="1.5" fill="#0d3b3c" />
+      <rect x="22" y="22" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="33" y="22" width="8" height="8" rx="1.5" fill="#0ea58a" />
+      <rect x="44" y="22" width="8" height="8" rx="1.5" fill="#10b981" />
+      <rect x="55" y="22" width="8" height="8" rx="1.5" fill="#10b981" />
+      <rect x="66" y="22" width="8" height="8" rx="1.5" fill="#096860" />
+      <rect x="77" y="22" width="8" height="8" rx="1.5" fill="#121833" />
+      <rect x="88" y="22" width="8" height="8" rx="1.5" fill="#0ea58a" />
+      <rect x="99" y="22" width="8" height="8" rx="1.5" fill="#10b981" />
+    </g>
+
+    <!-- Streak Indicator Badge -->
+    <g transform="translate(12, 66)">
+      <rect width="101" height="30" rx="6" fill="url(#accent-grad)" filter="url(#glow)" opacity="0.9" />
+      <text x="10" y="18" fill="#ffffff" font-family="'Outfit', sans-serif" font-size="8.5" font-weight="800">12 Days Active Streak</text>
+      <!-- Fire Icon -->
+      <path d="M86 19 C84 17 84 15 85.5 13 C82.5 14.5 81.5 17 82 19.5 C82.5 21 84.5 22 84 23.5 C83.5 22 82.5 21 81.5 22 C80.5 21 79.5 19 81.5 15 C77.5 18 78 22.5 81.5 24 C85.5 25.5 88.5 22.5 86 19 Z" fill="#ffffff" />
+    </g>
+  </g>
+</svg>

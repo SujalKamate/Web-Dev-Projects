@@ -1,0 +1,17 @@
+{
+  "title": "Productivity Command Center 2.0",
+  "description": "An advanced client-side developer dashboard featuring a CLI-style Command Palette, Eisenhower Matrix task boards, yearly activity heatmaps, calendar habit streak tracking, markdown-enabled notes, and custom Web Audio Pomodoro white-noise loops.",
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "tags": [
+    "productivity",
+    "dashboard",
+    "vanilla-js",
+    "localstorage",
+    "charts"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
