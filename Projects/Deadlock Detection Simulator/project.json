@@ -1,0 +1,18 @@
+{
+  "title": "Deadlock Detection Simulator",
+  "description": "An interactive simulator for deadlock detection in operating systems, featuring interactive Resource Allocation Graph (RAG) building, visual cycle detection, and step-by-step Banker's Detection Algorithm execution.",
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "tags": [
+    "education",
+    "operating-systems",
+    "deadlock-detection",
+    "interactive-graph",
+    "simulation",
+    "vanilla-js"
+  ],
+  "entry": "index.html",
+  "thumbnail": "thumbnail.svg"
+}
