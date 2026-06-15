@@ -8,7 +8,7 @@
   "tags": [
     "databases",
     "concurrency-control",
-    "two-phase-locking",
+    
     "timestamp-ordering",
     "deadlocks",
     "education",
