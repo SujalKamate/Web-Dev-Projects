@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Life Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <header class="header">
+      <h1>🎓 College Life Simulator</h1>
+      <p>Survive 15 weeks by balancing your stats!</p>
+    </header>
+
+    <div class="stats-panel">
+      <div class="stat">
+        <span class="stat-label">📚 Academics</span>
+        <div class="progress-bar-bg">
+          <div id="bar-academics" class="progress-bar fill-academics"></div>
+        </div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">🎉 Social</span>
+        <div class="progress-bar-bg">
+          <div id="bar-social" class="progress-bar fill-social"></div>
+        </div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">❤️ Health</span>
+        <div class="progress-bar-bg">
+          <div id="bar-health" class="progress-bar fill-health"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-screen">
+      <div class="week-indicator">Week <span id="week-display">1</span> / 15</div>
+      
+      <div id="event-box" class="event-box">
+        <h2 id="event-title">Welcome to College!</h2>
+        <p id="event-desc">It's your first day. How do you want to kick off the semester?</p>
+      </div>
+
+      <div id="choices-box" class="choices-box">
+        <!-- Buttons injected by JS -->
+      </div>
+    </div>
+
+    <div id="game-over-screen" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="end-title">Game Over</h2>
+        <p id="end-message">You failed out of college.</p>
+        <button id="restart-btn" class="btn primary-btn">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
