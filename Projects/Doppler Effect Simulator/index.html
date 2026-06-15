@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doppler Effect Simulator - Web Audio Pitch Synth & Mach Cone Visualizer</title>
+  <meta name="description" content="Explore classical sound Doppler shift and relativistic optical redshift/blueshift with real-time Web Audio API pitch synthesis and Mach shockwave modeling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-title-wrapper">
+        <div class="pulse-indicator"></div>
+        <h1>DOPPLER EFFECT SIMULATOR</h1>
+        <span class="version-tag">v2.2.0-WAVE</span>
+      </div>
+      <p class="header-subtitle">Real-Time Acoustic Web-Audio Pitch Synthesizer & Relativistic Wavelength Modeler</p>
+    </header>
+
+    <!-- Main Workspace Dashboard Grid -->
+    <main class="dashboard-grid">
+      
+      <!-- Left Panel: Parameters & Audio Settings -->
+      <section class="panel panel-left" aria-labelledby="controls-heading">
+        <h2 id="controls-heading" class="panel-title">CONTROL DECK</h2>
+        
+        <!-- Simulation Mode Toggle -->
+        <div class="control-group">
+          <label class="control-label">PROPAGATION MEDIUM</label>
+          <div class="mode-selector">
+            <button id="btn-mode-acoustics" class="mode-btn active" data-mode="acoustics">
+              <span class="mode-icon">🔊</span>
+              <span class="mode-text">Acoustic (Sound)</span>
+            </button>
+            <button id="btn-mode-optics" class="mode-btn" data-mode="optics">
+              <span class="mode-icon">🌌</span>
+              <span class="mode-text">Relativistic (Light)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wave Parameters Sliders -->
+        <div class="control-group">
+          <div class="group-header">
+            <label class="control-label">VELOCITIES & VECTOR KINEMATICS</label>
+            <button id="btn-reset-params" class="text-btn" title="Reset parameters to defaults">Reset Sliders</button>
+          </div>
+          
+          <!-- Wave Velocity (v) / Speed of Sound or Light -->
+          <div class="slider-wrapper">
+            <div class="slider-label-row">
+              <label for="slider-wave-speed" id="lbl-wave-speed">Wave Velocity (v)</label>
+              <span id="val-wave-speed" class="slider-val">340 m/s</span>
+            </div>
+            <input type="range" id="slider-wave-speed" min="150" max="600" step="10" value="340" aria-labelledby="lbl-wave-speed">
+          </div>
+
+          <!-- Source Speed (vs) -->
+          <div class="slider-wrapper">
+            <div class="slider-label-row">
+              <label for="slider-source-speed" id="lbl-source-speed">Source Speed (v<sub>s</sub>)</label>
+              <span id="val-source-speed" class="slider-val">150 m/s</span>
+            </div>
+            <input type="range" id="slider-source-speed" min="0" max="650" step="5" value="150" aria-labelledby="lbl-source-speed">
+          </div>
+
+          <!-- Observer Speed (vo) -->
+          <div class="slider-wrapper">
+            <div class="slider-label-row">
+              <label for="slider-observer-speed" id="lbl-observer-speed">Observer Speed (v<sub>o</sub>)</label>
+              <span id="val-observer-speed" class="slider-val">0 m/s</span>
+            </div>
+            <input type="range" id="slider-observer-speed" min="-300" max="300" step="5" value="0" aria-labelledby="lbl-observer-speed">
+          </div>
+        </div>
+
+        <!-- Audio Engine Setup -->
+        <div class="control-group" id="audio-settings-group">
+          <label class="control-label">WEB AUDIO SYNTHESIZER</label>
+          
+          <div class="checkbox-wrapper">
+            <label class="checkbox-label" for="chk-enable-audio">
+              <input type="checkbox" id="chk-enable-audio">
+              <span class="checkbox-custom"></span>
+              Enable Audio Pitch Engine
+            </label>
+          </div>
+
+          <div class="slider-wrapper margin-top">
+            <div class="slider-label-row">
+              <label for="slider-emitted-freq" id="lbl-emitted-freq">Source Frequency (f)</label>
+              <span id="val-emitted-freq" class="slider-val">440 Hz</span>
+            </div>
+            <input type="range" id="slider-emitted-freq" min="200" max="800" step="5" value="440" aria-labelledby="lbl-emitted-freq">
+          </div>
+
+          <div class="slider-wrapper">
+            <div class="slider-label-row">
+              <label for="slider-volume" id="lbl-volume">Synth Volume</label>
+              <span id="val-volume" class="slider-val">30%</span>
+            </div>
+            <input type="range" id="slider-volume" min="0" max="100" step="5" value="30" aria-labelledby="lbl-volume">
+          </div>
+        </div>
+
+        <!-- Guide Panel -->
+        <div class="panel-info">
+          <h3>📌 Acoustic Instruction</h3>
+          <div id="guide-text" class="guide-scroll">
+            Sound wave fronts bunch up in front of the moving ambulance and stretch behind it. Enable the "Audio Pitch Engine" and watch the ambulance pass the observer to hear the frequency drop.
+          </div>
+        </div>
+      </section>
+
+      <!-- Center Panel: Interactive Simulation Canvas -->
+      <section class="panel panel-center" aria-labelledby="canvas-heading">
+        <div class="canvas-header-row">
+          <h2 id="canvas-heading" class="panel-title">OBSERVATION CHAMBER</h2>
+          <div id="sim-status-badge" class="status-badge live">LIVE</div>
+        </div>
+
+        <!-- Canvas Frame -->
+        <div class="canvas-container">
+          <canvas id="sim-canvas" width="600" height="400"></canvas>
+          
+          <!-- floating interactive HUD widgets -->
+          <div class="canvas-hud">
+            <div class="hud-item">
+              <span class="hud-label">Mach (M):</span>
+              <span id="hud-mach" class="hud-value">0.44</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">Observed Freq (f'):</span>
+              <span id="hud-observed-freq" class="hud-value">440.0 Hz</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">Pitch Shift:</span>
+              <span id="hud-pitch-shift" class="hud-value">1.00x</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulation Scrubbers -->
+        <div class="playback-controls">
+          <button id="btn-play-pause" class="playback-btn primary" title="Play/Pause simulation">
+            <span id="play-icon">⏸️</span> <span id="play-text">Pause</span>
+          </button>
+          <button id="btn-reset-timeline" class="playback-btn" title="Reset positions and timeline">
+            <span>🔄</span> Reset Positions
+          </button>
+          
+          <div class="speed-control">
+            <span class="speed-label">TIME SHIELD:</span>
+            <div class="speed-options">
+              <button class="speed-btn" data-speed="0.25">0.25x</button>
+              <button class="speed-btn" data-speed="0.5">0.5x</button>
+              <button class="speed-btn active" data-speed="1.0">1.0x</button>
+              <button class="speed-btn" data-speed="2.0">2.0x</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Scenario Presets & Dual Oscilloscope Telemetry -->
+      <section class="panel panel-right" aria-labelledby="telemetry-heading">
+        <h2 id="telemetry-heading" class="panel-title">TELEMETRY & PRESETS</h2>
+
+        <!-- Scenario Presets -->
+        <div class="control-group">
+          <label class="control-label">PHYSICAL CONFIGURATIONS (PRESETS)</label>
+          <div class="presets-grid">
+            <button class="preset-btn active" data-preset="preset-subsonic">Subsonic Ambulance</button>
+            <button class="preset-btn" data-preset="preset-sonic">Mach 1.0 Sonic Boom</button>
+            <button class="preset-btn" data-preset="preset-supersonic">Supersonic Jet (Mach 1.4)</button>
+            <button class="preset-btn" data-preset="preset-moving-observer">Moving Observer</button>
+            <button class="preset-btn" data-preset="preset-circular">Circular Siren Orbit</button>
+            <button class="preset-btn" data-preset="preset-relativistic">Relativistic Red/Blueshift</button>
+          </div>
+        </div>
+
+        <!-- Dual Oscilloscope -->
+        <div class="oscilloscope-container">
+          <div class="oscilloscope-header">
+            <span>📊 DUAL WAVE TELEMETRY</span>
+            <span id="lbl-active-regime" class="green-glow">SUBSONIC REGIME</span>
+          </div>
+          
+          <!-- Original Wave (Emitted) -->
+          <div class="scope-row">
+            <span class="scope-label emitted-label">Emitted Wave (Source)</span>
+            <canvas id="canvas-emitted-wave" width="280" height="40"></canvas>
+          </div>
+          
+          <!-- Doppler-Shifted Wave (Observed) -->
+          <div class="scope-row">
+            <span class="scope-label observed-label" id="lbl-observed-scope-label">Observed Wave (Doppler)</span>
+            <canvas id="canvas-observed-wave" width="280" height="40"></canvas>
+          </div>
+        </div>
+
+        <!-- Logs Terminal -->
+        <div class="logger-container">
+          <div class="logger-header">
+            <span>📟 OBSERVATORY FLIGHT LOGS</span>
+            <button id="btn-clear-logs" class="text-btn">Clear Logs</button>
+          </div>
+          <div id="logger-console" class="logger-console-body">
+            <div class="log-entry log-sys">[SYS] System running. Acoustic Doppler parameters active.</div>
+            <div class="log-entry log-phys">[PHYSICS] Speed of Sound set to 340 m/s. Base pitch: 440 Hz.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Doppler Effect Simulator • Drag Source & Observer to alter positions. Pitch synthesis is processed at 44.1kHz using Web Audio API.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
