@@ -1,0 +1,18 @@
+{
+  "title": "Doppler Effect Simulator",
+  "description": "Interactive Doppler Effect visualizer with Web Audio pitch synthesis, supersonic Mach cone modeling, redshift/blueshift, and circular siren orbits.",
+  "entry": "index.html",
+  "tags": [
+    "physics",
+    "simulation",
+    "acoustics",
+    "doppler-effect",
+    "web-audio",
+    "vanilla-js"
+  ],
+  "author": {
+    "name": "Sujal",
+    "github": "Sujal"
+  },
+  "thumbnail": "thumbnail.svg"
+}
