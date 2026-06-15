@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cache Memory Simulator - Direct & Associative Visualizer</title>
+  <meta name="description" content="An interactive cache memory simulator visualizing Direct Mapping, Set Associative, and Fully Associative mapping with address decoding (Tag, Index, Offset) and eviction algorithms (LRU, FIFO, LFU).">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <a href="../../" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <div class="logo-text">
+          <h1>Cache Memory <span class="accent-text">Simulator</span></h1>
+          <p class="subtitle">Computer Architecture Visual Education Playground</p>
+        </div>
+      </div>
+      
+      <div class="header-presets">
+        <div class="control-group">
+          <label for="locality-preset">Load Locality Scenario:</label>
+          <select id="locality-preset" class="custom-select">
+            <option value="none">-- Select Scenario Preset --</option>
+            <option value="spatial">Spatial Locality (Sequential Reads)</option>
+            <option value="temporal">Temporal Locality (Loop Reads)</option>
+            <option value="thrashing">Direct Map Thrashing (Conflict Misses)</option>
+            <option value="writeback">Write-Back vs Write-Through Demo</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid Dashboard -->
+    <main class="dashboard-grid">
+      
+      <!-- Left Column: Settings and Cache Table -->
+      <section class="left-column">
+        
+        <!-- System Configuration Card -->
+        <div class="card config-card">
+          <h2 class="card-title">System Architecture Configuration</h2>
+          <div class="config-grid">
+            <div class="config-item">
+              <label for="cache-mapping">Mapping Policy</label>
+              <select id="cache-mapping" class="custom-select-small">
+                <option value="direct">Direct Mapped</option>
+                <option value="2way" selected>2-Way Set Associative</option>
+                <option value="4way">4-Way Set Associative</option>
+                <option value="8way">8-Way Set Associative</option>
+                <option value="full">Fully Associative</option>
+              </select>
+            </div>
+
+            <div class="config-item">
+              <label for="replace-policy">Replacement Policy</label>
+              <select id="replace-policy" class="custom-select-small">
+                <option value="lru" selected>LRU (Least Recently Used)</option>
+                <option value="fifo">FIFO (First-In First-Out)</option>
+                <option value="lfu">LFU (Least Frequently Used)</option>
+                <option value="random">Random</option>
+              </select>
+            </div>
+
+            <div class="config-item">
+              <label for="write-policy">Write Policy</label>
+              <select id="write-policy" class="custom-select-small">
+                <option value="writeback" selected>Write-Back (uses Dirty Bit)</option>
+                <option value="writethrough">Write-Through (direct to RAM)</option>
+              </select>
+            </div>
+
+            <div class="config-item">
+              <label for="cache-size">Cache Size (Bytes)</label>
+              <select id="cache-size" class="custom-select-small">
+                <option value="16">16 Bytes</option>
+                <option value="32">32 Bytes</option>
+                <option value="64" selected>64 Bytes</option>
+                <option value="128">128 Bytes</option>
+              </select>
+            </div>
+
+            <div class="config-item">
+              <label for="block-size">Block (Line) Size</label>
+              <select id="block-size" class="custom-select-small">
+                <option value="4">4 Bytes</option>
+                <option value="8" selected>8 Bytes</option>
+                <option value="16">16 Bytes</option>
+              </select>
+            </div>
+
+            <div class="config-item">
+              <label for="ram-size">Main Memory Size</label>
+              <select id="ram-size" class="custom-select-small">
+                <option value="256">256 Bytes (8-bit Address)</option>
+                <option value="512" selected>512 Bytes (9-bit Address)</option>
+                <option value="1024">1 KB (10-bit Address)</option>
+              </select>
+            </div>
+          </div>
+          <button id="btn-reconfigure" class="btn btn-primary btn-full mt-12">Apply &amp; Reset Cache</button>
+        </div>
+
+        <!-- Address Breakdown Card -->
+        <div class="card address-card">
+          <h2 class="card-title">CPU Address Bit Decoding</h2>
+          
+          <div class="address-visualizer">
+            <!-- Dynamically sized fields -->
+            <div id="bit-field-tag" class="bit-field tag-field">
+              <span class="field-label">TAG</span>
+              <span id="bits-tag" class="field-bits">00000</span>
+              <span id="bits-tag-len" class="field-len">5 bits</span>
+            </div>
+            <div id="bit-field-index" class="bit-field index-field">
+              <span class="field-label">INDEX</span>
+              <span id="bits-index" class="field-bits">00</span>
+              <span id="bits-index-len" class="field-len">2 bits</span>
+            </div>
+            <div id="bit-field-offset" class="bit-field offset-field">
+              <span class="field-label">OFFSET</span>
+              <span id="bits-offset" class="field-bits">000</span>
+              <span id="bits-offset-len" class="field-len">3 bits</span>
+            </div>
+          </div>
+
+          <div class="address-formulas">
+            <div class="formula-row">
+              <span class="formula-name">Total Address Length:</span>
+              <span id="formula-total-bits" class="formula-val">9 bits</span>
+            </div>
+            <div class="formula-row">
+              <span class="formula-name">Offset Bits:</span>
+              <span id="formula-offset-bits" class="formula-val">log₂ (Block Size 8) = 3 bits</span>
+            </div>
+            <div class="formula-row" id="formula-index-row">
+              <span class="formula-name">Index (Set) Bits:</span>
+              <span id="formula-index-bits" class="formula-val">log₂ (Sets Count 4) = 2 bits</span>
+            </div>
+            <div class="formula-row">
+              <span class="formula-name">Tag Bits:</span>
+              <span id="formula-tag-bits" class="formula-val">9 - 3 - 2 = 4 bits</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cache Memory Grid Representation -->
+        <div class="card cache-table-card">
+          <div class="table-header-row">
+            <h2 class="card-title">Cache Memory Layout</h2>
+            <div class="legend-indicators">
+              <span class="legend-color clean"></span><span>Clean Block</span>
+              <span class="legend-color dirty"></span><span>Dirty Block (Write-Back)</span>
+            </div>
+          </div>
+          
+          <div class="table-wrapper">
+            <table id="cache-table" class="custom-table">
+              <thead>
+                <!-- Populated dynamically -->
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Interactive CPU and Main Memory Scroll -->
+      <section class="right-column">
+        
+        <!-- Live Statistics Panel -->
+        <div id="stats-panel" class="stats-panel-card card cyan-gradient">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Total Requests</span>
+              <span id="stat-total" class="stat-num">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Hits</span>
+              <span id="stat-hits" class="stat-num text-success">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Misses</span>
+              <span id="stat-misses" class="stat-num text-danger">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Hit Rate</span>
+              <span id="stat-rate" class="stat-num text-cyan">0.0%</span>
+            </div>
+          </div>
+          <div class="progress-bar-container">
+            <div id="hit-progress-bar" class="progress-bar-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- CPU Action Control Panel -->
+        <div class="card action-card">
+          <h2 class="card-title">Interactive CPU Access</h2>
+          
+          <!-- Single access input -->
+          <div class="cpu-access-bar">
+            <div class="input-item">
+              <label for="address-input">Memory Address</label>
+              <div class="address-input-wrapper">
+                <span class="prefix">0x</span>
+                <input type="text" id="address-input" maxlength="4" value="00" placeholder="e.g. 2C">
+              </div>
+            </div>
+            <div class="input-item">
+              <label for="write-data-input">Write Data Value (Optional)</label>
+              <input type="text" id="write-data-input" maxlength="2" placeholder="e.g. FF">
+            </div>
+            <div class="access-buttons">
+              <button id="btn-read" class="btn btn-secondary flex-1">Read Address</button>
+              <button id="btn-write" class="btn btn-secondary flex-1">Write Address</button>
+            </div>
+          </div>
+
+          <!-- Multi access stream scheduler -->
+          <div class="access-stream-card mt-16">
+            <label for="stream-input">Or Queue Custom Access Stream (Comma-separated addresses):</label>
+            <textarea id="stream-input" placeholder="e.g. R:00, W:04=FF, R:08, R:00, R:20"></textarea>
+            
+            <div class="stream-controls">
+              <button id="btn-prev-step" class="btn btn-control" title="Step backward">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+              </button>
+              <button id="btn-toggle-play" class="btn btn-primary flex-1" title="Play Stream">
+                <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <svg id="pause-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                <span>Run Stream</span>
+              </button>
+              <button id="btn-next-step" class="btn btn-control" title="Step forward">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+              </button>
+              <button id="btn-reset" class="btn btn-control" title="Reset stats">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+              </button>
+            </div>
+            
+            <div id="stream-progress" class="stream-progress-label">No stream running</div>
+          </div>
+        </div>
+
+        <!-- Log Output Console -->
+        <div class="card log-card">
+          <div class="log-header">
+            <h3 class="card-title">Access Telemetry Logs</h3>
+            <button id="btn-clear-logs" class="btn btn-small">Clear Logs</button>
+          </div>
+          <div id="log-console" class="console">
+            <div class="log-entry system">Simulator ready. Adjust cache mapping or load a preconfigured access stream scenario.</div>
+          </div>
+        </div>
+
+        <!-- Main Memory buffer visual representation -->
+        <div class="card ram-card">
+          <h2 class="card-title">Main Memory blocks (RAM)</h2>
+          <p class="alert-info-message">Scrollable list of RAM data blocks. Highlighted cells represent blocks currently mapped in Cache.</p>
+          <div id="ram-view" class="ram-view-grid">
+            <!-- Filled dynamically -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Section: Theory & Education -->
+    <section class="theory-section card">
+      <h3 class="section-title">Educational Resources & Cache Theory</h3>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <h4>Cache Mapping Techniques</h4>
+          <p>
+            Main memory block sizes are larger than cache capacity. Mapping strategies resolve where blocks sit in the cache:
+          </p>
+          <ul>
+            <li><strong>Direct Mapping:</strong> Each RAM block maps to one designated cache line slot. Easy to design, but prone to **conflict thrashing** if multiple active memory blocks share the same cache index.</li>
+            <li><strong>Fully Associative:</strong> Any RAM block can sit in any cache slot. Eliminates conflict misses, but requires expensive parallel lookup comparators to scan every tag simultaneously.</li>
+            <li><strong>Set Associative:</strong> Compromise mapping. The cache has sets of $N$ lines. A RAM block maps to a designated set, but can sit in any line within that set.</li>
+          </ul>
+        </div>
+
+        <div class="theory-card">
+          <h4>Eviction Replacement Policies</h4>
+          <p>
+            When a new block is loaded into an associative cache set and all slots are full, an existing block must be evicted:
+          </p>
+          <ul>
+            <li><strong>LRU (Least Recently Used):</strong> Tracks access history and discards the block that hasn't been accessed for the longest period.</li>
+            <li><strong>FIFO (First-In First-Out):</strong> Evicts the block that has been residing inside the cache for the longest time, regardless of usage frequency.</li>
+            <li><strong>LFU (Least Frequently Used):</strong> Evicts the block with the lowest access count inside the current cache sequence.</li>
+          </ul>
+        </div>
+
+        <div class="theory-card">
+          <h4>Cache Write Policies</h4>
+          <p>
+            Determines how the CPU writes data back to main memory:
+          </p>
+          <ul>
+            <li><strong>Write-Through:</strong> Updates both the cache block and the main memory block immediately. Slow write performance, but memory data matches cache at all times.</li>
+            <li><strong>Write-Back:</strong> Updates only the cache block. A **Dirty Bit** is set to `1`. The actual memory update is deferred until that cache line is evicted, offering fast write times.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Main JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
