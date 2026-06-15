@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Tracker Pro // Competitive Gamified Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" width="32" height="32">
+          <polygon points="16,4 4,12 16,20 28,12" fill="none" stroke="var(--primary)" stroke-width="2.5" />
+          <polygon points="4,12 16,20 16,28 4,20" fill="none" stroke="var(--secondary)" stroke-width="2" />
+          <polygon points="28,12 16,20 16,28 28,20" fill="none" stroke="var(--secondary)" stroke-width="2" />
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">TRACKER PRO</span>
+          <span class="brand-sub">// Dev Workspace</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="dashboard">
+          <span class="nav-icon">📊</span> Dashboard Overview
+        </button>
+        <button class="nav-btn" data-tab="logs">
+          <span class="nav-icon">📝</span> Challenge Registry
+        </button>
+        <button class="nav-btn" data-tab="playlists">
+          <span class="nav-icon">📂</span> Study Playlists
+        </button>
+        <button class="nav-btn" data-tab="analytics">
+          <span class="nav-icon">📈</span> Deep Analytics
+        </button>
+      </nav>
+
+      <!-- User XP Level Telemetry -->
+      <div class="user-profile-section">
+        <div class="level-badge">LEVEL <span id="val-user-level">1</span></div>
+        <div class="xp-bar-container">
+          <div class="xp-bar" id="val-xp-bar" style="width: 0%;"></div>
+        </div>
+        <div class="xp-label"><span id="val-curr-xp">0</span> / <span id="val-next-xp">100</span> XP</div>
+      </div>
+
+      <!-- Sidebar Streaks metrics -->
+      <div class="sidebar-metric-card">
+        <div class="sm-row">
+          <span class="sm-label">Active Streak</span>
+          <span class="sm-value flame-text" id="val-streak-count">0 days</span>
+        </div>
+        <div class="sm-row">
+          <span class="sm-label">Streak Freezes</span>
+          <span class="sm-value" id="val-freezes-count">❄️ 1 active</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="sidebar-footer">
+        <button id="btn-sync-simulation" class="btn btn-accent btn-full">
+          🔄 Sync Submissions
+        </button>
+        <div class="footer-btn-row">
+          <button id="btn-import-db" class="btn btn-secondary btn-half">Import</button>
+          <button id="btn-export-db" class="btn btn-secondary btn-half">Export</button>
+        </div>
+        <button id="btn-theme-toggle" class="btn btn-secondary btn-full">🌓 Theme Toggle</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="workspace">
+      <!-- Dynamic Workspace Tab Content Pages -->
+
+      <!-- PAGE 1: DASHBOARD -->
+      <section id="tab-dashboard" class="tab-page">
+        <header class="page-header">
+          <h1 class="page-title">Developer Dashboard</h1>
+          <button class="btn btn-primary" onclick="openAddChallengeModal()">+ Log Challenge</button>
+        </header>
+
+        <!-- KPI Grid Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Solved Problems</span>
+            <span class="kpi-value" id="val-total-solved">0</span>
+          </div>
+          <div class="kpi-card text-easy">
+            <span class="kpi-label">Easy Solved</span>
+            <span class="kpi-value" id="val-easy-solved">0</span>
+          </div>
+          <div class="kpi-card text-medium">
+            <span class="kpi-label">Medium Solved</span>
+            <span class="kpi-value" id="val-medium-solved">0</span>
+          </div>
+          <div class="kpi-card text-hard">
+            <span class="kpi-label">Hard Solved</span>
+            <span class="kpi-value" id="val-hard-solved">0</span>
+          </div>
+        </div>
+
+        <div class="dashboard-charts-row">
+          <!-- Platform Doughnut Graph -->
+          <div class="chart-card flex-2">
+            <div class="card-header">Platform Distribution Ratio</div>
+            <div class="chart-content">
+              <svg id="svg-doughnut-platform" viewBox="0 0 200 200" width="100%" height="200"></svg>
+              <div class="chart-legend" id="doughnut-legend"></div>
+            </div>
+          </div>
+          <!-- Difficulty Radial Dials -->
+          <div class="chart-card flex-1">
+            <div class="card-header">Difficulty Targets</div>
+            <div class="radial-dials-container">
+              <div class="radial-dial-group">
+                <svg viewBox="0 0 36 36" class="radial-svg" width="60" height="60">
+                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path id="radial-easy" class="circle-fill stroke-easy" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="dial-label">Easy</span>
+              </div>
+              <div class="radial-dial-group">
+                <svg viewBox="0 0 36 36" class="radial-svg" width="60" height="60">
+                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path id="radial-medium" class="circle-fill stroke-medium" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="dial-label">Medium</span>
+              </div>
+              <div class="radial-dial-group">
+                <svg viewBox="0 0 36 36" class="radial-svg" width="60" height="60">
+                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path id="radial-hard" class="circle-fill stroke-hard" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="dial-label">Hard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges / Achievements -->
+        <div class="achievements-section">
+          <div class="card-header">Consistency Achievements &amp; Badges</div>
+          <div class="badges-grid" id="badges-grid-container">
+            <!-- Dynamic locked/unlocked achievements -->
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: LOGS REGISTRY -->
+      <section id="tab-logs" class="tab-page hidden">
+        <header class="page-header">
+          <h1 class="page-title">Challenge Registry</h1>
+          <button class="btn btn-primary" onclick="openAddChallengeModal()">+ Log Challenge</button>
+        </header>
+
+        <!-- Search and filters -->
+        <div class="filters-panel">
+          <input type="text" id="search-input" class="form-control" placeholder="Search by title, topic tag...">
+          <select id="filter-platform" class="form-control">
+            <option value="">All Platforms</option>
+            <option value="LeetCode">LeetCode</option>
+            <option value="Codeforces">Codeforces</option>
+            <option value="HackerRank">HackerRank</option>
+            <option value="GeeksforGeeks">GeeksforGeeks</option>
+            <option value="Custom">Custom</option>
+          </select>
+          <select id="filter-difficulty" class="form-control">
+            <option value="">All Difficulties</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+          <select id="sort-order" class="form-control">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="title">By Title</option>
+          </select>
+        </div>
+
+        <!-- Scrollable logs grid or table -->
+        <div class="logs-container">
+          <table id="logs-table">
+            <thead>
+              <tr>
+                <th>Challenge Title</th>
+                <th width="150">Platform</th>
+                <th width="110">Difficulty</th>
+                <th width="140">Topic</th>
+                <th width="120">Date</th>
+                <th width="120">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="logs-tbody">
+              <!-- Logs populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PAGE 3: STUDY PLAYLISTS -->
+      <section id="tab-playlists" class="tab-page hidden">
+        <header class="page-header">
+          <h1 class="page-title">Study Playlists</h1>
+          <button class="btn btn-primary" onclick="openAddPlaylistModal()">+ Create Playlist</button>
+        </header>
+
+        <div class="playlists-grid" id="playlists-grid-container">
+          <!-- Playlists rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- PAGE 4: ANALYTICS -->
+      <section id="tab-analytics" class="tab-page hidden">
+        <header class="page-header">
+          <h1 class="page-title">Solving Analytics</h1>
+        </header>
+
+        <div class="analytics-charts-grid">
+          <!-- Weekly Coding Volume path graph -->
+          <div class="chart-card">
+            <div class="card-header">Weekly Solving Volume Velocity</div>
+            <div class="chart-content vertical-chart">
+              <svg id="svg-line-velocity" viewBox="0 0 500 200" width="100%" height="200">
+                <!-- Grid background and path plotted dynamically -->
+              </svg>
+            </div>
+          </div>
+          <!-- Platform metrics analysis list -->
+          <div class="chart-card">
+            <div class="card-header">Platform Summary Statistics</div>
+            <div class="stats-table-container">
+              <table class="stats-table">
+                <thead>
+                  <tr>
+                    <th>Platform</th>
+                    <th>Problems</th>
+                    <th>Average Difficulty</th>
+                    <th>Level Score</th>
+                  </tr>
+                </thead>
+                <tbody id="platform-stats-tbody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Detail drawer view overlay -->
+  <div id="drawer-challenge-detail" class="detail-drawer hidden">
+    <div class="drawer-header">
+      <span class="drawer-title" id="detail-title">Problem Title</span>
+      <button class="btn-close" onclick="closeDetailDrawer()">×</button>
+    </div>
+    <div class="drawer-body">
+      <div class="detail-meta">
+        <span class="tag-badge" id="detail-platform">Platform</span>
+        <span class="tag-badge" id="detail-difficulty">Difficulty</span>
+        <span class="tag-badge" id="detail-topic">Topic</span>
+      </div>
+      <div class="detail-content">
+        <div class="detail-section">
+          <div class="detail-section-title">Completion Details</div>
+          <p>Completed on: <strong id="detail-date">-</strong></p>
+          <p>Time Spent: <strong id="detail-time">- mins</strong></p>
+          <p>Link: <a id="detail-link" href="#" target="_blank" class="code-link">View Submission URL</a></p>
+        </div>
+        <div class="detail-section">
+          <div class="detail-section-title">Solution Notes &amp; Code Blocks</div>
+          <pre><code id="detail-code" class="code-block">// Saved Code Snippets</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD CHALLENGE -->
+  <div id="modal-add-challenge" class="modal-wrapper hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">Log Completed Challenge</span>
+        <button class="btn-close" onclick="closeAddChallengeModal()">×</button>
+      </div>
+      <form id="form-add-challenge" class="modal-form">
+        <div class="form-group">
+          <label class="input-label">Challenge Title</label>
+          <input type="text" id="add-title" class="form-control" placeholder="e.g. Reverse Linked List" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label class="input-label">Platform</label>
+            <select id="add-platform" class="form-control" required>
+              <option value="LeetCode">LeetCode</option>
+              <option value="Codeforces">Codeforces</option>
+              <option value="HackerRank">HackerRank</option>
+              <option value="GeeksforGeeks">GeeksforGeeks</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+          <div class="form-group flex-1">
+            <label class="input-label">Difficulty</label>
+            <select id="add-difficulty" class="form-control" required>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label class="input-label">Topic / Category Tag</label>
+            <input type="text" id="add-topic" class="form-control" placeholder="e.g. DFS, Array, DP" required>
+          </div>
+          <div class="form-group flex-1">
+            <label class="input-label">Time Spent (minutes)</label>
+            <input type="number" id="add-time" class="form-control" placeholder="mins" min="1" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="input-label">Submission Link URL</label>
+          <input type="url" id="add-link" class="form-control" placeholder="e.g. https://leetcode.com/submissions/detail/...">
+        </div>
+        <div class="form-group">
+          <label class="input-label">Saved Code Block Snippet</label>
+          <textarea id="add-code" class="form-control text-area" placeholder="Paste your solution code here..."></textarea>
+        </div>
+        <div class="modal-footer-btn">
+          <button type="button" class="btn btn-secondary" onclick="closeAddChallengeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CREATE PLAYLIST -->
+  <div id="modal-add-playlist" class="modal-wrapper hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">Create Study Playlist</span>
+        <button class="btn-close" onclick="closeAddPlaylistModal()">×</button>
+      </div>
+      <form id="form-add-playlist" class="modal-form">
+        <div class="form-group">
+          <label class="input-label">Playlist Name</label>
+          <input type="text" id="playlist-name" class="form-control" placeholder="e.g. Binary Search Drills" required>
+        </div>
+        <div class="form-group">
+          <label class="input-label">Associated Topic Category Tag</label>
+          <input type="text" id="playlist-topic" class="form-control" placeholder="e.g. DP, Recursion" required>
+        </div>
+        <div class="modal-footer-btn">
+          <button type="button" class="btn btn-secondary" onclick="closeAddPlaylistModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FILE IMPORT DIALOG -->
+  <input type="file" id="db-file-input" class="hidden" accept=".json">
+
+  <script src="script.js"></script>
+</body>
+</html>
