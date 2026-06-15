@@ -11,7 +11,7 @@
     "isolation-levels",
     "concurrency-control",
     "wal-logs",
-    "education",
+   
     "vanilla-js"
   ],
   "entry": "index.html",
