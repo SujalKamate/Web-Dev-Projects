@@ -11,8 +11,7 @@
     "file-system",
     "simulation",
     "terminal",
-    "gui-explorer",
-    "vanilla-js"
+    "gui-explorer"
   ],
   "entry": "index.html",
   "thumbnail": "thumbnail.svg"
