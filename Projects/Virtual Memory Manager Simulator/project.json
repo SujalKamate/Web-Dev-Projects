@@ -6,14 +6,13 @@
     "github": "Sujal"
   },
   "tags": [
-    "education",
-    "operating-systems",
-    "computer-architecture",
-    "virtual-memory",
-    "tlb",
-    "page-replacement",
-    "simulation",
-    "vanilla-js"
+  "education",
+  "operating-systems",
+  "virtual-memory",
+  "simulation",
+  "vanilla-js",
+  "computer-architecture"
+] "vanilla-js"
   ],
   "entry": "index.html",
   "thumbnail": "thumbnail.svg"
