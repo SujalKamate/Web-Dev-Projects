@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive DSA Visualizer - A premium educational tool to visualize Linked Lists, Stacks, Queues, Binary Search Trees, and Graphs in real time with step-by-step executions.">
+  <title>Interactive DSA Visualizer | Code Lab</title>
+  
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <div class="app-layout">
+    <!-- Sidebar Control Panel -->
+    <aside class="sidebar-panel" aria-label="Controls and Code Telemetry">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fa-solid fa-brain logo-icon"></i>
+          <span>DSA Visualizer<span class="pro-tag">LAB</span></span>
+        </div>
+      </div>
+      
+      <!-- DS Type Selection Tabs -->
+      <nav class="ds-nav-tabs" aria-label="Data Structure Selector">
+        <button class="nav-tab active" data-ds="linkedlist" title="Singly Linked List">
+          <i class="fa-solid fa-link"></i> Linked List
+        </button>
+        <button class="nav-tab" data-ds="stackqueue" title="Stack and Queue">
+          <i class="fa-solid fa-layer-group"></i> Stack / Queue
+        </button>
+        <button class="nav-tab" data-ds="bst" title="Binary Search Tree">
+          <i class="fa-solid fa-network-wired"></i> BST
+        </button>
+        <button class="nav-tab" data-ds="graph" title="Graph Algorithms">
+          <i class="fa-solid fa-circle-nodes"></i> Graph
+        </button>
+      </nav>
+      
+      <!-- Operations Dynamic Controls Pane -->
+      <div class="controls-pane">
+        <!-- Tab Controls: Linked List -->
+        <div id="controls-linkedlist" class="ds-controls active">
+          <h3 class="pane-headline">Linked List Operations</h3>
+          <div class="form-row">
+            <input type="number" id="ll-value" placeholder="Val (e.g. 24)" min="0" max="99" aria-label="Node value">
+            <input type="number" id="ll-index" placeholder="Idx (e.g. 2)" min="0" aria-label="Index to insert at">
+          </div>
+          <div class="grid-actions">
+            <button id="btn-ll-insert-head" class="action-btn" title="Insert at Head"><i class="fa-solid fa-square-plus"></i> Ins Head</button>
+            <button id="btn-ll-insert-tail" class="action-btn" title="Insert at Tail"><i class="fa-solid fa-square-plus"></i> Ins Tail</button>
+            <button id="btn-ll-insert-idx" class="action-btn" title="Insert at index"><i class="fa-solid fa-plus-minus"></i> Ins Index</button>
+            <button id="btn-ll-delete-head" class="action-btn delete-btn" title="Delete from Head"><i class="fa-solid fa-trash-can"></i> Del Head</button>
+            <button id="btn-ll-delete-tail" class="action-btn delete-btn" title="Delete from Tail"><i class="fa-solid fa-trash-can"></i> Del Tail</button>
+            <button id="btn-ll-delete-idx" class="action-btn delete-btn" title="Delete from Index"><i class="fa-solid fa-trash-arrow-up"></i> Del Index</button>
+          </div>
+          <button id="btn-ll-search" class="action-btn primary-action-btn"><i class="fa-solid fa-magnifying-glass"></i> Search Node</button>
+        </div>
+        
+        <!-- Tab Controls: Stack & Queue -->
+        <div id="controls-stackqueue" class="ds-controls">
+          <h3 class="pane-headline">Stack & Queue Operations</h3>
+          <input type="number" id="sq-value" placeholder="Value (e.g. 42)" min="0" max="99" aria-label="Element Value">
+          
+          <div class="divider-text">Stack Controls (LIFO)</div>
+          <div class="form-row">
+            <button id="btn-sq-push" class="action-btn flex-1" title="Push into stack"><i class="fa-solid fa-arrow-down-long"></i> Push (Insert)</button>
+            <button id="btn-sq-pop" class="action-btn delete-btn flex-1" title="Pop from stack"><i class="fa-solid fa-arrow-up-long"></i> Pop (Remove)</button>
+          </div>
+          
+          <div class="divider-text">Queue Controls (FIFO)</div>
+          <div class="form-row">
+            <button id="btn-sq-enqueue" class="action-btn flex-1" title="Enqueue into queue"><i class="fa-solid fa-arrow-right-to-bracket"></i> Enqueue</button>
+            <button id="btn-sq-dequeue" class="action-btn delete-btn flex-1" title="Dequeue from queue"><i class="fa-solid fa-arrow-right-from-bracket"></i> Dequeue</button>
+          </div>
+        </div>
+        
+        <!-- Tab Controls: BST -->
+        <div id="controls-bst" class="ds-controls">
+          <h3 class="pane-headline">BST Operations</h3>
+          <input type="number" id="bst-value" placeholder="Val (e.g. 50)" min="0" max="99" aria-label="BST Node Value">
+          <div class="grid-actions">
+            <button id="btn-bst-insert" class="action-btn" title="Insert Node"><i class="fa-solid fa-circle-plus"></i> Insert</button>
+            <button id="btn-bst-delete" class="action-btn delete-btn" title="Delete Node"><i class="fa-solid fa-circle-minus"></i> Delete</button>
+            <button id="btn-bst-search" class="action-btn" title="Search Node"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+          </div>
+          <div class="divider-text">Recursive Traversals</div>
+          <div class="grid-actions">
+            <button id="btn-bst-trav-in" class="action-btn secondary-btn" title="Inorder traversal (Left, Root, Right)">Inorder</button>
+            <button id="btn-bst-trav-pre" class="action-btn secondary-btn" title="Preorder traversal (Root, Left, Right)">Preorder</button>
+            <button id="btn-bst-trav-post" class="action-btn secondary-btn" title="Postorder traversal (Left, Right, Root)">Postorder</button>
+            <button id="btn-bst-trav-bfs" class="action-btn secondary-btn" title="Breadth First traversal (Level Order)">Level-Order</button>
+          </div>
+        </div>
+        
+        <!-- Tab Controls: Graph -->
+        <div id="controls-graph" class="ds-controls">
+          <h3 class="pane-headline">Graph Operations</h3>
+          <div class="helper-text-box">
+            <i class="fa-solid fa-circle-info"></i> Click canvas to add node. Click a node and drag pointer to another node to construct weighted edges.
+          </div>
+          
+          <div class="form-row" style="margin-top: 10px;">
+            <input type="text" id="graph-vertex-val" placeholder="Vertex name (e.g. A)" maxlength="2" aria-label="Vertex node name">
+            <button id="btn-graph-add-vertex" class="action-btn" style="flex-shrink: 0;"><i class="fa-solid fa-plus"></i> Add Vert</button>
+          </div>
+          
+          <div class="divider-text">Traversal Algorithms</div>
+          <div class="form-row">
+            <button id="btn-graph-bfs" class="action-btn secondary-btn flex-1">BFS</button>
+            <button id="btn-graph-dfs" class="action-btn secondary-btn flex-1">DFS</button>
+          </div>
+          <div class="divider-text">Shortest Path (Source -> Target)</div>
+          <div class="form-row">
+            <input type="text" id="graph-dijkstra-source" placeholder="From (e.g. A)" maxlength="2" aria-label="Source Vertex">
+            <input type="text" id="graph-dijkstra-target" placeholder="To (e.g. B)" maxlength="2" aria-label="Target Vertex">
+          </div>
+          <button id="btn-graph-dijkstra" class="action-btn primary-action-btn"><i class="fa-solid fa-route"></i> Dijkstra Path</button>
+        </div>
+      </div>
+      
+      <!-- Telemetry Execution Log and Pseudo-code trace -->
+      <div class="telemetry-panel">
+        <!-- Tabs for Logs vs Code -->
+        <div class="telemetry-tabs">
+          <button class="tel-tab active" data-tel="code">Pseudo-code</button>
+          <button class="tel-tab" data-tel="console">Execution Log</button>
+        </div>
+        
+        <!-- Tab Content: Code Trace -->
+        <div id="telemetry-code" class="telemetry-content active">
+          <div class="code-trace-viewport" id="pseudo-code-viewer">
+            <!-- Populated dynamically via JS -->
+            <pre class="trace-line">No active operation...</pre>
+          </div>
+        </div>
+        
+        <!-- Tab Content: Execution Console -->
+        <div id="telemetry-console" class="telemetry-content">
+          <div class="terminal-log" id="console-logger">
+            <p class="log-entry system">> Visualizer kernel initialized.</p>
+            <p class="log-entry">> Loaded sandbox databases.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Algorithmic Complexity Profile -->
+      <div class="complexity-card">
+        <h4 class="card-headline-sm">Complexity Telemetry</h4>
+        <table class="complexity-table">
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>Time</th>
+              <th>Space</th>
+            </tr>
+          </thead>
+          <tbody id="complexity-tbody">
+            <!-- Loaded dynamically based on active DS -->
+          </tbody>
+        </table>
+      </div>
+    </aside>
+
+    <!-- Main Visualizer Workspace Area -->
+    <main class="workspace-area">
+      <!-- Toolbar Controls -->
+      <header class="workspace-toolbar">
+        <div class="toolbar-left">
+          <h1 class="active-ds-title" id="active-ds-headline">Singly Linked List</h1>
+          <span class="status-tag" id="status-label">Standby</span>
+        </div>
+        
+        <div class="toolbar-right">
+          <!-- Playback controls -->
+          <div class="playback-controls">
+            <button id="btn-play-pause" class="playback-btn" title="Play / Pause Animation (Space)">
+              <i class="fa-solid fa-play"></i>
+            </button>
+            <button id="btn-step" class="playback-btn" title="Step Forward">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+            
+            <span class="slider-label">Speed:</span>
+            <input type="range" id="animation-speed" min="100" max="2000" value="800" step="100" title="Animation speed slider">
+          </div>
+          
+          <div class="divider-pipe"></div>
+          
+          <!-- System buttons -->
+          <div class="system-actions">
+            <button id="btn-seed" class="sys-btn" title="Seed Sample Data"><i class="fa-solid fa-wand-magic-sparkles"></i> Seed</button>
+            <button id="btn-clear" class="sys-btn delete-btn" title="Clear State"><i class="fa-solid fa-trash-arrow-up"></i> Clear</button>
+            <button id="btn-toggle-theme" class="sys-btn theme-toggle" title="Toggle Light/Dark Mode"><i class="fa-solid fa-moon"></i></button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Drawing Canvas Area -->
+      <div class="canvas-wrapper">
+        <div class="interactive-overlay-msg" id="interactive-canvas-guide" style="display: none;">
+          Drag nodes to reposition them.
+        </div>
+        
+        <!-- Interactive SVG node canvas -->
+        <svg id="dsa-svg-canvas" width="100%" height="100%" viewBox="0 0 900 550" preserveAspectRatio="xMidYMid meet">
+          <!-- Grid Background Patterns -->
+          <defs>
+            <pattern id="grid-pattern" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1"/>
+            </pattern>
+            <marker id="arrow" viewBox="0 0 10 10" refX="28" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor"/>
+            </marker>
+            <marker id="arrow-graph" viewBox="0 0 10 10" refX="26" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="currentColor"/>
+            </marker>
+            <filter id="node-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.15"/>
+            </filter>
+            <filter id="glow-active" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+          
+          <!-- Grid Background Rect -->
+          <rect id="canvas-grid-bg" width="100%" height="100%" fill="url(#grid-pattern)" />
+          
+          <!-- Drawing layers in SVG -->
+          <g id="edges-layer"></g>
+          <g id="nodes-layer"></g>
+          <g id="ui-temp-layer"></g> <!-- Floating items, temp arrows -->
+        </svg>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
