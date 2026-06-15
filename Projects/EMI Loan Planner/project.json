@@ -1,0 +1,17 @@
+{
+  "title": "EMI Loan Planner",
+  "description": "A premium personal finance workspace to calculate EMI, simulate regular/one-time prepayments, track interest savings, and export amortization schedules.",
+  "entry": "index.html",
+  "tags": [
+    "finance",
+    "calculator",
+    "loan-planner",
+    "data-visualization",
+    "canvas"
+  ],
+  "author": {
+    "name": "Sujal Kamate",
+    "github": "SujalKamate"
+  },
+  "thumbnail": "thumbnail.svg"
+}
