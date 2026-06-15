@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CLIMATE-OS // Climate Change Dashboard - Premium geophysics terminal for greenhouse radiation physics, albedo feedbacks, and sea level rise.">
+  <title>CLIMATE-OS // Climate Change Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="climate-os-theme">
+  <!-- Climate HUD grid background -->
+  <div class="hud-grid-overlay"></div>
+
+  <div class="app-container" id="shake-envelope">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="logo-icon">🌍</span>
+        <div>
+          <h1>CLIMATE-OS <span class="logo-sub">// GLOBAL SIMULATOR</span></h1>
+          <p class="subtitle">Greenhouse Radiative Equilibrium & Multi-Sector Mitigation Workbench</p>
+        </div>
+      </div>
+      
+      <div class="header-status-bar">
+        <!-- Timeline Year Slider -->
+        <div class="timeline-group">
+          <label for="slider-year">Simulation Year:</label>
+          <input type="range" id="slider-year" min="1850" max="2100" value="2026" class="glass-range timeline-slider">
+          <span id="telemetry-year" class="font-mono year-badge">2026</span>
+        </div>
+
+        <div class="header-metric temp font-mono">
+          <span class="label">ANOMALY:</span> <span id="telemetry-temp-anomaly">+1.20 °C</span>
+        </div>
+
+        <div class="header-metric co2 font-mono">
+          <span class="label">CO2:</span> <span id="telemetry-co2-val">421 ppm</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout Grid -->
+    <main class="main-grid">
+
+      <!-- Left Column: Parameters & Policy Switchboard -->
+      <section class="controls-column">
+        <!-- Greenhouse Parameters -->
+        <div class="glass-card parameters-card">
+          <div class="card-header">
+            <h3>Emissions Forcing</h3>
+            <span class="badge tech-badge">GHG PARAMETERS</span>
+          </div>
+
+          <div class="control-sliders">
+            <!-- Fossil Reliance -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="label">Fossil Fuel Reliance</span>
+                <span class="value" id="val-fossil">82%</span>
+              </div>
+              <input type="range" id="slider-fossil" min="10" max="100" value="82" class="glass-range">
+            </div>
+
+            <!-- Deforestation -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="label">Deforestation Rate</span>
+                <span class="value" id="val-deforest">45%</span>
+              </div>
+              <input type="range" id="slider-deforest" min="0" max="100" value="45" class="glass-range">
+            </div>
+
+            <!-- Solar Flux Variance -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <span class="label">Solar Flux Variance</span>
+                <span class="value" id="val-solar">0.0 W/m²</span>
+              </div>
+              <input type="range" id="slider-solar" min="-30" max="30" value="0" class="glass-range">
+            </div>
+          </div>
+        </div>
+
+        <!-- Policy Mitigation Switchboard -->
+        <div class="glass-card policies-card">
+          <div class="card-header">
+            <h3>Mitigation Policies</h3>
+            <span class="badge tech-badge">BEND THE CURVE</span>
+          </div>
+          
+          <div class="policy-switchboard">
+            <!-- Renewable Transition -->
+            <div class="toggle-group-row">
+              <div>
+                <strong class="policy-title">Renewable Transition</strong>
+                <p class="policy-desc">Replace fossil fuel grids with solar, wind, & nuclear.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="policy-renewables">
+                <span class="slider-toggle"></span>
+              </label>
+            </div>
+
+            <!-- Carbon Tax -->
+            <div class="toggle-group-row">
+              <div>
+                <strong class="policy-title">Global Carbon Tax</strong>
+                <p class="policy-desc">Enforce standard carbon credits pricing per metric ton.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="policy-carbontax">
+                <span class="slider-toggle"></span>
+              </label>
+            </div>
+
+            <!-- EV Infrastructure -->
+            <div class="toggle-group-row">
+              <div>
+                <strong class="policy-title">EV Infrastructure</strong>
+                <p class="policy-desc">Subsidize transport electrification and light-rail transit.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="policy-evs">
+                <span class="slider-toggle"></span>
+              </label>
+            </div>
+
+            <!-- Reforestation -->
+            <div class="toggle-group-row">
+              <div>
+                <strong class="policy-title">Afforestation Projects</strong>
+                <p class="policy-desc">Restore continental rainforest biomes & green belts.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="policy-reforest">
+                <span class="slider-toggle"></span>
+              </label>
+            </div>
+
+            <!-- Direct Carbon Capture -->
+            <div class="toggle-group-row">
+              <div>
+                <strong class="policy-title">Direct Air Capture (DAC)</strong>
+                <p class="policy-desc">Deploy chemical carbon filtration grids.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="policy-dacc">
+                <span class="slider-toggle"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="operation-buttons font-mono">
+            <button id="btn-play" class="glow-button" title="Autoplay timeline from 1850 to 2100">▶ Play Simulation</button>
+            <button id="btn-reset" class="glow-button secondary" title="Reset emissions to baseline scenario">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Center Column: Model viewports -->
+      <section class="viewport-column">
+        <!-- Greenhouse Energy Balance Viewport -->
+        <div class="glass-card energy-card">
+          <div class="card-header">
+            <h3>Planetary Energy Balance Model</h3>
+            <span class="badge tech-badge" id="albedo-indicator">ALBEDO: 0.30</span>
+          </div>
+
+          <div class="canvas-container energy-container">
+            <canvas id="energy-canvas"></canvas>
+            
+            <div class="energy-labels font-mono">
+              <div>Incoming Solar: <span id="telemetry-solar-in">340.2 W/m²</span></div>
+              <div>Reflected Solar: <span id="telemetry-solar-out">102.1 W/m²</span></div>
+              <div>Greenhouse Trapping: <span id="telemetry-thermal-trap">238.1 W/m²</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Impacts Viewport -->
+        <div class="glass-card impact-card">
+          <div class="card-header">
+            <h3>Local Ecosystem & Coastal Impacts</h3>
+            <div class="impact-toggle-tabs">
+              <button class="tab-btn active" id="tab-coastal">Coastal City</button>
+              <button class="tab-btn" id="tab-polar">Polar Glacier</button>
+            </div>
+          </div>
+
+          <div class="canvas-container impact-container">
+            <canvas id="impact-canvas"></canvas>
+            
+            <div class="impact-telemetry font-mono">
+              <div id="impact-val-1">Sea Level Rise: <span>+18.5 cm</span></div>
+              <div id="impact-val-2">Ecosystem Risk: <span class="text-warning">Moderate</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Projections Charts & Alert warnings logs -->
+      <section class="telemetry-column">
+        <!-- Projections Chart -->
+        <div class="glass-card chart-card">
+          <div class="card-header">
+            <h3>Projections Timeline (1850 - 2100)</h3>
+            <div class="chart-layer-tabs">
+              <button class="tab-btn active" id="tab-chart-temp">Temp / CO2</button>
+              <button class="tab-btn" id="tab-chart-glacier">Ice / Sea</button>
+            </div>
+          </div>
+
+          <div class="canvas-container chart-container">
+            <canvas id="chart-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- NWS Tipping Points Alert Log -->
+        <div class="glass-card alerts-card">
+          <div class="card-header">
+            <h3>NWS Planetary Tipping Points</h3>
+          </div>
+          
+          <div class="alerts-list" id="alerts-log">
+            <!-- Dynamically populated tipping point alerts -->
+            <div class="alert-item safe">
+              <span class="alert-icon">✅</span>
+              <div>
+                <strong>Tipping Points Dormant:</strong> Global heating anomaly remains below the 1.5°C Paris Agreement limit. Planetary feed is stable.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>CLIMATE-OS // RAD BALANCE</span>
+        <span class="dot-separator">•</span>
+        <span>STEFAN-BOLTZMANN EQUILIBRIUM SOLVER</span>
+      </div>
+      <div class="footer-right">
+        <span>Ice-Albedo Positive Feedback Loop</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

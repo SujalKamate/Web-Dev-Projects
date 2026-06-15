@@ -1,0 +1,18 @@
+{
+  "title": "Climate Change Dashboard",
+  "description": "An interactive geophysics laboratory simulating greenhouse radiative balance, ice-albedo feedback loops, coastal sea-level rise, and policy mitigation outcomes.",
+  "entry": "index.html",
+  "tags": [
+    "climate",
+    "physics-simulation",
+    "greenhouse-effect",
+    "sustainability",
+    "vanilla-js",
+    "education"
+  ],
+  "author": {
+    "name": "Antigravity AI",
+    "github": "antigravity-deepmind"
+  },
+  "thumbnail": "thumbnail.svg"
+}
