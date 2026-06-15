@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deadlock Detection Simulator - RAG & Banker's Algorithm</title>
+  <meta name="description" content="An interactive simulator for deadlock detection in operating systems, featuring interactive Resource Allocation Graph (RAG) building, visual cycle detection, and step-by-step Banker's Detection Algorithm execution.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <a href="../../" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <div class="logo-text">
+          <h1>Deadlock Detection <span class="accent-text">Simulator</span></h1>
+          <p class="subtitle">Operating Systems Interactive Learning Playground</p>
+        </div>
+      </div>
+      
+      <div class="header-controls">
+        <div class="control-group">
+          <label for="scenario-preset">Load Preset Scenario:</label>
+          <select id="scenario-preset" class="custom-select">
+            <option value="single-safe">Single-Instance Resource: Safe (No Cycle)</option>
+            <option value="single-deadlock" selected>Single-Instance Resource: Deadlocked (Cycle)</option>
+            <option value="multi-safe">Multi-Instance Resource: Safe (Cycle, but Resolvable)</option>
+            <option value="multi-deadlock">Multi-Instance Resource: Deadlocked (No simple resolution)</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <main class="dashboard-grid">
+      
+      <!-- Left Column: Visual Graph Workspace / Matrix Table -->
+      <section class="workspace-card card">
+        <div class="card-tabs">
+          <button id="tab-graph" class="tab-btn active" onclick="switchTab('graph')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            Resource Allocation Graph (RAG)
+          </button>
+          <button id="tab-matrix" class="tab-btn" onclick="switchTab('matrix')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+            Matrix State (Multiple Instances)
+          </button>
+        </div>
+
+        <!-- Tab Content: RAG Visualizer -->
+        <div id="content-graph" class="tab-content active">
+          <div class="workspace-toolbar">
+            <div class="toolbar-mode-selector">
+              <button id="tool-process" class="tool-btn" title="Click on the canvas to place a Process node">
+                <span class="icon">P</span> + Process
+              </button>
+              <button id="tool-resource" class="tool-btn" title="Click on the canvas to place a Resource node">
+                <span class="icon">R</span> + Resource
+              </button>
+              <button id="tool-edge" class="tool-btn" title="Drag from Process to Resource (Request) or Resource to Process (Allocation)">
+                <span class="icon">&rarr;</span> Link Nodes
+              </button>
+              <button id="tool-delete" class="tool-btn" title="Click a node or edge to remove it">
+                <span class="icon">&times;</span> Delete Mode
+              </button>
+            </div>
+            
+            <div class="toolbar-actions">
+              <button id="btn-arrange" class="action-btn" title="Reposition nodes automatically using simple layouts">
+                Auto-Arrange
+              </button>
+              <button id="btn-clear-graph" class="action-btn danger-btn" title="Delete all nodes and edges">
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive SVG Area -->
+          <div class="canvas-wrapper">
+            <div id="canvas-overlay" class="canvas-hint">Tool Mode: Select a tool above to start designing. Drag nodes to move.</div>
+            <svg id="rag-canvas" width="100%" height="480">
+              <defs>
+                <!-- Arrow Markers for directed links -->
+                <marker id="arrow-allocation" viewBox="0 0 10 10" refX="21" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--cyan-accent)" />
+                </marker>
+                <marker id="arrow-request" viewBox="0 0 10 10" refX="21" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--warning-accent)" />
+                </marker>
+                <marker id="arrow-highlight" viewBox="0 0 10 10" refX="21" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--danger-accent)" />
+                </marker>
+                <marker id="arrow-temp" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M 0 2 L 6 5 L 0 8 z" fill="var(--text-muted)" />
+                </marker>
+                
+                <!-- Glow effects -->
+                <filter id="glow-danger" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <filter id="glow-safe" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <!-- Links, Nodes and interactive outlines render here -->
+              <g id="g-links"></g>
+              <g id="g-nodes"></g>
+              <line id="drag-line" class="drag-line hidden" x1="0" y1="0" x2="0" y2="0" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-temp)" />
+            </svg>
+          </div>
+
+          <div class="graph-legend">
+            <div class="legend-item">
+              <span class="legend-color p-node"></span>
+              <span>Process (P)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color r-node"></span>
+              <span>Resource (R) <small class="text-muted">(dots show instances)</small></span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-arrow alloc-arrow">&rarr;</span>
+              <span>Allocation Edge <small class="text-muted">(R &rarr; P)</small></span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-arrow req-arrow">- - &rarr;</span>
+              <span>Request Edge <small class="text-muted">(P &rarr; R)</small></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Matrix Configurator -->
+        <div id="content-matrix" class="tab-content">
+          <div class="matrix-actions">
+            <div class="add-controls">
+              <button id="btn-add-process-row" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Process Row
+              </button>
+              <button id="btn-add-resource-col" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Resource Column
+              </button>
+            </div>
+            <p class="alert-info-message">
+              Changes in this matrix layout will synchronize directly back to the graph structure. Values are editable by clicking cells.
+            </p>
+          </div>
+
+          <div class="table-container">
+            <table id="matrix-table" class="custom-table">
+              <thead>
+                <!-- Populated dynamically -->
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Control Dashboard & Execution Log -->
+      <section class="controls-column">
+        
+        <!-- Live Status / Result Panel -->
+        <div id="status-panel" class="status-panel-card card warning-gradient">
+          <div class="status-header">
+            <span class="status-label">System State</span>
+            <div id="status-badge" class="badge warning-badge">Checking...</div>
+          </div>
+          <h2 id="status-title">System Analysis Idle</h2>
+          <p id="status-description">Click Run Detection or step forward to analyze the current system state for deadlocks.</p>
+          <div id="safe-seq-container" class="safe-seq-container hidden">
+            <span class="seq-label">Sequence of Process Completion:</span>
+            <div id="safe-sequence-flow" class="seq-flow">
+              <!-- Animated sequence elements go here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulation Speed and Step Controller -->
+        <div class="card controls-card">
+          <h3 class="card-title">Simulation Controller</h3>
+          
+          <div class="control-buttons">
+            <button id="btn-prev-step" class="btn btn-control" title="Step backward one step">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+            </button>
+            
+            <button id="btn-toggle-play" class="btn btn-primary btn-control-main" title="Run full simulation automatically">
+              <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <svg id="pause-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+              <span>Run Detection</span>
+            </button>
+            
+            <button id="btn-next-step" class="btn btn-control" title="Step forward one step">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+            </button>
+
+            <button id="btn-reset" class="btn btn-secondary btn-control" title="Reset simulation state to beginning">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+            </button>
+          </div>
+
+          <div class="control-slider">
+            <div class="slider-labels">
+              <span>Simulation Speed:</span>
+              <span id="speed-value">1.0s / step</span>
+            </div>
+            <input type="range" id="sim-speed" min="200" max="3000" step="100" value="1000">
+          </div>
+
+          <!-- Dynamic Algorithm State vectors -->
+          <div class="algorithm-vectors">
+            <div class="vector-row">
+              <span class="vector-name">Available (R):</span>
+              <span id="vector-available" class="vector-values">[ 0, 0, 0 ]</span>
+            </div>
+            <div class="vector-row">
+              <span class="vector-name">Current Work:</span>
+              <span id="vector-work" class="vector-values text-cyan">[ 0, 0, 0 ]</span>
+            </div>
+            <div class="vector-row">
+              <span class="vector-name">Finished Jobs:</span>
+              <div id="vector-finish" class="vector-badges">
+                <!-- Checkboxes/Badges for P0, P1, etc. -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Log Console -->
+        <div class="card log-card">
+          <div class="log-header">
+            <h3 class="card-title">Execution Log</h3>
+            <button id="btn-clear-logs" class="btn btn-small">Clear Log</button>
+          </div>
+          <div id="log-console" class="console">
+            <div class="log-entry system">Simulator initialized. Load a preset or click nodes on the graph to draw allocation request structures.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Section: Theory & OS Learning Hub -->
+    <section class="theory-section card">
+      <h3 class="section-title">Educational Resources & Theory</h3>
+      
+      <div class="theory-grid">
+        <div class="theory-card">
+          <h4>What is a Deadlock?</h4>
+          <p>
+            A **deadlock** occurs in an operating system when a set of processes are blocked because each process is holding a resource and waiting for another resource held by some other process in the set. For a deadlock to happen, four conditions (Coffman conditions) must hold simultaneously:
+          </p>
+          <ul>
+            <li><strong>Mutual Exclusion:</strong> At least one resource must be held in a non-sharable mode.</li>
+            <li><strong>Hold & Wait:</strong> A process must hold resource allocations while waiting for requested resources.</li>
+            <li><strong>No Preemption:</strong> Resources cannot be forcibly taken from a process holding them.</li>
+            <li><strong>Circular Wait:</strong> A closed chain of processes exists, where each process holds resources requested by the next.</li>
+          </ul>
+        </div>
+
+        <div class="theory-card">
+          <h4>Resource Allocation Graph (RAG)</h4>
+          <p>
+            Deadlocks can be described precisely using a directed graph called a **Resource Allocation Graph (RAG)**:
+          </p>
+          <ul>
+            <li>Nodes are divided into <strong>Processes (circles)</strong> and <strong>Resources (rectangles)</strong>.</li>
+            <li><strong>Request Edge ($P_i \to R_j$):</strong> Process $P_i$ has requested resource $R_j$ and is currently waiting.</li>
+            <li><strong>Allocation Edge ($R_j \to P_i$):</strong> An instance of resource $R_j$ has been allocated to process $P_i$.</li>
+            <li><strong>Cycle Rule:</strong> If the graph has <em>no cycles</em>, the system is not deadlocked. If a cycle exists:
+              <ul>
+                <li>If all resources have <strong>single instances</strong>, a cycle <em>implies</em> a deadlock.</li>
+                <li>If resources have <strong>multiple instances</strong>, a cycle <em>does not</em> necessarily mean a deadlock.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="theory-card">
+          <h4>Banker's Detection Algorithm</h4>
+          <p>
+            For multiple-instance resources, we check for deadlocks by trying to find a "safe execution sequence". The algorithm maintains:
+          </p>
+          <ol>
+            <li><strong>Work:</strong> Vector of size $m$ (available resources), initialized to Available.</li>
+            <li><strong>Finish:</strong> Boolean array of size $n$, initialized to `false` for processes with non-zero allocations, and `true` for empty ones.</li>
+            <li><strong>Process Sweep:</strong> Find process $i$ such that `Finish[i] === false` and $\text{Request}_i \le \text{Work}$.</li>
+            <li><strong>Release:</strong> If found, set `Work = Work + Allocation` and `Finish[i] = true`, then repeat.</li>
+            <li><strong>Evaluation:</strong> If all finish, system is safe. If any process remains unfinished (`Finish[i] === false`), the system is **deadlocked**, and those unfinished processes form the deadlocked set.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Node Context Modals / Dialogs for Inputs -->
+    <div id="modal-resource-instances" class="modal-backdrop hidden">
+      <div class="modal card">
+        <h3>Configure Resource</h3>
+        <p>Set the number of instances for this resource:</p>
+        <div class="input-group">
+          <input type="number" id="input-resource-qty" min="1" max="5" value="1">
+          <span class="qty-hint">(Maximum of 5 units recommended for visualization)</span>
+        </div>
+        <div class="modal-buttons">
+          <button id="btn-modal-cancel" class="btn btn-secondary">Cancel</button>
+          <button id="btn-modal-confirm" class="btn btn-primary">Create Node</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
