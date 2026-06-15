@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Orbit Simulator & Keplerian Sandbox</title>
+  <meta name="description" content="Interactive 2D orbital mechanics sandbox simulating Keplerian satellite trajectories, presets (LEO, GEO, HEO, Escape), vector displays, and Kepler's Laws.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- TOP BAR HEADER -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" fill="#00f2fe" fill-opacity="0.2"></circle>
+            <ellipse cx="12" cy="12" rx="11" ry="4" stroke="#ff007f" transform="rotate(-30, 12, 12)"></ellipse>
+            <circle cx="12" cy="12" r="1.5" fill="#ffffff"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>ORBITAL FLIGHT DECK</h1>
+          <h2>2D Keplerian Mechanics Sandbox</h2>
+        </div>
+      </div>
+
+      <!-- Quick Metrics HUD -->
+      <div class="quick-hud" aria-label="Global Simulator Stats">
+        <div class="hud-stat">
+          <span class="hud-lbl">Active Satellites</span>
+          <span class="hud-val" id="hud-active-count">0</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-lbl">Selected Unit</span>
+          <span class="hud-val" id="hud-selected-name">None</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-lbl">Orbit Status</span>
+          <span class="hud-val" id="hud-orbit-status">Stable</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <!-- LEFT PANEL: Deploy Control & Parameters Config -->
+      <aside class="sidebar left-sidebar" aria-label="Satellite Deployment Settings">
+        <div class="panel-section">
+          <h3><span class="sec-num">01</span> Satellite Launcher</h3>
+          
+          <div class="control-group">
+            <div class="control-header">
+              <label for="input-altitude">Altitude (km):</label>
+              <input type="number" id="num-altitude" min="200" max="45000" value="1000" step="100">
+            </div>
+            <input type="range" id="input-altitude" min="200" max="45000" value="1000" step="100">
+            <div class="range-labels"><span>200 km (LEO)</span><span>45,000 km</span></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <label for="input-velocity">Initial Velocity (km/s):</label>
+              <input type="number" id="num-velocity" min="1.0" max="15.0" value="7.35" step="0.1">
+            </div>
+            <input type="range" id="input-velocity" min="1.0" max="15.0" value="7.35" step="0.1">
+            <div class="range-labels">
+              <span id="label-v-circ" class="calc-label">V_circ: 7.35 km/s</span>
+              <span id="label-v-esc" class="calc-label text-warning">V_esc: 10.4 km/s</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-header">
+              <label for="input-angle">Launch Pitch Angle (°):</label>
+              <input type="number" id="num-angle" min="-90" max="90" value="0" step="1">
+            </div>
+            <input type="range" id="input-angle" min="-90" max="90" value="0" step="1">
+            <div class="range-labels"><span>-90° (Downward)</span><span>0° (Horizontal)</span><span>90° (Upward)</span></div>
+          </div>
+
+          <div class="control-group">
+            <label>Satellite Trail Color:</label>
+            <div class="color-palette" role="radiogroup" aria-label="Trail colors">
+              <button class="color-swatch active" style="--swatch-color: #00f2fe;" data-color="#00f2fe" aria-label="Neon Cyan"></button>
+              <button class="color-swatch" style="--swatch-color: #ff007f;" data-color="#ff007f" aria-label="Neon Pink"></button>
+              <button class="color-swatch" style="--swatch-color: #10b981;" data-color="#10b981" aria-label="Neon Lime"></button>
+              <button class="color-swatch" style="--swatch-color: #ffcc00;" data-color="#ffcc00" aria-label="Neon Gold"></button>
+              <button class="color-swatch" style="--swatch-color: #a855f7;" data-color="#a855f7" aria-label="Neon Purple"></button>
+            </div>
+          </div>
+
+          <div class="action-grid">
+            <button id="btn-launch" class="btn btn-primary">
+              🚀 Deploy Satellite
+            </button>
+            <button id="btn-clear-trails" class="btn btn-secondary">
+              🗑️ Clear Trails
+            </button>
+            <button id="btn-remove-selected" class="btn btn-danger">
+              ❌ Remove Selected
+            </button>
+          </div>
+        </div>
+
+        <!-- Render Controls Toggles -->
+        <div class="panel-section">
+          <h3><span class="sec-num">02</span> Vector Overlays</h3>
+          <div class="toggle-list">
+            <label class="toggle-control">
+              <input type="checkbox" id="chk-toggle-vel" checked>
+              <span class="toggle-slider"></span>
+              Show Velocity Vector (Cyan)
+            </label>
+            <label class="toggle-control">
+              <input type="checkbox" id="chk-toggle-grav" checked>
+              <span class="toggle-slider"></span>
+              Show Gravity Vector (Fuchsia)
+            </label>
+            <label class="toggle-control">
+              <input type="checkbox" id="chk-toggle-grid" checked>
+              <span class="toggle-slider"></span>
+              Show Space Altitude Grid
+            </label>
+            <label class="toggle-control">
+              <input type="checkbox" id="chk-toggle-labels">
+              <span class="toggle-slider"></span>
+              Show Live Altitude Values
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER DISPLAY: Simulation Viewport -->
+      <main class="canvas-workspace">
+        <div class="canvas-container" id="canvas-container">
+          <canvas id="sim-canvas"></canvas>
+
+          <!-- Status indicator top-left -->
+          <div class="canvas-badge top-left">
+            <span class="status-dot pulse" id="status-dot"></span>
+            <span id="sim-warp-status">Time Warp: 10x</span>
+          </div>
+
+          <!-- Quick Canvas Instructions -->
+          <div class="canvas-badge bottom-left">
+            <span>🖱️ Click & Drag on space to launch a satellite visually | Scroll to Zoom</span>
+          </div>
+
+          <div class="canvas-badge bottom-right">
+            <span>Click any satellite to view detailed telemetry</span>
+          </div>
+
+          <!-- Dynamic Velocity Vector Draw Help -->
+          <div id="vector-drag-badge" class="vector-drag-badge hidden">
+            LAUNCH SECTOR DETECTED
+          </div>
+        </div>
+      </main>
+
+      <!-- RIGHT PANEL: Presets & Kepler laws educational suite -->
+      <aside class="sidebar right-sidebar" aria-label="Presets and Keplerian Suite">
+        <div class="panel-section">
+          <h3><span class="sec-num">03</span> Orbit Presets</h3>
+          <div class="presets-grid">
+            <button id="btn-preset-leo" class="btn btn-preset" title="Circular orbit close to Earth's atmosphere (~400km)">
+              LEO (Low Earth)
+            </button>
+            <button id="btn-preset-meo" class="btn btn-preset" title="Circular mid-altitude orbit (~20,200km) used by GPS">
+              MEO (GPS Altitude)
+            </button>
+            <button id="btn-preset-geo" class="btn btn-preset" title="Synchronous orbit where period matches Earth's rotation">
+              GEO (Geostationary)
+            </button>
+            <button id="btn-preset-heo" class="btn btn-preset" title="Highly elliptical orbit (Molniya) with fast perigee">
+              HEO (Molniya)
+            </button>
+            <button id="btn-preset-hohmann" class="btn btn-preset" title="Elliptical transfer path between LEO and GEO circular orbits">
+              Hohmann Transfer
+            </button>
+            <button id="btn-preset-escape" class="btn btn-preset" title="Hyperbolic trajectory exceeding Earth's escape speed">
+              Escape Trajectory
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h3><span class="sec-num">04</span> Kepler's Laws Lab</h3>
+          <div class="kepler-selector">
+            <label for="select-kepler-mode">Kepler Investigation Mode:</label>
+            <select id="select-kepler-mode">
+              <option value="none" selected>None (Standard Orbit Playroom)</option>
+              <option value="law1">1st Law: Elliptical Foci & Axes</option>
+              <option value="law2">2nd Law: Equal Areas in Equal Times</option>
+              <option value="law3">3rd Law: T² / a³ Ratio Ledger</option>
+            </select>
+          </div>
+          <!-- Dynamic Helper Text depending on Kepler Mode -->
+          <div class="kepler-helper" id="kepler-helper-text">
+            Standard simulation running. Choose a Kepler mode to highlight celestial geometry.
+          </div>
+        </div>
+
+        <!-- Telemetry dossier -->
+        <div class="panel-section flex-grow">
+          <h3><span class="sec-num">05</span> Orbit Dossier Telemetry</h3>
+          <div class="telemetry-box" id="telemetry-details">
+            <div class="tel-row">
+              <span class="tel-lbl">Selected Target</span>
+              <span class="tel-val text-primary" id="tel-name">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Current Altitude</span>
+              <span class="tel-val" id="tel-alt">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Current Velocity</span>
+              <span class="tel-val" id="tel-vel">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Eccentricity (e)</span>
+              <span class="tel-val" id="tel-ecc">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Semi-Major Axis (a)</span>
+              <span class="tel-val" id="tel-axis">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Periapsis Altitude</span>
+              <span class="tel-val" id="tel-peri">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Apoapsis Altitude</span>
+              <span class="tel-val" id="tel-apo">-</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-lbl">Orbital Period (T)</span>
+              <span class="tel-val" id="tel-period">-</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Time warp controls -->
+        <div class="panel-section">
+          <h3><span class="sec-num">06</span> Simulator Clock</h3>
+          <div class="warp-controls">
+            <button id="btn-pause-play" class="btn btn-control active" title="Pause or Resume physics calculations">
+              <span id="lbl-pause-icon">⏸️</span> <span id="lbl-pause-text">Pause</span>
+            </button>
+            <div class="select-warp-group">
+              <label for="select-warp">Time Warp:</label>
+              <select id="select-warp">
+                <option value="1">1x (Real-time)</option>
+                <option value="10" selected>10x (Normal Orbit)</option>
+                <option value="50">50x (Time Acceleration)</option>
+                <option value="100">100x (Fast Forward)</option>
+                <option value="500">500x (High Speed)</option>
+              </select>
+            </div>
+            <button id="btn-reset" class="btn btn-control reset" title="Erase orbits and revert simulator state">
+              🔄 Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Scrolling System Console Logs -->
+        <div class="panel-section" style="height: 120px; min-height: 120px;">
+          <h3><span class="sec-num">07</span> Ground Control Logs</h3>
+          <div class="console-box" id="console-logs" aria-live="polite">
+            <div class="log-line text-info">&gt; Orbital Ground Control online. Ground station active.</div>
+            <div class="log-line text-info">&gt; Systems nominal. Select an orbit preset to begin.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
