@@ -12,7 +12,7 @@
     "dijkstra-shortest-path",
     "bellman-ford",
     "graph-algorithms",
-    "simulation",
+   
     "vanilla-js"
   ],
   "entry": "index.html",
