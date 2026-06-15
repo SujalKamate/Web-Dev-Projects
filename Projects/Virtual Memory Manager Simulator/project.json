@@ -1,18 +1,17 @@
 {
   "title": "Virtual Memory Manager Simulator",
-  "description": "An interactive simulator for Virtual Memory Management, demonstrating 8-bit virtual address translations using TLB (LRU/FIFO/Clock), Page Tables (Valid/Dirty/Ref bits), physical RAM page frame mapping, page fault evictions, and detailed translation flow visualization.",
+  "description": "An interactive simulator for Virtual Memory Management, demonstrating 8-bit virtual address translations using TLB, Page Tables, page replacement, and memory mapping visualization.",
   "author": {
     "name": "Sujal",
-    "github": "Sujal"
+    "github": "SujalKamate"
   },
   "tags": [
-  "education",
-  "operating-systems",
-  "virtual-memory",
-  "simulation",
-  "vanilla-js",
-  "computer-architecture"
-] "vanilla-js"
+    "education",
+    "operating-systems",
+    "computer-architecture",
+    "virtual-memory",
+    "simulation",
+    "vanilla-js"
   ],
   "entry": "index.html",
   "thumbnail": "thumbnail.svg"
