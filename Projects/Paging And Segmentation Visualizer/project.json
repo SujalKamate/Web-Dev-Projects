@@ -1,5 +1,5 @@
 {
-  "title": "Paging and Segmentation Visualizer",
+  "title": "Paging And Segmentation Visualizer",
   "description": "An interactive visualizer demonstrating Virtual Memory address translation under Paging (using page tables, TLBs, and frame mapping) and Segmentation (using segment limits, base addresses, and bounds checking to simulate segmentation faults).",
   "author": {
     "name": "Sujal",

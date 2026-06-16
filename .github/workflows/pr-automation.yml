@@ -191,7 +191,7 @@ jobs:
                 // ── PASS: add labels, comment, then merge ─────────────────
                 await github.rest.issues.addLabels({
                   owner, repo, issue_number: prNum,
-                  labels: ['level3', "NSoC'26 Accepted", "NSoC'26", 'nsoc26'],
+                  labels: ['good first issue'],
                 }).catch(e => core.warning(`Label error: ${e.message}`));
 
                 await github.rest.issues.createComment({
@@ -231,7 +231,7 @@ jobs:
 
                 lines.push(
                   '',
-                  'Refer to [CONTRIBUTING.md](../../blob/main/CONTRIBUTING.md) for the full submission requirements.'
+                  'Refer to [CONTRIBUTING.md](https://github.com/cu-sanjay/OpenStudio/blob/main/CONTRIBUTING.md) for the full submission requirements.'
                 );
 
                 await github.rest.issues.createComment({

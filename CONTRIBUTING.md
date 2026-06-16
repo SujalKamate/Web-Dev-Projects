@@ -1,4 +1,4 @@
-# Contributing to Web Dev Projects
+# Contributing to OpenStudio
 
 Thank you for taking the time to contribute. This document is the single
 source of truth for what an acceptable contribution looks like. PRs that
