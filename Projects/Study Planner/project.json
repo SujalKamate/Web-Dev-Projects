@@ -1,0 +1,14 @@
+{
+  "title": "Study Planner",
+  "description": "A study task dashboard that organizes tasks by subject and priority and tracks completion progress, saved locally in your browser.",
+  "author": {
+    "name": "Rajshree Kavia",
+    "github": "rajshree051205-cloud"
+  },
+  "tags": [
+    "study-planner",
+    "productivity",
+    "javascript"
+  ],
+  "entry": "index.html"
+}

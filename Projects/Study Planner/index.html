@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Plan study tasks by subject and priority, check them off, and track your progress. Works offline in your browser.">
+  <title>Study Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#task-title">Skip to add task form</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Study Planner</h1>
+      <p>Write down what you need to study, rank it, and watch the list shrink.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary" aria-labelledby="summary-heading">
+      <h2 id="summary-heading" class="visually-hidden">Progress summary</h2>
+      <div class="progress-panel">
+        <div class="progress-head">
+          <span class="progress-label">Overall progress</span>
+          <span class="progress-value" id="progress-percent">0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Study progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <dl class="stats">
+        <div class="stat">
+          <dt>Total</dt>
+          <dd id="stat-total">0</dd>
+        </div>
+        <div class="stat">
+          <dt>Completed</dt>
+          <dd id="stat-completed">0</dd>
+        </div>
+        <div class="stat">
+          <dt>Pending</dt>
+          <dd id="stat-pending">0</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="layout">
+      <section class="panel form-panel" aria-labelledby="add-heading">
+        <h2 id="add-heading">Add a task</h2>
+        <form id="task-form" novalidate>
+          <div class="field">
+            <label for="task-title">Task title</label>
+            <input type="text" id="task-title" name="title" maxlength="80" autocomplete="off" placeholder="e.g. Solve past-paper questions 1 to 10" aria-describedby="title-error">
+            <p class="field-error" id="title-error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="task-subject">Subject</label>
+            <input type="text" id="task-subject" name="subject" maxlength="40" autocomplete="off" placeholder="e.g. Organic Chemistry" aria-describedby="subject-error">
+            <p class="field-error" id="subject-error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="task-priority">Priority</label>
+            <select id="task-priority" name="priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Add task</button>
+        </form>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="list-heading">
+        <div class="list-head">
+          <h2 id="list-heading">Your tasks</h2>
+          <div class="filters" role="group" aria-label="Filter tasks">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-btn" data-filter="pending" aria-pressed="false">Pending</button>
+            <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+          </div>
+        </div>
+        <ul class="task-list" id="task-list"></ul>
+        <div class="empty-state" id="empty-state" hidden>
+          <p class="empty-title" id="empty-title"></p>
+          <p class="empty-text" id="empty-text"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <p class="visually-hidden" id="status-message" role="status" aria-live="polite"></p>
+  <script src="script.js"></script>
+</body>
+</html>
