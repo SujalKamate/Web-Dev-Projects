@@ -1,0 +1,135 @@
+ body {
+  font-family: Arial, sans-serif;
+  background: #f4f1ea;
+  margin: 0;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  width: 420px;
+  padding: 35px;
+  text-align: center;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.container > p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+select {
+  width: 80%;
+  padding: 10px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  font-size: 15px;
+}
+
+.streak-card {
+  margin: 25px 0;
+  padding: 20px;
+
+  background: #ffe4ec;
+
+  border-radius: 12px;
+}
+
+.streak-card h2 {
+  margin-top: 0;
+}
+
+#streak {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 10px 0;
+
+  color: #d6336c;
+}
+
+.streak-card p {
+  margin: 0;
+}
+
+button {
+  padding: 12px 20px;
+
+  margin: 5px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+}
+
+#completeBtn {
+  background: #d6336c;
+  color: white;
+}
+
+#resetBtn {
+  background: #eeeeee;
+  color: #333;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+#message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #d6336c;
+}
+
+
+/* Study History */
+
+.history {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.history h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#historyList {
+  list-style: none;
+  padding: 0;
+}
+
+#historyList li {
+  background: #f8f8f8;
+
+  margin: 6px 0;
+
+  padding: 10px;
+
+  border-radius: 8px;
+}

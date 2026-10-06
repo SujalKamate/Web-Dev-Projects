@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Streak Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Study Streak Tracker</h1>
+
+    <p>Track your study progress and build a consistent habit.</p>
+
+    <label for="subject">What are you studying?</label>
+
+    <select id="subject">
+      <option value="">Select a subject</option>
+      <option value="Java">Java</option>
+      <option value="DSA">DSA</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+      <option value="Web Development">Web Development</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <div class="streak-card">
+      <h2>Current Streak</h2>
+
+      <div id="streak">0</div>
+
+      <p>days</p>
+    </div>
+
+    <button id="completeBtn">
+      Complete Today's Study
+    </button>
+
+    <button id="resetBtn">
+      Reset Streak
+    </button>
+
+    <p id="message"></p>
+
+    <div class="history">
+
+      <h2>Study History</h2>
+
+      <ul id="historyList"></ul>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
