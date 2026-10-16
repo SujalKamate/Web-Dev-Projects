@@ -1,479 +1,302 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>OpenStudio — Build. Learn. Contribute. Grow.</title>
-    <meta name="description" content="OpenStudio is a community-driven hub of open source web projects built with HTML, CSS, and JavaScript. Contribute, learn, and earn recognition through Hacktoberfest 2026 and more." />
-    <meta name="theme-color" content="#f5f1ea" />
-    <meta property="og:title" content="OpenStudio" />
-    <meta property="og:description" content="Build in public. Learn by doing. Grow through open source." />
-    <meta property="og:type" content="website" />
-    <link rel="icon" type="image/png" href="assets/icons/OpenStudio.png" />
-    <link rel="stylesheet" href="assets/styles.css?v=2.0.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script>
-      (function() {
-        const storedTheme = localStorage.getItem("theme");
-        let theme = "light";
-        if (storedTheme) {
-          theme = storedTheme;
-        } else {
-          const userPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          theme = userPrefersDark ? "dark" : "light";
-        }
-        document.documentElement.setAttribute("data-theme", theme);
-        const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", theme === "dark" ? "#0b0c10" : "#f5f1ea");
-        // Init cursor preference early to avoid flash
-        const cursorPref = localStorage.getItem("cursor") || "cat";
-        if (cursorPref === "default") document.documentElement.setAttribute("data-cursor", "default");
-      })();
-    </script>
-  </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="./">
-        <img src="assets/icons/OpenStudio.png" alt="OpenStudio" width="32" height="32" />
-        <span>OpenStudio</span>
-      </a>
-      <nav class="topnav" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#hall-of-fame">Hall of Fame</a>
-        <a href="#programs">Programs</a>
-        <a href="#contribute">Contribute</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">
-          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-          </svg>
-          <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-        <button id="cursor-toggle" class="cursor-toggle" aria-label="Toggle cursor style" type="button" title="Toggle cursor">
-          <span class="cursor-icon cursor-icon--cat">🐱</span>
-          <span class="cursor-icon cursor-icon--arrow">↖</span>
-        </button>
-        <a class="topnav__github" href="https://github.com/cu-sanjay/OpenStudio" rel="noopener" target="_blank">GitHub</a>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Request Response Visualizer - Interactive Computer Networks Lab</title>
+  <meta name="description" content="Explore HTTP transaction lifecycles. Build custom requests with methods, headers, and body payloads, run packet wire animations, inspect raw headers with tooltips, and play the HTTP quiz game.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <a href="../../" class="back-link" title="Back to Showcase">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <div class="logo-text">
+          <h1>HTTP Request &amp; <span class="accent-text">Response</span> Visualizer</h1>
+          <p class="subtitle">Interactive Web Protocol Playground &amp; Raw Header Inspector</p>
+        </div>
+      </div>
+      
+      <!-- Preset Scenarios -->
+      <div class="header-presets">
+        <div class="control-group">
+          <label for="request-preset">Load Request Preset:</label>
+          <select id="request-preset" class="custom-select">
+            <option value="get-html" selected>Get Home Page (GET /index.html)</option>
+            <option value="get-api">Fetch Users API (GET /api/users)</option>
+            <option value="post-login">Post User Login (POST /login)</option>
+            <option value="get-secure">Secure Admin Console (GET /admin/secure)</option>
+            <option value="get-error">Nonexistent Resource (GET /missing)</option>
+          </select>
+        </div>
+      </div>
     </header>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero">
-        <!-- Decorative background -->
-        <div class="hero__deco" aria-hidden="true">
-          <div class="hero__ellipse hero__ellipse--1"></div>
-          <div class="hero__ellipse hero__ellipse--2"></div>
-          <div class="hero__ellipse hero__ellipse--3"></div>
-          <div class="hero__dot" style="top:11%;left:7%"></div>
-          <div class="hero__dot" style="top:16%;right:11%"></div>
-          <div class="hero__dot" style="bottom:32%;left:14%"></div>
-          <div class="hero__dot" style="top:27%;left:46%"></div>
-          <div class="hero__dot" style="top:62%;right:7%"></div>
-          <div class="hero__square" style="top:13%;left:12%"></div>
-          <div class="hero__square" style="bottom:24%;right:9%;width:20px;height:20px"></div>
-          <div class="hero__square" style="top:66%;left:5%;width:18px;height:18px"></div>
-          <div class="hero__tech-card hero__tech-card--html">
-            <span class="htc__lang">HTML</span><span class="htc__sym">&lt;/&gt;</span>
-          </div>
-          <div class="hero__tech-card hero__tech-card--css">
-            <span class="htc__lang">CSS</span><span class="htc__sym">{ }</span>
-          </div>
-          <div class="hero__tech-card hero__tech-card--js">
-            <span class="htc__lang">JS</span><span class="htc__sym">( )</span>
-          </div>
-        </div>
-        <!-- Content -->
-        <div class="hero__content">
-          <div class="hero__logo-mark" aria-hidden="true">✦</div>
-          <p class="eyebrow">Open Source Community</p>
-          <h1>Build in public.<br>Grow through open source.</h1>
-          <p class="lede">
-            OpenStudio is where developers ship real projects, sharpen their craft,
-            and earn recognition — through Hacktoberfest&nbsp;2026, GSSoC, GSoC, and beyond.
-          </p>
-          <div class="hero__badges">
-            <span class="hero__badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Community Driven</span>
-            <span class="hero__badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>100% Open Source</span>
-            <span class="hero__badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Real Projects</span>
-            <span class="hero__badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Made for Devs</span>
-          </div>
-          <div class="hero__cta">
-            <a class="btn btn--primary" href="#contribute">Start Contributing</a>
-            <a class="btn btn--ghost" href="https://github.com/cu-sanjay/OpenStudio" rel="noopener" target="_blank">View on GitHub</a>
-          </div>
-          <dl class="hero__stats" aria-label="Repository stats">
-            <div><dt>Projects</dt><dd id="stat-count">—</dd></div>
-            <div><dt>Last indexed</dt><dd id="stat-updated">—</dd></div>
-            <div><dt>License</dt><dd>MIT</dd></div>
-          </dl>
-        </div>
-      </section>
+    <!-- Main Workspace Dashboard Grid -->
+    <main class="dashboard-grid">
+      
+      <!-- Left Column: Request Constructor & Live Viewport -->
+      <section class="left-column">
+        
+        <!-- HTTP Request Constructor Card -->
+        <div class="card constructor-card">
+          <h2 class="card-title">HTTP Request Constructor</h2>
+          <p class="section-desc">Customize HTTP method, path, headers, and body payloads to transmit to the mock server.</p>
+          
+          <div class="constructor-fields-grid mt-12">
+            <div class="input-field-group flex-1">
+              <label for="req-method">Method</label>
+              <select id="req-method" class="custom-select-small">
+                <option value="GET" selected>GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+                <option value="HEAD">HEAD</option>
+              </select>
+            </div>
 
-      <!-- Projects -->
-      <section id="projects" class="section">
-        <header class="section__head">
-          <h2>Projects in this repo</h2>
-          <p>Every folder under <code>Projects/</code> shows up here automatically.</p>
-        </header>
-
-        <div class="toolbar">
-          <div class="toolbar-controls">
-            <label class="search">
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10 3-5-5" />
-              </svg>
-              <input id="search" type="search" placeholder="Search projects, tags, authors…" autocomplete="off" />
-            </label>
-            <button id="shuffle-btn" class="btn btn--ghost shuffle-btn" type="button" aria-label="Random project">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 3 21 3 21 8"></polyline>
-                <line x1="4" y1="20" x2="21" y2="3"></line>
-                <polyline points="21 16 21 21 16 21"></polyline>
-                <line x1="15" y1="15" x2="21" y2="21"></line>
-                <line x1="4" y1="4" x2="9" y2="9"></line>
-              </svg>
-              <span>Surprise Me</span>
-            </button>
-            <div class="sort-select-wrapper">
-              <select id="sort-select" class="sort-select" aria-label="Sort projects">
-                <option value="default">Default</option>
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="alpha">A–Z</option>
+            <div class="input-field-group flex-2">
+              <label for="req-path">Target Path</label>
+              <select id="req-path" class="custom-select-small">
+                <option value="/" selected>/ (Home Page)</option>
+                <option value="/index.html">/index.html</option>
+                <option value="/api/users">/api/users (JSON API)</option>
+                <option value="/login">/login (Session Cookie Setup)</option>
+                <option value="/admin/secure">/admin/secure (Authorized Session)</option>
+                <option value="/missing">/missing (404 Not Found)</option>
               </select>
             </div>
           </div>
-          <div id="tagbar" class="tagbar" role="group" aria-label="Filter by tag"></div>
+
+          <!-- Headers Grid Editor -->
+          <div class="headers-editor-section mt-16">
+            <div class="headers-header">
+              <label>HTTP Headers</label>
+              <div class="header-presets-btns">
+                <button type="button" id="btn-add-json-header" class="btn btn-tiny">Add Content-Type</button>
+                <button type="button" id="btn-add-auth-header" class="btn btn-tiny">Add Authorization</button>
+              </div>
+            </div>
+            
+            <div class="headers-editor-rows mt-6" id="req-headers-container">
+              <!-- Dynamically populated rows -->
+            </div>
+            
+            <button type="button" id="btn-add-header-row" class="btn btn-secondary btn-small mt-8">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Custom Header
+            </button>
+          </div>
+
+          <!-- Collapsible Payload Request Body -->
+          <div class="request-body-section mt-16 hidden" id="req-body-panel">
+            <label for="req-body-input" class="details-label">Request Body Payload</label>
+            <textarea id="req-body-input" class="custom-textarea mt-6 font-mono" placeholder='{\n  "username": "admin",\n  "password": "password123"\n}'></textarea>
+          </div>
+
+          <button id="btn-send-request" class="btn btn-primary w-full mt-16">Send HTTP Request</button>
         </div>
 
-        <ul id="grid" class="grid" aria-live="polite"></ul>
+        <!-- Live Browser Viewport Mock Frame -->
+        <div class="card viewport-card">
+          <h2 class="card-title">Live Browser Viewport</h2>
+          <p class="section-desc">Visualizes how a client web browser renders the returning HTTP payload payload.</p>
+          
+          <div class="browser-mockup-frame mt-12">
+            <!-- Mock Address Bar -->
+            <div class="browser-address-bar">
+              <div class="window-dot red"></div>
+              <div class="window-dot yellow"></div>
+              <div class="window-dot green"></div>
+              
+              <div class="url-input-container">
+                <span class="lock-icon" id="url-lock-icon">🔓</span>
+                <span class="url-protocol">http://</span>
+                <span class="url-host">localhost:8080</span>
+                <span class="url-path" id="url-bar-path">/index.html</span>
+              </div>
 
-        <div id="pagination" class="pagination" hidden aria-label="Project pages">
-          <button id="prev-page" class="pagination__btn" type="button" aria-label="Previous page">Previous</button>
-          <span id="pagination-status" class="pagination__status">Page 1 of 1</span>
-          <button id="next-page" class="pagination__btn" type="button" aria-label="Next page">Next</button>
-        </div>
+              <div class="status-indicator-badge" id="browser-status-badge">200 OK</div>
+            </div>
 
-        <p id="empty" class="empty" hidden>
-          No projects match. Try a different search or
-          <a href="#contribute">add the first one</a>.
-        </p>
-      </section>
+            <!-- Cookie alerts row -->
+            <div class="cookie-notification-banner hidden" id="cookie-banner-box">
+              <span>🍪 Server set cookie session: <b class="font-mono" id="cookie-banner-val">session_id=...</b></span>
+              <button id="btn-dismiss-cookie" class="btn btn-tiny">Acknowledge</button>
+            </div>
 
-      <!-- Hall of Fame -->
-      <section id="hall-of-fame" class="hof-section">
-        <div class="hof-header">
-          <div class="hof-eyebrow"><span class="hof-star">✦</span><span>Hall of Fame</span></div>
-          <h2 class="hof-title">The builders behind OpenStudio</h2>
-          <p class="hof-subtitle">Click any contributor to explore their projects</p>
-        </div>
-        <div class="hof-track-wrap">
-          <div class="hof-fade hof-fade--left"></div>
-          <div class="hof-track" id="hof-track">
-            <div class="hof-loading" id="hof-loading">
-              <span class="hof-spinner"></span>
-              <span>Fetching contributors…</span>
+            <!-- Viewport Client Rendering Window -->
+            <div class="browser-render-area" id="browser-viewport-display">
+              <!-- Loaded dynamically (mock landing page or formatted JSON tree) -->
             </div>
           </div>
-          <div class="hof-fade hof-fade--right"></div>
         </div>
-        <p class="hof-hint" id="hof-hint" hidden>
-          <span id="hof-contributor-count">0</span> contributors · ranked by projects shipped
-        </p>
+
       </section>
 
-      <!-- Programs -->
-      <section id="programs" class="section">
-        <header class="section__head">
-          <h2>Programs we participate in</h2>
-          <p>Pick a program, find an issue with its label, ship the work.</p>
-        </header>
+      <!-- Right Column: Wire Canvas, Inspector, Quiz -->
+      <section class="right-column">
+        
+        <!-- Live Topology Canvas -->
+        <div class="card canvas-card">
+          <h2 class="card-title">Live Topology Canvas</h2>
+          
+          <div class="connection-canvas mt-12" id="topology-wire-container">
+            <!-- Client Node -->
+            <div class="node-box browser">
+              <div class="node-icon">💻</div>
+              <div class="node-label">Web Browser</div>
+            </div>
 
-        <div class="programs">
-          <article class="program program--hacktoberfest">
-            <div class="program__logo-wrap">
-              <img class="program__logo"
-                src="https://hacktoberfest.com/_next/static/media/logo-hacktoberfest-12--nav.0ac01b46.svg"
-                alt="Hacktoberfest" width="56" height="56"
-                onerror="this.src='https://raw.githubusercontent.com/nicedoc/hacktoberfest/main/logos/hacktoberfest-2023.svg'" />
+            <!-- Network Wire -->
+            <div class="transmission-wire" id="network-cable-wire">
+              <div class="cable-line"></div>
+              
+              <!-- Segment packet -->
+              <div class="http-packet hidden" id="traveling-packet">
+                <span id="packet-label">GET</span>
+                <span id="packet-arrow">&rarr;</span>
+              </div>
             </div>
-            <div class="program__body">
-              <h3>Hacktoberfest 2026</h3>
-              <p class="program__badge">Featured</p>
-              <p>October's month-long global celebration of open source. Look for the <code>hacktoberfest</code> label and get your contributions counted.</p>
-              <a class="link" href="https://hacktoberfest.com/" rel="noopener" target="_blank">Learn more →</a>
-            </div>
-          </article>
 
-          <article class="program program--nsoc">
-            <div class="program__logo-wrap">
-              <img class="program__logo"
-                src="https://www.nsoc.in/_next/image?url=%2Flogo_white.png&w=96&q=80"
-                alt="NSoC" width="56" height="56" />
+            <!-- Server Node -->
+            <div class="node-box server">
+              <div class="node-icon">🖥️</div>
+              <div class="node-label">Web Server</div>
             </div>
-            <div class="program__body">
-              <h3>Nexus Spring of Code</h3>
-              <p>NIT Surat's annual 2-month program for first-time open-source contributors.</p>
-              <a class="link" href="https://www.nsoc.in/" rel="noopener" target="_blank">Learn more →</a>
-            </div>
-          </article>
-
-          <article class="program program--gssoc">
-            <div class="program__logo-wrap">
-              <img class="program__logo"
-                src="https://avatars.githubusercontent.com/u/56705888?v=4"
-                alt="GirlScript" width="56" height="56" />
-            </div>
-            <div class="program__body">
-              <h3>GirlScript Summer of Code</h3>
-              <p>India's largest open-source program for first-time contributors, run by GirlScript Foundation.</p>
-              <a class="link" href="https://gssoc.girlscript.org/" rel="noopener" target="_blank">Learn more →</a>
-            </div>
-          </article>
-
-          <article class="program program--gsoc">
-            <div class="program__logo-wrap">
-              <img class="program__logo"
-                src="https://summerofcode.withgoogle.com/assets/media/logo.svg"
-                alt="GSoC" width="56" height="56" />
-            </div>
-            <div class="program__body">
-              <h3>Google Summer of Code</h3>
-              <p>Global paid program for students and new contributors. Run by Google each year.</p>
-              <a class="link" href="https://summerofcode.withgoogle.com/" rel="noopener" target="_blank">Learn more →</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- Resources -->
-      <section id="resources" class="section">
-        <header class="section__head">
-          <h2>Learning resources</h2>
-          <p>Free guides to master web development, Git, and open source.</p>
-        </header>
-        <div class="resources">
-          <div class="resource-group">
-            <h3>Web Development</h3>
-            <ul class="resource-list">
-              <li><a href="https://developer.mozilla.org/" rel="noopener" target="_blank" class="resource-link">MDN Web Docs</a></li>
-              <li><a href="https://www.freecodecamp.org/" rel="noopener" target="_blank" class="resource-link">freeCodeCamp</a></li>
-              <li><a href="https://www.w3schools.com/" rel="noopener" target="_blank" class="resource-link">W3Schools</a></li>
-              <li><a href="https://javascript.info/" rel="noopener" target="_blank" class="resource-link">JavaScript.info</a></li>
-            </ul>
-          </div>
-          <div class="resource-group">
-            <h3>Git &amp; GitHub</h3>
-            <ul class="resource-list">
-              <li><a href="https://git-scm.com/" rel="noopener" target="_blank" class="resource-link">Git Documentation</a></li>
-              <li><a href="https://guides.github.com/" rel="noopener" target="_blank" class="resource-link">GitHub Guides</a></li>
-              <li><a href="https://www.atlassian.com/git" rel="noopener" target="_blank" class="resource-link">Atlassian Git</a></li>
-              <li><a href="https://education.github.com/" rel="noopener" target="_blank" class="resource-link">GitHub Education</a></li>
-            </ul>
-          </div>
-          <div class="resource-group">
-            <h3>Communities</h3>
-            <ul class="resource-list">
-              <li><a href="https://stackoverflow.com/" rel="noopener" target="_blank" class="resource-link">Stack Overflow</a></li>
-              <li><a href="https://dev.to/" rel="noopener" target="_blank" class="resource-link">Dev.to</a></li>
-              <li><a href="https://hashnode.com/" rel="noopener" target="_blank" class="resource-link">Hashnode</a></li>
-              <li><a href="https://www.reddit.com/r/webdev/" rel="noopener" target="_blank" class="resource-link">r/webdev</a></li>
-            </ul>
-          </div>
-          <div class="resource-group">
-            <h3>Open Source</h3>
-            <ul class="resource-list">
-              <li><a href="https://opensource.guide/" rel="noopener" target="_blank" class="resource-link">Open Source Guides</a></li>
-              <li><a href="https://www.firsttimersonly.com/" rel="noopener" target="_blank" class="resource-link">First Timers Only</a></li>
-              <li><a href="https://goodfirstissue.dev/" rel="noopener" target="_blank" class="resource-link">Good First Issue</a></li>
-              <li><a href="https://www.codementor.io/learn" rel="noopener" target="_blank" class="resource-link">Code Mentor</a></li>
-            </ul>
           </div>
         </div>
+
+        <!-- Raw HTTP Headers Inspector -->
+      <div class="inspector-tabs">
+  <button id="tab-btn-request" class="tab-button active">
+    Raw HTTP Request
+  </button>
+
+  <button id="tab-btn-response" class="tab-button">
+    Raw HTTP Response
+  </button>
+</div>
+
+<div class="copy-actions mt-12">
+  <button id="btn-copy-raw" class="btn btn-secondary btn-small">
+    Copy Request
+  </button>
+  <span id="copy-status" aria-live="polite"></span>
+</div>
+
+          <div class="raw-console-wrapper mt-12">
+            <div class="console" id="raw-console-display">
+              <!-- Highlighted lines with hover tags populated by JS -->
+            </div>
+          </div>
+          
+          <!-- Hover interactive explanation card -->
+          <div class="header-explanation-box mt-12" id="explanation-tooltip-box">
+            <div class="explanation-title" id="tooltip-title">Header Inspector</div>
+            <p class="explanation-desc" id="tooltip-desc">Hover over any raw header line in the code console above to display its TCP/HTTP specifications.</p>
+          </div>
+        </div>
+
+        <!-- Educational Training Quiz Card -->
+        <div class="card quiz-card">
+          <div class="card-header">
+            <h2 class="card-title">HTTP Protocol Quiz</h2>
+            <div class="quiz-score">Score: <b id="quiz-score-val" class="accent-text">0/0</b></div>
+          </div>
+          
+          <div id="quiz-start-view" class="quiz-content">
+            <p class="section-desc">Practice matching server status codes (1xx-5xx), header operations, and idempotency methods.</p>
+            <button id="btn-start-quiz" class="btn btn-primary w-full mt-16">Launch HTTP Quiz</button>
+          </div>
+
+          <div id="quiz-active-view" class="quiz-content hidden">
+            <div class="quiz-question-box" id="quiz-question-text">
+              <!-- Quiz loaded dynamically -->
+            </div>
+            
+            <div class="quiz-options-grid mt-16" id="quiz-options-container">
+              <!-- Choices buttons -->
+            </div>
+
+            <div class="quiz-feedback mt-16 hidden" id="quiz-feedback-box">
+              <span id="quiz-feedback-text">Correct!</span>
+            </div>
+
+            <div class="quiz-actions mt-16">
+              <button id="btn-quit-quiz" class="btn btn-secondary btn-small">Quit</button>
+              <button id="btn-next-quiz" class="btn btn-primary btn-small hidden">Next Question</button>
+            </div>
+          </div>
+        </div>
+
       </section>
 
-      <!-- Contribute -->
-      <section id="contribute" class="section">
-        <header class="section__head">
-          <h2>Contribute in four steps</h2>
-          <p>Read the full guide in <a href="https://github.com/cu-sanjay/OpenStudio/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a>.</p>
-        </header>
-        <ol class="steps">
-          <li>
-            <span class="steps__n">01</span>
-            <h3>Fork &amp; branch</h3>
-            <p>Fork the repo, create a branch named after your project, e.g. <code>add-to-do-web-app</code>.</p>
-          </li>
-          <li>
-            <span class="steps__n">02</span>
-            <h3>Create your folder</h3>
-            <p>Under <code>Projects/</code>, in Title Case with real spaces — like <code>To Do Web App</code>.</p>
-          </li>
-          <li>
-            <span class="steps__n">03</span>
-            <h3>Add the required files</h3>
-            <p><code>README.md</code>, <code>project.json</code> and <code>index.html</code>. No build step, ever.</p>
-          </li>
-          <li>
-            <span class="steps__n">04</span>
-            <h3>Open a pull request</h3>
-            <p>Use the New Project template. Once merged, the showcase rebuilds automatically.</p>
-          </li>
-        </ol>
-      </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-brand-col">
-          <div class="footer-brand">
-            <img src="assets/icons/OpenStudio.png" alt="OpenStudio" width="36" height="36" />
-            <span class="footer-brand-name">OpenStudio</span>
-          </div>
-          <p class="footer-tagline">Build in public. Learn by doing.<br>Grow through open source.</p>
-          <div class="footer-social" aria-label="Social links">
-            <a href="https://github.com/cu-sanjay/OpenStudio" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a href="https://linkedin.com/in/sanjay2705" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a href="https://twitter.com/cSxnJ" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-links-col">
-          <h4 class="footer-heading">Explore</h4>
-          <ul class="footer-links">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#hall-of-fame">Hall of Fame</a></li>
-            <li><a href="#programs">Programs</a></li>
-            <li><a href="#contribute">Contribute</a></li>
+    <!-- Bottom Educational details card -->
+    <section class="theory-section card">
+      <h3 class="section-title">HTTP Transaction Lifecycle Concepts</h3>
+      <div class="theory-grid">
+        
+        <div class="theory-card">
+          <h4>Request Methods</h4>
+          <p>
+            HTTP defines a set of request methods to indicate the desired action to be performed on a given resource:
+          </p>
+          <ul>
+            <li><strong>GET</strong>: Retrieves data from a resource. It is <strong>safe</strong> and <strong>idempotent</strong> (subsequent requests return the identical result without side effects).</li>
+            <li><strong>POST</strong>: Submits entity payloads to the specified resource, often causing state changes or side effects on the server.</li>
+            <li><strong>PUT</strong>: Replaces all current representations of the target resource with the request payload.</li>
+            <li><strong>DELETE</strong>: Deletes the specified resource.</li>
           </ul>
         </div>
 
-        <div class="footer-links-col">
-          <h4 class="footer-heading">Repository</h4>
-          <ul class="footer-links">
-            <li><a href="https://github.com/cu-sanjay/OpenStudio" target="_blank" rel="noopener">GitHub Repo</a></li>
-            <li><a href="https://github.com/cu-sanjay/OpenStudio/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing Guide</a></li>
-            <li><a href="https://github.com/cu-sanjay/OpenStudio/issues" target="_blank" rel="noopener">Open Issues</a></li>
-            <li><a href="https://github.com/cu-sanjay/OpenStudio/pulls" target="_blank" rel="noopener">Pull Requests</a></li>
+        <div class="theory-card">
+          <h4>Status Code Classifications</h4>
+          <p>
+            Server responses carry a 3-digit integer status code categorizing transaction results:
+          </p>
+          <ul>
+            <li><strong>1xx (Informational)</strong>: Request received, continuing process.</li>
+            <li><strong>2xx (Successful)</strong>: Action received, understood, and accepted (e.g. <code>200 OK</code>, <code>201 Created</code>).</li>
+            <li><strong>3xx (Redirection)</strong>: Further action needed to complete request (e.g. <code>301 Moved Permanently</code>).</li>
+            <li><strong>4xx (Client Error)</strong>: Request contains bad syntax or cannot be fulfilled (e.g. <code>400 Bad Request</code>, <code>401 Unauthorized</code>, <code>404 Not Found</code>).</li>
+            <li><strong>5xx (Server Error)</strong>: Server failed to fulfill an otherwise valid request (e.g. <code>500 Internal Server Error</code>).</li>
           </ul>
         </div>
 
-        <div class="footer-links-col">
-          <h4 class="footer-heading">Programs</h4>
-          <ul class="footer-links">
-            <li><a href="https://hacktoberfest.com/" target="_blank" rel="noopener">Hacktoberfest 2026</a></li>
-            <li><a href="https://gssoc.girlscript.org/" target="_blank" rel="noopener">GSSoC</a></li>
-            <li><a href="https://www.nsoc.in/" target="_blank" rel="noopener">NSoC</a></li>
-            <li><a href="https://summerofcode.withgoogle.com/" target="_blank" rel="noopener">GSoC</a></li>
+        <div class="theory-card">
+          <h4>HTTP Headers Functionality</h4>
+          <p>
+            Headers pass additional metadata parameters between client and server:
+          </p>
+          <ul>
+            <li><strong>Host</strong>: Specifies the domain name of the server (mandatory in HTTP/1.1).</li>
+            <li><strong>User-Agent</strong>: Identifies the client software application version (browser details).</li>
+            <li><strong>Authorization</strong>: Carries credentials (e.g. <code>Bearer token</code>) to authenticate the client.</li>
+            <li><strong>Set-Cookie</strong>: Server response header containing cookies to store in client local memory, establishing stateful sessions.</li>
           </ul>
         </div>
+
       </div>
+    </section>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 <a href="https://github.com/cu-sanjay" target="_blank" rel="noopener">cu-sanjay</a> &amp; OpenStudio contributors &middot; MIT License</p>
-        <p>Built with HTML, CSS &amp; JavaScript &middot; No tracking, no ads.</p>
-      </div>
-    </footer>
+  </div>
 
-    <!-- Card Template -->
-    <template id="card-template">
-      <li class="card">
-        <a class="card__media" target="_blank" rel="noopener">
-          <div class="card__thumb" aria-hidden="true"></div>
-          <button class="card__bookmark-btn" aria-label="Bookmark project" type="button">
-            <svg class="heart-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-          </button>
-        </a>
-        <div class="card__body">
-          <h3 class="card__title"></h3>
-          <p class="card__desc"></p>
-          <ul class="card__tags"></ul>
-          <div class="card__meta">
-            <a class="card__author" rel="noopener"></a>
-            <div class="card__actions">
-              <a class="btn btn--ghost btn--sm card__source" rel="noopener" target="_blank">Source</a>
-              <button class="btn btn--ghost btn--sm card__preview" type="button">Preview</button>
-              <a class="btn btn--primary btn--sm card__open" target="_blank" rel="noopener">Open</a>
-            </div>
-          </div>
-        </div>
-      </li>
-    </template>
-
-    <script src="assets/app.js?v=2.0.0" type="module"></script>
-
-    <!-- Tag Explorer Modal -->
-    <div id="tag-modal-overlay" class="tag-modal-overlay" aria-modal="true" role="dialog" aria-labelledby="tag-modal-title">
-      <div class="tag-modal-content">
-        <div class="tag-modal-header">
-          <h2 id="tag-modal-title">Explore All Tags</h2>
-          <button id="tag-modal-close" class="tag-modal-close-btn" aria-label="Close tag explorer" type="button">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-        <div class="tag-modal-body">
-          <div class="tag-modal-search-wrapper">
-            <svg class="tag-modal-search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10 3-5-5"></path>
-            </svg>
-            <input id="tag-modal-search" class="tag-modal-search-input" type="search" placeholder="Search tags…" autocomplete="off" />
-          </div>
-          <div id="tag-modal-cloud" class="tag-modal-cloud"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Preview Drawer -->
-    <div id="preview-drawer" class="preview-drawer" aria-hidden="true">
-      <div class="preview-drawer__backdrop" aria-label="Close preview"></div>
-      <div class="preview-drawer__content">
-        <header class="preview-drawer__header">
-          <div class="preview-drawer__info">
-            <h2 id="preview-title" class="preview-drawer__title">Project Title</h2>
-            <p id="preview-author" class="preview-drawer__author">by Author</p>
-          </div>
-          <div class="preview-drawer__switcher">
-            <button class="btn btn--ghost btn--sm preview-switcher-btn is-active" data-device="desktop" aria-label="Desktop view" type="button">
-              <i class="fa-solid fa-desktop"></i>
-            </button>
-            <button class="btn btn--ghost btn--sm preview-switcher-btn" data-device="tablet" aria-label="Tablet view" type="button">
-              <i class="fa-solid fa-tablet-screen-button"></i>
-            </button>
-            <button class="btn btn--ghost btn--sm preview-switcher-btn" data-device="mobile" aria-label="Mobile view" type="button">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-            </button>
-          </div>
-          <div class="preview-drawer__actions">
-            <a id="preview-external" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px"></i></a>
-            <button id="preview-close" class="btn btn--ghost btn--sm preview-drawer__close" aria-label="Close preview" type="button">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-        </header>
-        <div class="preview-drawer__body">
-          <div id="preview-spinner" class="preview-drawer__spinner">
-            <i class="fa-solid fa-circle-notch fa-spin fa-2xl"></i>
-          </div>
-          <div id="preview-iframe-wrapper" class="preview-drawer__iframe-wrapper device--desktop">
-            <iframe id="preview-iframe" class="preview-drawer__iframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals" aria-label="Interactive project preview"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+  <!-- Custom Scripts -->
+  <script src="script.js"></script>
+</body>
 </html>
